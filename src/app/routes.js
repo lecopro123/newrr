@@ -1,5 +1,6 @@
 import Category from './views/Category/Category'
 import Home from './views/Home/Home'
+import Login from './views/Login/Login'
 import Root from './views/Root/Root'
 import Bus from './views/Tacos/Bus/Bus'
 import Cart from './views/Tacos/Cart/Cart'
@@ -10,6 +11,10 @@ export const routes = [
         path: '/',
         exact: true,
         component: Root
+    },
+    {
+        path: '/login',
+        component: Login
     },
     {
         path: '/category/:category/:id/',

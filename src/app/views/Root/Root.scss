@@ -1,5 +1,5 @@
 .App {
-    background-color: #f2f2f2;
+    background-color: #e2e3de;
     min-height: 100vh;
     position: relative;
     display: flex;
@@ -117,6 +117,9 @@
             &-source {
                 padding-top: 10px;
                 text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .cover-container {
@@ -134,8 +137,6 @@
             }
 
             &-covertext {
-                backdrop-filter: blur(1px);
-                -webkit-backdrop-filter: blur(1px);
                 overflow: hidden;
                 display: flex;
                 width: auto;
@@ -149,7 +150,7 @@
                 left: 12px;
 
                 right: 1.5rem;
-                background-color: rgba(245, 245, 245, 0.6);
+                background-color: rgba(245, 245, 245, 0.8);
                 padding: 20px;
                 padding-left: 30px;
                 border-radius: 4px;
@@ -160,13 +161,17 @@
                 position: absolute;
                 width: 75px;
                 height: 50px;
-                background-color: rgba(245, 245, 245, 0.6);
+                background-color: rgba(245, 245, 245, 0.8);
                 position: absolute;
                 top: 12px;
                 right: 12px;
                 border-radius: 4px;
                 text-align: center;
                 padding: 13px 10px 10px 10px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
             &-reduced {
                 padding-top: 10px;
@@ -179,10 +184,14 @@
             }
             &-tag {
                 padding-top: 20px;
+                display: flex;
+                align-items: center;
                 text-align: center;
+                justify-content: center;
                 padding-bottom: 30px;
                 span {
-                    color: #34515e !important;
+                    color: #0c0c0d;
+                    margin-left: 6px;
                 }
             }
             &-meta {

@@ -38,6 +38,11 @@ export default function Category(props) {
     return (
         <Layout>
             <div className="App-main">
+                {!isLoading && (
+                    <div style={{ padding: '1rem 0' }}>
+                        Showing results for: <b>{category}</b>
+                    </div>
+                )}
                 {isLoading ? (
                     <div className="loader"></div>
                 ) : (
@@ -61,8 +66,8 @@ export default function Category(props) {
                     </div>
                 </div>
             )}
-            <div>CAT:{category}</div>
-            <div>ID:{id}</div>
+            {/* <div>CAT:{category}</div>
+            <div>ID:{id}</div> */}
         </Layout>
     )
 }

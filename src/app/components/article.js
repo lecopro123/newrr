@@ -1,3 +1,7 @@
+import coin from '../assets/coin.png'
+import label from '../assets/label.svg'
+import paper from '../assets/paper.png'
+
 export default function Article({ article }) {
     return (
         <div className="article">
@@ -11,7 +15,13 @@ export default function Article({ article }) {
                     alt={article.id}
                 />
                 <div className="article-likes">
-                    👑 {article.art_status}
+                    <img
+                        height="24px"
+                        style={{ margin: '0 6px' }}
+                        src={coin}
+                        alt=""
+                    />{' '}
+                    {article.art_status}
                 </div>
                 <div className="article-covertext">
                     {article.art_head}
@@ -19,7 +29,13 @@ export default function Article({ article }) {
             </div>
             <div className="article-meta">
                 <div className="article-source">
-                    📰 {article.source.name} |{' '}
+                    <img
+                        height="24px"
+                        style={{ margin: '0 6px' }}
+                        src={paper}
+                        alt=""
+                    />{' '}
+                    {article.source.name} |{' '}
                     {Math.round(
                         (new Date() - new Date(article.art_pub_dt)) /
                             (1000 * 60 * 60 * 24 * 7)
@@ -34,7 +50,8 @@ export default function Article({ article }) {
                     </div>
                 </div>
                 <div className="article-tag">
-                    <span>🔖 {article.category}</span>
+                    <img src={label} alt="" />
+                    <span>{article.category}</span>
                 </div>
             </div>
         </div>

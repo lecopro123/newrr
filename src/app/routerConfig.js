@@ -4,7 +4,6 @@ import {
     Route,
     Switch
 } from 'react-router-dom'
-import NavBar from './components/navBar'
 import { routes } from './routes'
 
 export default function RouterConfig() {
@@ -29,7 +28,8 @@ export default function RouterConfig() {
                         </li>
                     ))}
                 </ul> */}
-                <NavBar />
+
+                {/* <NavBar /> */}
 
                 <Switch>
                     {routes.map((route, i) => (
