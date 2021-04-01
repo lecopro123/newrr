@@ -1,9 +1,9 @@
-import * as types from "../types";
+import * as types from '../types'
 
 const initialState = {
     data: [],
     error: 0
-};
+}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -12,10 +12,10 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 data: action.data,
                 error: action.error
-            };
+            }
         default:
-            return state;
+            return state
     }
-};
+}
 
-export default reducer;
+export default reducer

@@ -1,4 +1,4 @@
-import * as types from "../types";
+import * as types from '../types'
 
 const initialState = {
     data: [],
@@ -9,7 +9,7 @@ const initialState = {
     error: 0,
     page: 0,
     page_total: 0
-};
+}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
                 error: action.error,
                 page: action.page,
                 page_total: action.page_total
-            };
+            }
         case types.GET_ARTICLE_CATEGORIES:
             return {
                 ...state,
@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
                     data: action.data,
                     error: action.error
                 }
-            };
+            }
         case types.GET_MORE_ARTICLES:
             return {
                 ...state,
@@ -36,10 +36,10 @@ const reducer = (state = initialState, action) => {
                 error: action.error,
                 page: action.page,
                 page_total: action.page_total
-            };
+            }
         default:
-            return state;
+            return state
     }
-};
+}
 
-export default reducer;
+export default reducer

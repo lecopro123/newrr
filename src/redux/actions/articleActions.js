@@ -1,6 +1,6 @@
-import * as endpoint from "../../api/endpoints";
-import fetchEndpoints from "../../api/fetchEndpoints";
-import * as types from "../types";
+import * as endpoint from '../../api/endpoints'
+import fetchEndpoints from '../../api/fetchEndpoints'
+import * as types from '../types'
 
 export const getReadArticles = (cb, options = { page: 1 }) => (
     dispatch
@@ -15,7 +15,7 @@ export const getReadArticles = (cb, options = { page: 1 }) => (
                 error: res.error,
                 page: options.page,
                 page_total: res.page_total
-            });
+            })
         } else {
             dispatch({
                 type: types.GET_ARTICLES,
@@ -23,23 +23,23 @@ export const getReadArticles = (cb, options = { page: 1 }) => (
                 error: res.error,
                 page: options.page,
                 page_total: res.page_total
-            });
+            })
         }
 
-        cb();
-    });
+        cb()
+    })
 
 export const getArticleCategories = () => (dispatch) =>
     fetchEndpoints(`${endpoint.ARTICLE_CATEGORIES}?format=json`).then(
         (res) => {
-            console.log(res);
+            console.log(res)
             dispatch({
                 type: types.GET_ARTICLE_CATEGORIES,
                 data: res.data,
                 error: res.error
-            });
+            })
         }
-    );
+    )
 
 export const getArticleByCategories = (
     cb,
@@ -55,7 +55,7 @@ export const getArticleByCategories = (
                 error: res.error,
                 page: options.page,
                 page_total: res.page_total
-            });
+            })
         } else {
             dispatch({
                 type: types.GET_ARTICLE_BY_CATEGORIES,
@@ -63,8 +63,8 @@ export const getArticleByCategories = (
                 error: res.error,
                 page: options.page,
                 page_total: res.page_total
-            });
+            })
         }
 
-        cb();
-    });
+        cb()
+    })

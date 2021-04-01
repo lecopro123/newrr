@@ -1,4 +1,4 @@
-import chevronUp from "../assets/up-chevron.svg";
+import chevronUp from '../assets/up-chevron.svg'
 
 export default function Footer({ topRef }) {
     return (
@@ -7,9 +7,9 @@ export default function Footer({ topRef }) {
                 className="top-btn"
                 onClick={() =>
                     topRef.current.scrollIntoView({
-                        behavior: "smooth",
-                        block: "end",
-                        inline: "nearest"
+                        behavior: 'smooth',
+                        block: 'end',
+                        inline: 'nearest'
                     })
                 }
             >
@@ -17,5 +17,5 @@ export default function Footer({ topRef }) {
             </div>
             <p>Ⓒ 2020 - 2021 Reading Right. All rights reserved.</p>
         </div>
-    );
+    )
 }

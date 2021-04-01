@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 import {
     BrowserRouter as Router,
     Route,
     Switch
-} from "react-router-dom";
-import NavBar from "./components/navBar";
-import { routes } from "./routes";
+} from 'react-router-dom'
+import NavBar from './components/navBar'
+import { routes } from './routes'
 
 export default function RouterConfig() {
     return (
@@ -38,7 +38,7 @@ export default function RouterConfig() {
                 </Switch>
             </div>
         </Router>
-    );
+    )
 }
 
 export function RouteWithSubRoutes(route) {
@@ -51,5 +51,5 @@ export function RouteWithSubRoutes(route) {
                 <route.component {...props} routes={route.routes} />
             )}
         />
-    );
+    )
 }

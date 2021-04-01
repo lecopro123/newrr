@@ -3,5 +3,5 @@ export default function Home(props) {
         <>
             <div>Home Page</div>
         </>
-    );
+    )
 }

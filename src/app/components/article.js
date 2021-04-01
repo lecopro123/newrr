@@ -5,7 +5,7 @@ export default function Article({ article }) {
                 <img
                     className="article-cover"
                     src={
-                        "https://www.readingright.in/" +
+                        'https://www.readingright.in/' +
                         article.art_image
                     }
                     alt={article.id}
@@ -19,18 +19,18 @@ export default function Article({ article }) {
             </div>
             <div className="article-meta">
                 <div className="article-source">
-                    📰 {article.source.name} |{" "}
+                    📰 {article.source.name} |{' '}
                     {Math.round(
                         (new Date() - new Date(article.art_pub_dt)) /
                             (1000 * 60 * 60 * 24 * 7)
-                    )}{" "}
+                    )}{' '}
                     Weeks
                 </div>
                 <div className="article-reduced">
                     <div>
                         {article.art_data
-                            .replace(/(<([^>]+)>)/gi, "")
-                            .replace(/&nbsp;|&rsquo;|❓|💡|🔗/gi, "")}
+                            .replace(/(<([^>]+)>)/gi, '')
+                            .replace(/&nbsp;|&rsquo;|❓|💡|🔗/gi, '')}
                     </div>
                 </div>
                 <div className="article-tag">
@@ -38,5 +38,5 @@ export default function Article({ article }) {
                 </div>
             </div>
         </div>
-    );
+    )
 }

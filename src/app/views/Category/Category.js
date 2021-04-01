@@ -1,39 +1,39 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
-import { getArticleByCategories } from "../../../redux/actions/articleActions";
-import Article from "../../components/article";
-import Layout from "../../components/layout";
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router'
+import { getArticleByCategories } from '../../../redux/actions/articleActions'
+import Article from '../../components/article'
+import Layout from '../../components/layout'
 
 export default function Category(props) {
-    let { category, id } = useParams();
-    const articles = useSelector((state) => state.articlesbycategory);
-    const [isLoading, setIsLoading] = useState(true);
-    const [moreLoading, setmoreLoading] = useState(false);
-    const dispatch = useDispatch();
+    let { category, id } = useParams()
+    const articles = useSelector((state) => state.articlesbycategory)
+    const [isLoading, setIsLoading] = useState(true)
+    const [moreLoading, setmoreLoading] = useState(false)
+    const dispatch = useDispatch()
 
     function callback() {
-        setmoreLoading(false);
-        console.log("VIEW_MORE_SUCCESS");
+        setmoreLoading(false)
+        console.log('VIEW_MORE_SUCCESS')
     }
 
     const handleViewMore = () => {
-        setmoreLoading(true);
+        setmoreLoading(true)
         dispatch(
             getArticleByCategories(callback, {
                 page: articles.page + 1
             })
-        );
-    };
+        )
+    }
 
     useEffect(() => {
-        setIsLoading(true);
+        setIsLoading(true)
         function initCallback() {
-            console.log("FETCHED_CATEGORY");
-            setIsLoading(false);
+            console.log('FETCHED_CATEGORY')
+            setIsLoading(false)
         }
-        dispatch(getArticleByCategories(initCallback, { id }));
-    }, [dispatch, setIsLoading, id]);
+        dispatch(getArticleByCategories(initCallback, { id }))
+    }, [dispatch, setIsLoading, id])
 
     return (
         <Layout>
@@ -56,7 +56,7 @@ export default function Category(props) {
                         {moreLoading ? (
                             <div className="loader-small"></div>
                         ) : (
-                            "View More"
+                            'View More'
                         )}
                     </div>
                 </div>
@@ -64,5 +64,5 @@ export default function Category(props) {
             <div>CAT:{category}</div>
             <div>ID:{id}</div>
         </Layout>
-    );
+    )
 }

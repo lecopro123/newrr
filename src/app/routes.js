@@ -1,36 +1,36 @@
-import Category from "./views/Category/Category";
-import Home from "./views/Home/Home";
-import Root from "./views/Root/Root";
-import Bus from "./views/Tacos/Bus/Bus";
-import Cart from "./views/Tacos/Cart/Cart";
-import TacosConfig from "./views/Tacos/tacosConfig";
+import Category from './views/Category/Category'
+import Home from './views/Home/Home'
+import Root from './views/Root/Root'
+import Bus from './views/Tacos/Bus/Bus'
+import Cart from './views/Tacos/Cart/Cart'
+import TacosConfig from './views/Tacos/tacosConfig'
 
 export const routes = [
     {
-        path: "/",
+        path: '/',
         exact: true,
         component: Root
     },
     {
-        path: "/category/:category/:id/",
+        path: '/category/:category/:id/',
         component: Category
     },
     {
-        path: "/home",
+        path: '/home',
         component: Home
     },
     {
-        path: "/tacos",
+        path: '/tacos',
         component: TacosConfig,
         routes: [
             {
-                path: "/tacos/bus",
+                path: '/tacos/bus',
                 component: Bus
             },
             {
-                path: "/tacos/cart",
+                path: '/tacos/cart',
                 component: Cart
             }
         ]
     }
-];
+]

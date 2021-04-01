@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
-import menuIcon from "../assets/menu.svg";
-import searchIcon from "../assets/search.svg";
+import { Link } from 'react-router-dom'
+import logo from '../assets/logo.png'
+import menuIcon from '../assets/menu.svg'
+import searchIcon from '../assets/search.svg'
 
 function NavBar(props) {
     return (
@@ -18,7 +18,7 @@ function NavBar(props) {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default NavBar;
+export default NavBar

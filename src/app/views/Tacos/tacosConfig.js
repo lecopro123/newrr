@@ -1,5 +1,5 @@
-import { Switch } from "react-router-dom";
-import { RouteWithSubRoutes } from "../../routerConfig";
+import { Switch } from 'react-router-dom'
+import { RouteWithSubRoutes } from '../../routerConfig'
 
 export default function TacosConfig({ routes }) {
     return (
@@ -11,5 +11,5 @@ export default function TacosConfig({ routes }) {
                 ))}
             </Switch>
         </div>
-    );
+    )
 }

@@ -3,5 +3,5 @@ export default function Cart(props) {
         <>
             <div>Cart</div>
         </>
-    );
+    )
 }

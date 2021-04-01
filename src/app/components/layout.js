@@ -1,9 +1,9 @@
-import { useRef } from "react";
-import Categories from "./categories";
-import Footer from "./footer";
+import { useRef } from 'react'
+import Categories from './categories'
+import Footer from './footer'
 
 export default function Layout({ children }) {
-    const topRef = useRef(null);
+    const topRef = useRef(null)
 
     return (
         <div className="App">
@@ -15,5 +15,5 @@ export default function Layout({ children }) {
 
             <Footer topRef={topRef} />
         </div>
-    );
+    )
 }

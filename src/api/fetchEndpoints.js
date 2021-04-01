@@ -1,17 +1,17 @@
-import { BASE_URI } from "./base";
+import { BASE_URI } from './base'
 
 export default function fetchEndpoints(
     endpoint,
     options = {
-        method: "GET",
+        method: 'GET',
         headers: [
-            { name: "Content-Type", value: "application/json" }
+            { name: 'Content-Type', value: 'application/json' }
         ],
-        body: ""
+        body: ''
     }
 ) {
-    const requestURL = BASE_URI + `${endpoint}`;
-    const requestHeaders = new Headers();
+    const requestURL = BASE_URI + `${endpoint}`
+    const requestHeaders = new Headers()
 
     // requestHeaders.append(
     //   'Authorization',
@@ -21,26 +21,26 @@ export default function fetchEndpoints(
     options.headers &&
         options.headers.map((header) =>
             requestHeaders.append(header.name, header.value)
-        );
+        )
 
-    let driveRequest;
+    let driveRequest
     if (!options.body) {
         driveRequest = new Request(requestURL, {
             method: options.method,
             headers: requestHeaders
-        });
+        })
     } else {
         driveRequest = new Request(requestURL, {
             method: options.method,
             headers: requestHeaders,
             body: options.body
-        });
+        })
     }
 
     return fetch(driveRequest).then((response) => {
         if (response.ok && response.status === 200) {
-            return response.json();
+            return response.json()
         }
-        throw response.status;
-    });
+        throw response.status
+    })
 }
