@@ -29,7 +29,6 @@ export default function RouterConfig() {
                         </li>
                     ))}
                 </ul> */}
-
                 <NavBar />
 
                 <Switch>

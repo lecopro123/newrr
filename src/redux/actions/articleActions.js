@@ -40,3 +40,31 @@ export const getArticleCategories = () => (dispatch) =>
             });
         }
     );
+
+export const getArticleByCategories = (
+    cb,
+    options = { page: 1, id: 2 }
+) => (dispatch) =>
+    fetchEndpoints(
+        `${endpoint.ARTICLE_CATEGORIES}/${options.id}/?format=json`
+    ).then((res) => {
+        if (options.page > 1) {
+            dispatch({
+                type: types.GET_ARTICLE_BY_CATEGORIES,
+                data: res.data,
+                error: res.error,
+                page: options.page,
+                page_total: res.page_total
+            });
+        } else {
+            dispatch({
+                type: types.GET_ARTICLE_BY_CATEGORIES,
+                data: res.data,
+                error: res.error,
+                page: options.page,
+                page_total: res.page_total
+            });
+        }
+
+        cb();
+    });

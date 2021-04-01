@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getReadArticles } from "../../../redux/actions/articleActions";
+import { useParams } from "react-router";
+import { getArticleByCategories } from "../../../redux/actions/articleActions";
 import Article from "../../components/article";
 import Layout from "../../components/layout";
-import "./Root.scss";
 
-export default function Root(props) {
-    const dispatch = useDispatch();
+export default function Category(props) {
+    let { category, id } = useParams();
+    const articles = useSelector((state) => state.articlesbycategory);
     const [isLoading, setIsLoading] = useState(true);
     const [moreLoading, setmoreLoading] = useState(false);
-    const articles = useSelector((state) => state.articles);
+    const dispatch = useDispatch();
 
     function callback() {
         setmoreLoading(false);
@@ -19,17 +20,20 @@ export default function Root(props) {
     const handleViewMore = () => {
         setmoreLoading(true);
         dispatch(
-            getReadArticles(callback, { page: articles.page + 1 })
+            getArticleByCategories(callback, {
+                page: articles.page + 1
+            })
         );
     };
 
     useEffect(() => {
+        setIsLoading(true);
         function initCallback() {
-            console.log("INITIAL_LOAD");
+            console.log("FETCHED_CATEGORY");
             setIsLoading(false);
         }
-        dispatch(getReadArticles(initCallback));
-    }, [dispatch, setIsLoading]);
+        dispatch(getArticleByCategories(initCallback, { id }));
+    }, [dispatch, setIsLoading, id]);
 
     return (
         <Layout>
@@ -57,6 +61,8 @@ export default function Root(props) {
                     </div>
                 </div>
             )}
+            <div>CAT:{category}</div>
+            <div>ID:{id}</div>
         </Layout>
     );
 }
