@@ -3,16 +3,20 @@ import Categories from './categories'
 import Footer from './footer'
 import NavBar from './navBar'
 
-export default function Layout({ children }) {
+export default function Layout({
+    children,
+    navbar = true,
+    categories = true
+}) {
     const topRef = useRef(null)
 
     return (
         <>
-            <NavBar />
+            {navbar && <NavBar />}
             <div className="App">
                 <div ref={topRef} />
 
-                <Categories />
+                {categories && <Categories />}
                 {children}
 
                 <Footer topRef={topRef} />

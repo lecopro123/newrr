@@ -1,4 +1,5 @@
 import chevronUp from '../assets/up-chevron.svg'
+import { AuthButton } from '../auth/auth'
 
 export default function Footer({ topRef }) {
     return (
@@ -16,6 +17,7 @@ export default function Footer({ topRef }) {
                 <img src={chevronUp} alt="^"></img>
             </div>
             <p>Ⓒ 2020 - 2021 Reading Right. All rights reserved.</p>
+            <AuthButton />
         </div>
     )
 }

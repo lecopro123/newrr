@@ -32,8 +32,10 @@ export default function Category(props) {
             console.log('FETCHED_CATEGORY')
             setIsLoading(false)
         }
-        dispatch(getArticleByCategories(initCallback, { id }))
-    }, [dispatch, setIsLoading, id])
+        dispatch(
+            getArticleByCategories(initCallback, { id, category })
+        )
+    }, [dispatch, setIsLoading, id, category])
 
     return (
         <Layout>
@@ -47,7 +49,11 @@ export default function Category(props) {
                     <div className="loader"></div>
                 ) : (
                     articles.data.map((article) => (
-                        <Article key={article.id} article={article} />
+                        <Article
+                            key={article.id}
+                            article_category={articles.category}
+                            article={article}
+                        />
                     ))
                 )}
             </div>
@@ -66,7 +72,7 @@ export default function Category(props) {
                     </div>
                 </div>
             )}
-            {/* <div>CAT:{category}</div>
+            {/* <div>CAT:{ar}</div>
             <div>ID:{id}</div> */}
         </Layout>
     )

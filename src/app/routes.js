@@ -1,6 +1,7 @@
 import Category from './views/Category/Category'
 import Home from './views/Home/Home'
 import Login from './views/Login/Login'
+import ReadArticle from './views/ReadArticle/ReadArticle'
 import Root from './views/Root/Root'
 import Bus from './views/Tacos/Bus/Bus'
 import Cart from './views/Tacos/Cart/Cart'
@@ -37,5 +38,10 @@ export const routes = [
                 component: Cart
             }
         ]
+    },
+    {
+        path: '/article/read/:id/',
+        component: ReadArticle,
+        private: true
     }
 ]

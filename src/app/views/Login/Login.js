@@ -1,8 +1,52 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory, useLocation } from 'react-router'
+import {
+    userLoginRequest,
+    verifyOTPRequest
+} from '../../../redux/actions/userActions'
 import logo from '../../assets/logo.png'
 import './Login.scss'
 
 export default function Login(props) {
+    const dispatch = useDispatch()
+    const [phone, setPhone] = useState(null)
+    const [OTP, setOTP] = useState(null)
+    const [hasOTP, setHasOTP] = useState(false)
+    let history = useHistory()
+    let location = useLocation()
+
+    let { from } = location.state || { from: { pathname: '/' } }
+
+    const loginData = useSelector((state) => state.user)
+
+    function callback() {
+        console.log('OTP_RECEIVED')
+        setHasOTP(true)
+    }
+
+    const handleOtpRequest = () => {
+        dispatch(userLoginRequest(callback, { phonenumber: phone }))
+    }
+
+    const handleLoginBtn = () => {
+        // auth.verifyOtp(
+        //     () => {
+        //         history.replace(from)
+        //     },
+        //     { userOtp: OTP, serverOtp: loginData.OTP }
+        // )
+
+        dispatch(
+            verifyOTPRequest(
+                () => {
+                    history.replace(from)
+                },
+                { userOTP: OTP, serverOTP: loginData.OTP }
+            )
+        )
+    }
+
     return (
         <div className="bg">
             <div className="circle1"></div>
@@ -13,8 +57,8 @@ export default function Login(props) {
                 <div className="rect"></div>
             </div>
 
-            <div class="flex-grid">
-                <div class="col sidebar">
+            <div className="flex-grid">
+                <div className="col sidebar">
                     <div>Welcome To</div>
                     <img className="sidebar-logo" src={logo} alt="" />
                     <div className="sidebar-text">
@@ -23,20 +67,60 @@ export default function Login(props) {
                         and many more
                     </div>
                 </div>
-                <div class="col">
-                    <div className="sidebar-text">
-                        Please enter your phone number <br /> to
-                        continue
+                {!hasOTP ? (
+                    <div className="col">
+                        <div className="sidebar-text">
+                            {from.pathname === '/' ? (
+                                ''
+                            ) : (
+                                <p>
+                                    You must log in to read full
+                                    article <br />
+                                    {from.pathname}
+                                </p>
+                            )}
+                            <br />
+                            Please enter your phone number <br /> to
+                            continue
+                        </div>
+
+                        <input
+                            onChange={(e) => setPhone(e.target.value)}
+                            type="text"
+                            placeholder="Your phone number"
+                            className="input"
+                            pattern="[1-9]{1}[0-9]{9}"
+                        />
+
+                        <div
+                            className="btn otp-btn"
+                            onClick={handleOtpRequest}
+                        >
+                            GET OTP
+                        </div>
                     </div>
-                    <input
-                        type="text"
-                        placeholder="Your phone number"
-                        className="input"
-                    />
-                    <Link style={{ textDecoration: 'none' }} to="/">
-                        <div className="btn otp-btn">GET OTP</div>
-                    </Link>
-                </div>
+                ) : (
+                    <div className="col">
+                        <div className="sidebar-text">
+                            Enter OTP Here {loginData.OTP}
+                        </div>
+
+                        <input
+                            onChange={(e) => setOTP(e.target.value)}
+                            type="text"
+                            placeholder="Your phone number"
+                            className="input"
+                            pattern="[0-9]{4}"
+                        />
+
+                        <div
+                            className="btn otp-btn"
+                            onClick={handleLoginBtn}
+                        >
+                            LOGIN
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )

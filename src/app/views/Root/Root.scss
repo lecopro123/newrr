@@ -1,3 +1,6 @@
+$primary-text: #0c0c0d;
+$secondary-text: rgba(12, 12, 13, 0.8);
+
 .App {
     background-color: #e2e3de;
     min-height: 100vh;
@@ -120,6 +123,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                color: $secondary-text;
             }
 
             .cover-container {
@@ -127,9 +131,10 @@
             }
 
             &-cover {
+                cursor: pointer;
                 position: relative;
                 box-shadow: 0px 6px 30px rgba(#000000, 0.4);
-                width: 90vw;
+                width: 95vw;
                 max-width: 960px;
                 height: 400px;
                 object-fit: cover;
@@ -137,6 +142,7 @@
             }
 
             &-covertext {
+                color: #0c0c0d;
                 overflow: hidden;
                 display: flex;
                 width: auto;
@@ -174,6 +180,10 @@
                 align-items: center;
             }
             &-reduced {
+                div {
+                    color: #0c0c0d;
+                }
+
                 padding-top: 10px;
                 padding-bottom: 20px;
                 height: 110px;
@@ -190,7 +200,7 @@
                 justify-content: center;
                 padding-bottom: 30px;
                 span {
-                    color: #0c0c0d;
+                    color: $secondary-text;
                     margin-left: 6px;
                 }
             }
@@ -200,6 +210,7 @@
                 position: relative;
                 max-width: 800px;
                 width: 90vw;
+
                 // border-radius: 0 0 2px 2px;
 
                 p {
@@ -209,7 +220,6 @@
 
                 div {
                     font-size: medium;
-                    color: #0c0c0d;
                 }
                 br {
                     display: none;

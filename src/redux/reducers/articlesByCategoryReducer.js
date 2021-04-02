@@ -2,6 +2,7 @@ import * as types from '../types'
 
 const initialState = {
     data: [],
+    category: '',
     error: 0,
     page: 0,
     page_total: 0
@@ -14,6 +15,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 data: action.data,
                 error: action.error,
+                category: action.category,
                 page: action.page,
                 page_total: action.page_total
             }
@@ -23,6 +25,7 @@ const reducer = (state = initialState, action) => {
                 data: [...state.data, ...action.data],
                 error: action.error,
                 page: action.page,
+                category: action.category,
                 page_total: action.page_total
             }
         default:
