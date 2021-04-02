@@ -2,11 +2,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Redirect, Route, useHistory } from 'react-router-dom'
 import { userLogOutRequest } from '../../redux/actions/userActions'
-import RouterConfig from '../routerConfig'
-
-export default function AuthExample() {
-    return <RouterConfig />
-}
 
 export function AuthButton() {
     let history = useHistory()
@@ -19,7 +14,7 @@ export function AuthButton() {
             <span
                 style={{
                     textDecoration: 'underline',
-                    color: 'darkblue',
+                    color: '#d97e79',
                     cursor: 'pointer'
                 }}
                 onClick={() => {
@@ -33,7 +28,10 @@ export function AuthButton() {
         </div>
     ) : (
         <div>
-            You are not logged in. <Link to="/login">Sign In</Link>
+            You are not logged in.{' '}
+            <Link style={{ color: '#d97e79' }} to="/login">
+                Click to Sign In
+            </Link>
         </div>
     )
 }

@@ -1,3 +1,6 @@
+$primary: #d97e79;
+$secondary: #4a3d3c;
+
 .article-content {
     width: 95vw;
     max-width: 900px;
@@ -5,6 +8,21 @@
     padding-bottom: 20px;
     line-height: auto;
     text-align: center;
+
+    // * {
+    //     color: #0c0c0d !important;
+    // }
+
+    h1 {
+        font-size: 1.5em;
+        font-weight: bolder;
+    }
+
+    button {
+        // display: none;
+        border: none;
+    }
+
     text-overflow: ellipsis !important;
 }
 
@@ -34,4 +52,73 @@
     .label {
         flex-direction: column;
     }
+}
+
+.author {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    // max-width: 960px;
+
+    &-avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 1.5rem;
+        div {
+            height: 100px;
+            width: 100px;
+            border-radius: 50px;
+            background-color: $primary;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &-text {
+        display: flex;
+        flex-direction: column;
+
+        &-name {
+            color: #0c0c0d;
+        }
+
+        &-description {
+            width: 90%;
+        }
+    }
+}
+
+.divider {
+    border-top: 1px solid lightgray;
+    display: block;
+    width: 95%;
+    margin: 3rem 0;
+}
+
+.action-btns {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn {
+    padding: 0 2.2rem;
+}
+
+.article-bookmark {
+    position: absolute;
+    bottom: -30px;
+    height: 60px;
+    width: 60px;
+    background-color: $primary;
+    border-radius: 30px;
+    right: 1.5rem;
+    box-shadow: 0 2px 8px rgba(12, 12, 13, 0.3);
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

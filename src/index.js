@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import AuthExample from './app/auth/auth'
-// import RouterConfig from './app/routerConfig'
+import RouterConfig from './app/routerConfig'
 import './index.scss'
 import store from './redux/storeConfig'
 import reportWebVitals from './reportWebVitals'
@@ -10,7 +9,7 @@ import reportWebVitals from './reportWebVitals'
 ReactDOM.render(
     <Provider store={store}>
         <React.StrictMode>
-            <AuthExample />
+            <RouterConfig />
         </React.StrictMode>
     </Provider>,
     document.getElementById('root')

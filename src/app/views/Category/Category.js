@@ -42,7 +42,7 @@ export default function Category(props) {
             <div className="App-main">
                 {!isLoading && (
                     <div style={{ padding: '1rem 0' }}>
-                        Showing results for: <b>{category}</b>
+                        Showing topic: <b>{category}</b>
                     </div>
                 )}
                 {isLoading ? (

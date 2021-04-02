@@ -1,5 +1,6 @@
 $primary-text: #0c0c0d;
 $secondary-text: rgba(12, 12, 13, 0.8);
+$cover-tint: rgba(245, 245, 245, 0.7);
 
 .App {
     background-color: #e2e3de;
@@ -156,7 +157,7 @@ $secondary-text: rgba(12, 12, 13, 0.8);
                 left: 12px;
 
                 right: 1.5rem;
-                background-color: rgba(245, 245, 245, 0.8);
+                background-color: $cover-tint;
                 padding: 20px;
                 padding-left: 30px;
                 border-radius: 4px;
@@ -164,10 +165,11 @@ $secondary-text: rgba(12, 12, 13, 0.8);
                 //text-align:left;
             }
             &-likes {
+                color: $primary-text;
                 position: absolute;
                 width: 75px;
                 height: 50px;
-                background-color: rgba(245, 245, 245, 0.8);
+                background-color: $cover-tint;
                 position: absolute;
                 top: 12px;
                 right: 12px;
@@ -252,8 +254,7 @@ $secondary-text: rgba(12, 12, 13, 0.8);
 
 .more-btn {
     @extend .btn;
-    padding: 0 30px;
-    width: 200px;
+    padding: 0 2.5rem;
 }
 
 .top-btn {
@@ -268,15 +269,22 @@ $secondary-text: rgba(12, 12, 13, 0.8);
 }
 
 .btn {
+    border: none;
     cursor: pointer;
     background-color: #d97e79;
     height: 40px;
-    box-shadow: 0 2px 8px rgba(12, 12, 13, 0.1);
+    box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
     color: #ffffff;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &:disabled {
+        box-shadow: none;
+        background-color: #4a3d3c;
+        color: gray;
+    }
 }
 
 .loader {
@@ -304,4 +312,10 @@ $secondary-text: rgba(12, 12, 13, 0.8);
     100% {
         transform: rotate(360deg);
     }
+}
+
+button {
+    outline: none;
+    border: none;
+    background-color: #fff;
 }

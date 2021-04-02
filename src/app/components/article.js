@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import coin from '../assets/coin.png'
 import label from '../assets/label.svg'
 import paper from '../assets/paper.png'
 
 export default function Article({ article, article_category }) {
+    let history = useHistory()
+
     return (
         <div className="article">
             <Link
@@ -53,7 +55,15 @@ export default function Article({ article, article_category }) {
                         style={{ textDecoration: 'none' }}
                         to={'/article/read/' + article.id}
                     >
-                        <div>
+                        <div
+                            onClick={() =>
+                                history.push({
+                                    pathname:
+                                        '/article/read' + article.id,
+                                    state: article
+                                })
+                            }
+                        >
                             {article.art_data
                                 .replace(/(<([^>]+)>)/gi, '')
                                 .replace(

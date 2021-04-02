@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getReadArticles } from '../../../redux/actions/articleActions'
+import {
+    getArticleCategories,
+    getReadArticles
+} from '../../../redux/actions/articleActions'
 import Article from '../../components/article'
 import Layout from '../../components/layout'
 import './Root.scss'
@@ -28,6 +31,8 @@ export default function Root(props) {
             console.log('INITIAL_LOAD')
             setIsLoading(false)
         }
+
+        dispatch(getArticleCategories())
         dispatch(getReadArticles(initCallback))
     }, [dispatch, setIsLoading])
 

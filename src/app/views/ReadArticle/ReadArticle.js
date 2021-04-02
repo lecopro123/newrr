@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
+import bookmark from '../../assets/bookmark-fill.svg'
 import coin from '../../assets/coin.png'
 import label from '../../assets/label.svg'
 import paper from '../../assets/paper.png'
@@ -50,6 +51,15 @@ export default function ReadArticle() {
                         <div className="article-covertext">
                             {article.art_head}
                         </div>
+
+                        <div className="article-bookmark">
+                            <img
+                                height="24px"
+                                style={{ margin: '0 6px' }}
+                                src={bookmark}
+                                alt=""
+                            />
+                        </div>
                     </div>
                     <div className="label">
                         <div className="label-tag">
@@ -88,8 +98,56 @@ export default function ReadArticle() {
                             __html: article.art_data
                         }}
                     ></div>
+
+                    <div className="divider"></div>
+                    <div className="author">
+                        <div className="author-avatar">
+                            <div>
+                                <h1 style={{ color: '#fff' }}>
+                                    {getInitials('Lorem, ipsum.')}
+                                </h1>
+                            </div>
+                        </div>
+
+                        <div className="author-text">
+                            <div className="author-text-name">
+                                <h1>Lorem, ipsum.</h1>
+                            </div>
+                            <div className="author-text-description">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Itaque tenetur non,
+                                nam perferendis neque repellendus.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="divider"></div>
+
+                    <div className="action-btns">
+                        <div
+                            style={{
+                                marginRight: '1.5rem',
+                                marginBottom: '1.5rem'
+                            }}
+                            className="btn"
+                        >
+                            Take a Quiz
+                        </div>
+                        <div className="btn">Discussion</div>
+                    </div>
                 </div>
             </div>
         </Layout>
     )
 }
+
+const getInitials = (string) =>
+    string
+        .split(' ')
+        .map(([firstLetter]) => firstLetter)
+        .filter(
+            (_, index, array) =>
+                index === 0 || index === array.length - 1
+        )
+        .join('')
+        .toUpperCase()

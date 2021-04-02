@@ -13,11 +13,9 @@ function NavBar(props) {
                 <Link to="/">
                     <img className="logo" src={logo} alt="Logo" />
                 </Link>
-                <Link to="/login">
-                    <div className="search">
-                        <img src={searchIcon} alt="s"></img>
-                    </div>
-                </Link>
+                <div className="search">
+                    <img src={searchIcon} alt="s"></img>
+                </div>
             </div>
         </div>
     )

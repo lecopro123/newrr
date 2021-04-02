@@ -13,6 +13,7 @@ export default function Login(props) {
     const [phone, setPhone] = useState(null)
     const [OTP, setOTP] = useState(null)
     const [hasOTP, setHasOTP] = useState(false)
+    const [otpLoading, setOtpLoading] = useState(false)
     let history = useHistory()
     let location = useLocation()
 
@@ -23,9 +24,11 @@ export default function Login(props) {
     function callback() {
         console.log('OTP_RECEIVED')
         setHasOTP(true)
+        setOtpLoading(false)
     }
 
     const handleOtpRequest = () => {
+        setOtpLoading(true)
         dispatch(userLoginRequest(callback, { phonenumber: phone }))
     }
 
@@ -67,7 +70,7 @@ export default function Login(props) {
                         and many more
                     </div>
                 </div>
-                {!hasOTP ? (
+                {!hasOTP && !otpLoading ? (
                     <div className="col">
                         <div className="sidebar-text">
                             {from.pathname === '/' ? (
@@ -108,17 +111,18 @@ export default function Login(props) {
                         <input
                             onChange={(e) => setOTP(e.target.value)}
                             type="text"
-                            placeholder="Your phone number"
+                            placeholder="Enter OTP here"
                             className="input"
                             pattern="[0-9]{4}"
                         />
 
-                        <div
+                        <button
+                            disabled={otpLoading}
                             className="btn otp-btn"
                             onClick={handleLoginBtn}
                         >
                             LOGIN
-                        </div>
+                        </button>
                     </div>
                 )}
             </div>
