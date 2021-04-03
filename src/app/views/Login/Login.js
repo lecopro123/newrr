@@ -45,7 +45,7 @@ export default function Login(props) {
                 () => {
                     history.replace(from)
                 },
-                { userOTP: OTP, serverOTP: loginData.OTP }
+                { userOTP: OTP, phonenumber: phone }
             )
         )
     }

@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-    getArticleCategories,
-    getReadArticles
-} from '../../../redux/actions/articleActions'
+import { getReadArticles } from '../../../redux/actions/articleActions'
 import Article from '../../components/article'
 import Layout from '../../components/layout'
 import './Root.scss'
@@ -32,9 +29,9 @@ export default function Root(props) {
             setIsLoading(false)
         }
 
-        dispatch(getArticleCategories())
+        if (articles.data.length) return setIsLoading(false)
         dispatch(getReadArticles(initCallback))
-    }, [dispatch, setIsLoading])
+    }, [dispatch, setIsLoading, articles.data.length])
 
     return (
         <Layout>
@@ -53,13 +50,16 @@ export default function Root(props) {
                     onClick={handleViewMore}
                     className="btn-container"
                 >
-                    <div className="more-btn">
+                    <button
+                        disabled={moreLoading}
+                        className="more-btn"
+                    >
                         {moreLoading ? (
                             <div className="loader-small"></div>
                         ) : (
                             'View More'
                         )}
-                    </div>
+                    </button>
                 </div>
             )}
         </Layout>

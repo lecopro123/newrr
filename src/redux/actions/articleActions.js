@@ -5,7 +5,6 @@ import * as types from '../types'
 export const getArticleCategories = () => (dispatch) =>
     fetchEndpoints(`${endpoint.ARTICLE_CATEGORIES}?format=json`).then(
         (res) => {
-            console.log(res)
             dispatch({
                 type: types.GET_ARTICLE_CATEGORIES,
                 data: res.data,
@@ -50,6 +49,21 @@ export const getArticleByCategories = (
             error: res.error,
             page: options.page,
             page_total: res.page_total
+        })
+        cb()
+    })
+
+export const getArticleById = (cb, options = { id: 132 }) => (
+    dispatch
+) =>
+    fetchEndpoints(
+        `${endpoint.READ_ARTICLES}?format=json&id=${options.id}`
+    ).then((res) => {
+        dispatch({
+            type: types.GOT_SINGLE_ARTICLE,
+            data: res.data,
+            error: res.error,
+            article_id: options.id
         })
         cb()
     })

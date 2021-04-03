@@ -22,15 +22,26 @@ export const userLoginRequest = (
 
 export const verifyOTPRequest = (
     cb,
-    options = { userOTP: 0, serverOTP: 0 }
-) => (dispatch) => {
-    if (options.userOTP === options.serverOTP) {
-        dispatch({ type: types.OTP_VERIFICATION_SUCCESS })
-        localStorage.setItem('OTP', options.userOTP)
-    } else dispatch({ type: types.OTP_VERIFICATION_FAILURE })
+    options = { userOTP: 0, phonenumber: 0 }
+) => (dispatch) =>
+    fetchEndpoints(
+        `${endpoint.OTP_VERIFICATION}?format=json&phonenumber=${options.phonenumber}&otp=${options.userOTP}`
+    ).then((res) => {
+        if (res.verified) {
+            dispatch({ type: types.OTP_VERIFICATION_SUCCESS })
+            localStorage.setItem('OTP', options.userOTP)
+        } else dispatch({ type: types.OTP_VERIFICATION_FAILURE })
+        cb()
+    })
 
-    cb()
-}
+// {
+//     if (options.userOTP === options.serverOTP) {
+//         dispatch({ type: types.OTP_VERIFICATION_SUCCESS })
+//         localStorage.setItem('OTP', options.userOTP)
+//     } else dispatch({ type: types.OTP_VERIFICATION_FAILURE })
+
+//     cb()
+// }
 
 export const userLogOutRequest = (cb) => (dispatch) => {
     dispatch({ type: types.USER_LOGGED_OUT })
