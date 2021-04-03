@@ -29,7 +29,7 @@ export default function ReadArticle() {
     }, [id, dispatch])
 
     return (
-        <Layout>
+        <Layout navbar={true} categories={true}>
             <div className="App-main">
                 {loading ? (
                     <div className="loader"></div>
@@ -57,12 +57,15 @@ export default function ReadArticle() {
                                 {article.art_head}
                             </div>
 
-                            <div className="article-bookmark">
+                            <div
+                                title="bookmark this article"
+                                className="article-bookmark"
+                            >
                                 <img
                                     height="24px"
                                     style={{ margin: '0 6px' }}
                                     src={bookmark}
-                                    alt=""
+                                    alt="bookmark"
                                 />
                             </div>
                         </div>
@@ -91,9 +94,13 @@ export default function ReadArticle() {
                             </div>
                             <div className="label-tag">
                                 <img src={label} alt="" />
-                                <span>{article.category}</span>
+                                <span>
+                                    {article.category ||
+                                        'Lorem, ipsum.'}
+                                </span>
                             </div>
                         </div>
+
                         <div
                             className="article-content"
                             dangerouslySetInnerHTML={{
@@ -102,6 +109,7 @@ export default function ReadArticle() {
                         ></div>
 
                         <div className="divider"></div>
+
                         {article.author_data.length ? (
                             article.author_data.map((author) => (
                                 <>
