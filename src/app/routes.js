@@ -1,11 +1,10 @@
-import Category from './views/Category/Category'
-import Home from './views/Home/Home'
+import ArticlesConfig from './views/Articles/articlesConfig'
+import ByCategory from './views/Articles/ByCategory/bycategory'
+import ByQuery from './views/Articles/ByQuery/byquery'
+import BySource from './views/Articles/BySource/bysource'
 import Login from './views/Login/Login'
 import ReadArticle from './views/ReadArticle/ReadArticle'
 import Root from './views/Root/Root'
-import Bus from './views/Tacos/Bus/Bus'
-import Cart from './views/Tacos/Cart/Cart'
-import TacosConfig from './views/Tacos/tacosConfig'
 
 export const routes = [
     {
@@ -18,24 +17,20 @@ export const routes = [
         component: Login
     },
     {
-        path: '/category/:category/:id/',
-        component: Category
-    },
-    {
-        path: '/home',
-        component: Home
-    },
-    {
-        path: '/tacos',
-        component: TacosConfig,
+        path: '/articles',
+        component: ArticlesConfig,
         routes: [
             {
-                path: '/tacos/bus',
-                component: Bus
+                path: '/articles/category/:category/:id/',
+                component: ByCategory
             },
             {
-                path: '/tacos/cart',
-                component: Cart
+                path: '/articles/source/:source/:id/',
+                component: BySource
+            },
+            {
+                path: '/articles/search',
+                component: ByQuery
             }
         ]
     },

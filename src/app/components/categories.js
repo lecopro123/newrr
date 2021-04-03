@@ -19,7 +19,9 @@ export default function Categories() {
             {categories.data.map((c, i) => {
                 return (
                     <span key={i}>
-                        <Link to={`/category/${c.sub_cat}/${c.id}/`}>
+                        <Link
+                            to={`/articles/category/${c.sub_cat}/${c.id}/`}
+                        >
                             <span
                                 style={{
                                     backgroundColor: colors[i].color

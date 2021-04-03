@@ -231,15 +231,12 @@ $cover-tint: rgba(245, 245, 245, 0.7);
     }
 
     &-footer {
-        min-height: 20vh;
+        padding: 1.2rem;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        position: relative;
-        bottom: 0;
         color: gray;
-        // background-color: #f2f2f2;
     }
 }
 

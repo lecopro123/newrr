@@ -9,8 +9,8 @@ export function AuthButton() {
     const dispatch = useDispatch()
 
     return auth.isLoggedIn ? (
-        <div>
-            Welcome Guest!{' '}
+        <div style={{ marginTop: '6px' }}>
+            Welcome User!{' '}
             <span
                 style={{
                     textDecoration: 'underline',
@@ -27,7 +27,7 @@ export function AuthButton() {
             </span>
         </div>
     ) : (
-        <div>
+        <div style={{ marginTop: '6px' }}>
             You are not logged in.{' '}
             <Link style={{ color: '#d97e79' }} to="/login">
                 Click to Sign In

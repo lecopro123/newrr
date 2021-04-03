@@ -32,27 +32,6 @@ export const getReadArticles = (cb, options = { page: 1 }) => (
         cb()
     })
 
-export const getArticleByCategories = (
-    cb,
-    options = { page: 1, id: 2, category: '' }
-) => (dispatch) =>
-    fetchEndpoints(
-        `${endpoint.ARTICLE_CATEGORIES}${options.id}/?format=json&page=${options.page}`
-    ).then((res) => {
-        dispatch({
-            type:
-                options.page > 1
-                    ? types.GET_MORE_ARTICLE_BY_CATEGORIES
-                    : types.GET_ARTICLE_BY_CATEGORIES,
-            data: res.data,
-            category: options.category,
-            error: res.error,
-            page: options.page,
-            page_total: res.page_total
-        })
-        cb()
-    })
-
 export const getArticleById = (cb, options = { id: 132 }) => (
     dispatch
 ) =>
@@ -67,3 +46,65 @@ export const getArticleById = (cb, options = { id: 132 }) => (
         })
         cb()
     })
+
+export const getArticlesBy = (
+    cb,
+    by = { type: 'source', value: 'Policy' },
+    options = { id: 5, page: 1, query: 'elon' }
+) => (dispatch) => {
+    if (by.type === 'source') {
+        fetchEndpoints(
+            `${endpoint.ARTICLE_SOURCES}?format=json&s_id=${options.id}`
+        ).then((res) => {
+            dispatch({
+                page: options.page,
+                type:
+                    options.page > 1
+                        ? types.GOT_MORE_ARTICLES_BY_SOURCE
+                        : types.GOT_ARTICLES_BY_SOURCE,
+                data: res.data,
+                error: res.error,
+                page_total: res.page_total,
+                source_type: by.type,
+                source_value: by.value
+            })
+            cb()
+        })
+    } else if (by.type === 'category') {
+        fetchEndpoints(
+            `${endpoint.ARTICLE_CATEGORIES}${options.id}/?format=json&page=${options.page}`
+        ).then((res) => {
+            dispatch({
+                page: options.page,
+                type:
+                    options.page > 1
+                        ? types.GOT_MORE_ARTICLES_BY_CATEGORY
+                        : types.GOT_ARTICLES_BY_CATEGORY,
+                data: res.data,
+                error: res.error,
+                page_total: res.page_total,
+                source_type: by.type,
+                source_value: by.value
+            })
+            cb()
+        })
+    } else if (by.type === 'query') {
+        fetchEndpoints(
+            `${endpoint.ARTICLE_SEARCH}?format=json&q=${by.value}`
+        ).then((res) => {
+            dispatch({
+                page: options.page,
+                type:
+                    options.page > 1
+                        ? types.GOT_MORE_ARTICLES_BY_CATEGORY
+                        : types.GOT_ARTICLES_BY_CATEGORY,
+                data: res.data,
+                // error: res.error,
+                // page_total: res.page_total,
+                source_type: by.type,
+                source_value: by.value
+            })
+            cb()
+        })
+    }
+}
