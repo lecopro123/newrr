@@ -30,8 +30,11 @@ export const verifyOTPRequest = (
         if (res.verified) {
             dispatch({ type: types.OTP_VERIFICATION_SUCCESS })
             localStorage.setItem('OTP', options.userOTP)
-        } else dispatch({ type: types.OTP_VERIFICATION_FAILURE })
-        cb()
+            cb(true)
+        } else {
+            dispatch({ type: types.OTP_VERIFICATION_FAILURE })
+            cb(false)
+        }
     })
 
 // {

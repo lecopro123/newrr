@@ -5,6 +5,7 @@ import {
     Switch
 } from 'react-router-dom'
 import { PrivateRoute } from './auth/auth'
+import NotFound from './auth/notfound'
 import { routes } from './routes'
 
 export default function RouterConfig() {
@@ -36,6 +37,10 @@ export default function RouterConfig() {
                     {routes.map((route, i) => (
                         <RouteWithSubRoutes key={i} {...route} />
                     ))}
+
+                    <Route path="*">
+                        <NotFound />
+                    </Route>
                 </Switch>
             </div>
         </Router>

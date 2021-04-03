@@ -37,7 +37,12 @@ export default function Root(props) {
         <Layout>
             <div className="App-main">
                 {isLoading ? (
-                    <div className="loader"></div>
+                    <>
+                        <div className="loader"></div>
+                        <p>Hang on, Loading..</p>
+                        <br />
+                        <br />
+                    </>
                 ) : (
                     articles.data.map((article) => (
                         <Article key={article.id} article={article} />

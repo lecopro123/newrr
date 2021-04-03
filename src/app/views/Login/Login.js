@@ -14,6 +14,9 @@ export default function Login(props) {
     const [OTP, setOTP] = useState(null)
     const [hasOTP, setHasOTP] = useState(false)
     const [otpLoading, setOtpLoading] = useState(false)
+    const [verifyingOtp, setVerifyingOtp] = useState(false)
+    const [msg, setMsg] = useState({ loadingMsg: '', errorMsg: '' })
+
     let history = useHistory()
     let location = useLocation()
 
@@ -25,28 +28,36 @@ export default function Login(props) {
         console.log('OTP_RECEIVED')
         setHasOTP(true)
         setOtpLoading(false)
+        setVerifyingOtp(false)
+        setMsg({ errorMsg: `Didn't receive?` })
     }
 
     const handleOtpRequest = () => {
         setOtpLoading(true)
+        setMsg({ loadingMsg: 'Sending OTP' })
+        setVerifyingOtp(true)
         dispatch(userLoginRequest(callback, { phonenumber: phone }))
     }
 
-    const handleLoginBtn = () => {
-        // auth.verifyOtp(
-        //     () => {
-        //         history.replace(from)
-        //     },
-        //     { userOtp: OTP, serverOtp: loginData.OTP }
-        // )
+    function verifyCallback(success) {
+        if (success) {
+            setTimeout(() => {
+                history.replace(from)
+            }, 100)
+        } else {
+            setMsg({ errorMsg: 'Wrong OTP, Try Again!' })
+            setVerifyingOtp(false)
+        }
+    }
 
+    const handleLoginBtn = () => {
+        setVerifyingOtp(true)
+        setMsg({ loadingMsg: 'Verifying OTP' })
         dispatch(
-            verifyOTPRequest(
-                () => {
-                    history.replace(from)
-                },
-                { userOTP: OTP, phonenumber: phone }
-            )
+            verifyOTPRequest(verifyCallback, {
+                userOTP: OTP,
+                phonenumber: phone
+            })
         )
     }
 
@@ -70,6 +81,7 @@ export default function Login(props) {
                         and many more
                     </div>
                 </div>
+
                 {!hasOTP && !otpLoading ? (
                     <div className="col">
                         <div className="sidebar-text">
@@ -102,6 +114,15 @@ export default function Login(props) {
                             GET OTP
                         </div>
                     </div>
+                ) : verifyingOtp ? (
+                    <div className="col">
+                        <div className="loader"></div>
+                        {loginData.isLoggedIn ? (
+                            <p>OTP Verification Succesful</p>
+                        ) : (
+                            <p>{msg.loadingMsg}</p>
+                        )}
+                    </div>
                 ) : (
                     <div className="col">
                         <div className="sidebar-text">
@@ -115,7 +136,21 @@ export default function Login(props) {
                             className="input"
                             pattern="[0-9]{4}"
                         />
-
+                        {msg.errorMsg && (
+                            <p style={{ marginBottom: '.5em' }}>
+                                {msg.errorMsg + ' '}
+                                <span
+                                    style={{
+                                        cursor: 'pointer',
+                                        color: '#d97e79',
+                                        textDecoration: 'underline'
+                                    }}
+                                    onClick={handleOtpRequest}
+                                >
+                                    Click to resend
+                                </span>
+                            </p>
+                        )}
                         <button
                             disabled={otpLoading}
                             className="btn otp-btn"

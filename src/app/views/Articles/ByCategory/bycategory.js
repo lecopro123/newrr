@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { getArticleByCategories } from '../../../redux/actions/articleActions'
-import Article from '../../components/article'
-import Layout from '../../components/layout'
+import { getArticlesBy } from '../../../../redux/actions/articleActions'
+import nodata from '../../../assets/nodata.svg'
+import Article from '../../../components/article'
+import Layout from '../../../components/layout'
 
-export default function Category(props) {
+export default function ByCategory(props) {
     let { category, id } = useParams()
-    const articles = useSelector((state) => state.articlesbycategory)
+    const articles = useSelector((state) => state.articlesby)
     const [isLoading, setIsLoading] = useState(true)
     const [moreLoading, setmoreLoading] = useState(false)
     const dispatch = useDispatch()
@@ -20,9 +21,11 @@ export default function Category(props) {
     const handleViewMore = () => {
         setmoreLoading(true)
         dispatch(
-            getArticleByCategories(callback, {
-                page: articles.page + 1
-            })
+            getArticlesBy(
+                callback,
+                { type: 'category', value: category },
+                { id, page: articles.page + 1 }
+            )
         )
     }
 
@@ -33,7 +36,11 @@ export default function Category(props) {
             setIsLoading(false)
         }
         dispatch(
-            getArticleByCategories(initCallback, { id, category })
+            getArticlesBy(
+                initCallback,
+                { type: 'category', value: category },
+                { id, page: 1 }
+            )
         )
     }, [dispatch, setIsLoading, id, category])
 
@@ -41,20 +48,32 @@ export default function Category(props) {
         <Layout>
             <div className="App-main">
                 {!isLoading && (
-                    <div style={{ padding: '1rem 0' }}>
-                        Showing topic: <b>{category}</b>
+                    <div style={{ padding: '.5rem 0' }}>
+                        Showing category: <b>{category}</b>
                     </div>
                 )}
                 {isLoading ? (
-                    <div className="loader"></div>
-                ) : (
+                    <>
+                        <div className="loader"></div>
+                        <p>Loading..</p>
+                        <br />
+                        <br />
+                    </>
+                ) : articles.data.length ? (
                     articles.data.map((article) => (
                         <Article
                             key={article.id}
-                            article_category={articles.category}
+                            article_category={articles.from.value}
                             article={article}
                         />
                     ))
+                ) : (
+                    <div>
+                        <img height="200px" src={nodata} alt="" />
+                        <br />
+                        <p>Nothing yet, Coming Soon</p>
+                        <br />
+                    </div>
                 )}
             </div>
 
@@ -72,8 +91,6 @@ export default function Category(props) {
                     </div>
                 </div>
             )}
-            {/* <div>CAT:{ar}</div>
-            <div>ID:{id}</div> */}
         </Layout>
     )
 }

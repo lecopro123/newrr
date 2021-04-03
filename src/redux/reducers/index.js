@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import articlesByCategoryReducer from './articlesByCategoryReducer'
+import articlesbyReducer from './articlesbyReducer'
 import articlesReducer from './articlesReducer'
 import categoriesReducer from './categoriesReducer'
 import userReducer from './userReducer'
@@ -7,6 +7,6 @@ import userReducer from './userReducer'
 export default combineReducers({
     articles: articlesReducer,
     categories: categoriesReducer,
-    articlesbycategory: articlesByCategoryReducer,
+    articlesby: articlesbyReducer,
     user: userReducer
 })

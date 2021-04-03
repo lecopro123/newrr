@@ -27,7 +27,7 @@ export default function Article({ article, article_category }) {
                             style={{ margin: '0 6px' }}
                             src={coin}
                             alt=""
-                        />{' '}
+                        />
                         {article.art_status}
                     </div>
                     <div className="article-covertext">
@@ -42,12 +42,27 @@ export default function Article({ article, article_category }) {
                         style={{ margin: '0 6px' }}
                         src={paper}
                         alt=""
-                    />{' '}
-                    {article.source.name} |{' '}
+                    />
+                    <Link
+                        style={{
+                            textDecoration: 'none',
+                            color: 'inherit'
+                        }}
+                        to={
+                            '/articles/source/' +
+                            article.source.name +
+                            '/' +
+                            article.art_source +
+                            '/'
+                        }
+                    >
+                        {article.source.name}
+                    </Link>
+                    &nbsp; | &nbsp;
                     {Math.round(
                         (new Date() - new Date(article.art_pub_dt)) /
                             (1000 * 60 * 60 * 24 * 7)
-                    )}{' '}
+                    )}
                     Weeks
                 </div>
                 <div className="article-reduced">
@@ -59,8 +74,7 @@ export default function Article({ article, article_category }) {
                             onClick={() =>
                                 history.push({
                                     pathname:
-                                        '/article/read' + article.id,
-                                    state: article
+                                        '/article/read/' + article.id
                                 })
                             }
                         >
@@ -76,7 +90,17 @@ export default function Article({ article, article_category }) {
                 <div className="article-tag">
                     <img src={label} alt="" />
                     <span>
-                        {article_category || article.category}
+                        <Link
+                            style={{
+                                textDecoration: 'none',
+                                color: 'inherit'
+                            }}
+                            to={`/articles/category/${
+                                article_category || article.category
+                            }/${article.art_sub_cat}`}
+                        >
+                            {article.category || article_category}
+                        </Link>
                     </span>
                 </div>
             </div>

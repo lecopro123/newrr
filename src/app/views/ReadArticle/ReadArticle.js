@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 import { getArticleById } from '../../../redux/actions/articleActions'
 import bookmark from '../../assets/bookmark-fill.svg'
 import coin from '../../assets/coin.png'
@@ -16,6 +17,7 @@ export default function ReadArticle() {
     const article = useSelector(
         (state) => state.articles.read.data[0]
     )
+    const categories = useSelector((state) => state.categories)
 
     const [loading, setLoading] = useState(true)
 
@@ -78,25 +80,61 @@ export default function ReadArticle() {
                                     alt=""
                                 />
                                 <span>
-                                    {article.source
-                                        ? article.source.name
-                                        : ''}{' '}
-                                    |{' '}
+                                    {article.source ? (
+                                        <Link
+                                            style={{
+                                                textDecoration:
+                                                    'none',
+                                                color: 'inherit'
+                                            }}
+                                            to={
+                                                '/articles/source/' +
+                                                article.source.name +
+                                                '/' +
+                                                article.art_source +
+                                                '/'
+                                            }
+                                        >
+                                            {article.source.name}
+                                        </Link>
+                                    ) : (
+                                        ''
+                                    )}
+                                    &nbsp; | &nbsp;
                                     {Math.round(
                                         (new Date() -
                                             new Date(
                                                 article.art_pub_dt
                                             )) /
                                             (1000 * 60 * 60 * 24 * 7)
-                                    )}{' '}
+                                    )}
                                     Weeks
                                 </span>
                             </div>
                             <div className="label-tag">
                                 <img src={label} alt="" />
                                 <span>
-                                    {article.category ||
-                                        'Lorem, ipsum.'}
+                                    <Link
+                                        style={{
+                                            textDecoration: 'none',
+                                            color: 'inherit'
+                                        }}
+                                        to={`/articles/category/${
+                                            article.category ||
+                                            categories.data.find(
+                                                (c) =>
+                                                    c.id ===
+                                                    article.art_sub_cat
+                                            ).sub_cat
+                                        }/${article.art_sub_cat}`}
+                                    >
+                                        {article.category ||
+                                            categories.data.find(
+                                                (c) =>
+                                                    c.id ===
+                                                    article.art_sub_cat
+                                            ).sub_cat}
+                                    </Link>
                                 </span>
                             </div>
                         </div>
