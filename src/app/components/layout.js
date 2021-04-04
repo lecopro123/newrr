@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import Categories from './categories'
 import Footer from './footer'
-import NavBar from './navBar'
+import NavBar from './navbar'
 
 export default function Layout({
     children,
