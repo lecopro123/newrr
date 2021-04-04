@@ -17,7 +17,6 @@ export default function ReadArticle() {
     const article = useSelector(
         (state) => state.articles.read.data[0]
     )
-    const categories = useSelector((state) => state.categories)
 
     const [loading, setLoading] = useState(true)
 
@@ -119,21 +118,9 @@ export default function ReadArticle() {
                                             textDecoration: 'none',
                                             color: 'inherit'
                                         }}
-                                        to={`/articles/category/${
-                                            article.category ||
-                                            categories.data.find(
-                                                (c) =>
-                                                    c.id ===
-                                                    article.art_sub_cat
-                                            ).sub_cat
-                                        }/${article.art_sub_cat}`}
+                                        to={`/articles/category/${article.category}/${article.art_sub_cat}`}
                                     >
-                                        {article.category ||
-                                            categories.data.find(
-                                                (c) =>
-                                                    c.id ===
-                                                    article.art_sub_cat
-                                            ).sub_cat}
+                                        {article.category}
                                     </Link>
                                 </span>
                             </div>
@@ -148,22 +135,13 @@ export default function ReadArticle() {
 
                         <div className="divider"></div>
 
-                        {article.author_data.length ? (
-                            article.author_data.map((author) => (
-                                <>
-                                    <Author
-                                        hasAuthor={false}
-                                        author={author}
-                                    />
-                                    <div className="divider"></div>
-                                </>
-                            ))
-                        ) : (
-                            <>
-                                <Author />
-                                <div className="divider"></div>
-                            </>
-                        )}
+                        {article.author_data.map((author, i) => (
+                            <Author
+                                key={i}
+                                hasAuthor={true}
+                                author={author}
+                            />
+                        ))}
 
                         <div className="action-btns">
                             <div

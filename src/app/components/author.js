@@ -1,55 +1,33 @@
-export default function Author({ hasAuthor = false, author = {} }) {
-    return hasAuthor ? (
-        <div className="author">
-            <div className="author-avatar">
-                <div>
-                    <h1
-                        style={{
-                            color: '#fff'
-                        }}
-                    >
-                        {getInitials(author.author_name)}
-                    </h1>
+export default function Author({ author }) {
+    return (
+        <>
+            <div className="author">
+                <div className="author-avatar">
+                    <div>
+                        <h1
+                            style={{
+                                color: '#fff'
+                            }}
+                        >
+                            {getInitials(author.author_name)}
+                        </h1>
+                    </div>
                 </div>
-            </div>
+                <div className="author-text">
+                    <div className="author-text-name">
+                        <h1>{author.author_name}</h1>
+                    </div>
 
-            <div className="author-text">
-                <div className="author-text-name">
-                    <h1>{author.author_name}</h1>
-                </div>
-                <div
-                    dangerouslySetInnerHTML={{
-                        __html: author.author_desc
-                    }}
-                    className="author-text-description"
-                ></div>
-            </div>
-        </div>
-    ) : (
-        <div className="author">
-            <div className="author-avatar">
-                <div>
-                    <h1
-                        style={{
-                            color: '#fff'
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: author.author_desc || '__'
                         }}
-                    >
-                        {getInitials('Lorem, ipsum.')}
-                    </h1>
+                        className="author-text-description"
+                    ></div>
                 </div>
             </div>
-
-            <div className="author-text">
-                <div className="author-text-name">
-                    <h1>Lorem, ipsum.</h1>
-                </div>
-                <div className="author-text-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit. Itaque tenetur non, nam perferendis neque
-                    repellendus.
-                </div>
-            </div>
-        </div>
+            <div className="divider"></div>
+        </>
     )
 }
 

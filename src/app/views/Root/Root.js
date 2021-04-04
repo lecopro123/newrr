@@ -41,7 +41,6 @@ export default function Root(props) {
                         <div className="loader"></div>
                         <p>Hang on, Loading..</p>
                         <br />
-                        <br />
                     </>
                 ) : (
                     articles.data.map((article) => (
