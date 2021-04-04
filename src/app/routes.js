@@ -6,6 +6,15 @@ import Login from './views/Login/Login'
 import ReadArticle from './views/ReadArticle/ReadArticle'
 import Root from './views/Root/Root'
 
+/**
+ * @property: @type
+ *
+ * path: String
+ * component: <React.Component />
+ * exact?: Boolean
+ * private?: Boolean
+ */
+
 export const routes = [
     {
         path: '/',

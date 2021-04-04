@@ -1,10 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import {
     BrowserRouter as Router,
+    Redirect,
     Route,
     Switch
 } from 'react-router-dom'
-import { PrivateRoute } from './auth/auth'
 import NotFound from './auth/notfound'
 import { routes } from './routes'
 
@@ -12,26 +13,27 @@ export default function RouterConfig() {
     return (
         <Router>
             <div>
-                {/* <ul style={{ backgroundColor: "teal" }}>
-                    {routes.map((route, i) => (
-                        <li key={i}>
-                            <Link to={route.path}>{route.path}</Link>
-                            {route.routes && (
-                                <ul>
-                                    {route.routes.map((route, i) => (
-                                        <li key={i}>
-                                            <Link to={route.path}>
-                                                {route.path}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </li>
-                    ))}
-                </ul> */}
+                {/* ALL_ROUTES_WITH_LINK
 
-                {/* <NavBar /> */}
+                    <ul style={{ backgroundColor: "teal" }}>
+                        {routes.map((route, i) => (
+                            <li key={i}>
+                                <Link to={route.path}>{route.path}</Link>
+                                {route.routes && (
+                                    <ul>
+                                        {route.routes.map((route, i) => (
+                                            <li key={i}>
+                                                <Link to={route.path}>
+                                                    {route.path}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </li>
+                        ))}
+                    </ul> 
+                */}
 
                 <Switch>
                     {routes.map((route, i) => (
@@ -68,4 +70,26 @@ export function RouteWithSubRoutes(route) {
                 )}
             />
         )
+}
+
+function PrivateRoute({ children, ...rest }) {
+    const auth = useSelector((state) => state.user)
+
+    return (
+        <Route
+            {...rest}
+            render={({ location }) =>
+                auth.isLoggedIn ? (
+                    children
+                ) : (
+                    <Redirect
+                        to={{
+                            pathname: '/login',
+                            state: { from: location }
+                        }}
+                    />
+                )
+            }
+        />
+    )
 }
