@@ -1,7 +1,7 @@
 import chevronUp from '../assets/up-chevron.svg'
 import { AuthButton } from '../auth/auth'
 
-export default function Footer({ topRef }) {
+function Footer({ topRef }) {
     return (
         <div className="App-footer">
             <div
@@ -21,3 +21,5 @@ export default function Footer({ topRef }) {
         </div>
     )
 }
+
+export default Footer
