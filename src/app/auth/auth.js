@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, Redirect, Route, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { userLogOutRequest } from '../../redux/actions/userActions'
 
 export function AuthButton() {
@@ -33,27 +33,5 @@ export function AuthButton() {
                 Click to Sign In
             </Link>
         </div>
-    )
-}
-
-export function PrivateRoute({ children, ...rest }) {
-    const auth = useSelector((state) => state.user)
-
-    return (
-        <Route
-            {...rest}
-            render={({ location }) =>
-                auth.isLoggedIn ? (
-                    children
-                ) : (
-                    <Redirect
-                        to={{
-                            pathname: '/login',
-                            state: { from: location }
-                        }}
-                    />
-                )
-            }
-        />
     )
 }
