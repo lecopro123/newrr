@@ -5,6 +5,8 @@ import BySource from './views/Articles/BySource/bysource'
 import Login from './views/Login/Login'
 import ReadArticle from './views/ReadArticle/ReadArticle'
 import Root from './views/Root/Root'
+import Bookmarks from './views/User/Bookmarks/Bookmarks'
+import UserConfig from './views/User/userConfig'
 
 /**
  * @property: @type
@@ -47,5 +49,16 @@ export const routes = [
         path: '/article/read/:id/',
         component: ReadArticle,
         private: true
+    },
+    {
+        path: '/user',
+        component: UserConfig,
+        private: true,
+        routes: [
+            {
+                path: '/user/bookmarks',
+                component: Bookmarks
+            }
+        ]
     }
 ]

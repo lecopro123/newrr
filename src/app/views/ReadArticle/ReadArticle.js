@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { Link } from 'react-router-dom'
-import { getArticleById } from '../../../redux/actions/articleActions'
+import {
+    getArticleById,
+    toogleBookmark
+} from '../../../redux/actions/articleActions'
 import bookmark from '../../assets/bookmark-fill.svg'
+import check from '../../assets/check.svg'
 import coin from '../../assets/coin.png'
-import label from '../../assets/label.svg'
-import paper from '../../assets/paper.png'
+import ArticleCategory from '../../components/articlecategory'
+import ArticleSource from '../../components/articlesource'
 import Author from '../../components/author'
 import Layout from '../../components/layout'
 import './ReadArticle.scss'
@@ -17,12 +20,17 @@ export default function ReadArticle() {
     const article = useSelector(
         (state) => state.articles.read.data[0]
     )
+    const ids = useSelector((state) => state.bookmarks.ids)
 
     const [loading, setLoading] = useState(true)
 
     function callback() {
         console.log('ARTICLE_LOADED')
         setLoading(false)
+    }
+
+    const handleBookmark = () => {
+        dispatch(toogleBookmark(id))
     }
 
     useEffect(() => {
@@ -33,7 +41,13 @@ export default function ReadArticle() {
         <Layout navbar={true} categories={true}>
             <div className="App-main">
                 {loading ? (
-                    <div className="loader"></div>
+                    <>
+                        <div className="loader"></div>
+                        <p>
+                            We're Fetching the article for You...
+                            <br />
+                        </p>
+                    </>
                 ) : (
                     <div className="article">
                         <div className="cover-container">
@@ -59,71 +73,25 @@ export default function ReadArticle() {
                             </div>
 
                             <div
+                                onClick={handleBookmark}
                                 title="bookmark this article"
                                 className="article-bookmark"
                             >
                                 <img
                                     height="24px"
                                     style={{ margin: '0 6px' }}
-                                    src={bookmark}
+                                    src={
+                                        ids.includes(id)
+                                            ? check
+                                            : bookmark
+                                    }
                                     alt="bookmark"
                                 />
                             </div>
                         </div>
                         <div className="label">
-                            <div className="label-tag">
-                                <img
-                                    height="24px"
-                                    style={{ margin: '0 6px' }}
-                                    src={paper}
-                                    alt=""
-                                />
-                                <span>
-                                    {article.source ? (
-                                        <Link
-                                            style={{
-                                                textDecoration:
-                                                    'none',
-                                                color: 'inherit'
-                                            }}
-                                            to={
-                                                '/articles/source/' +
-                                                article.source.name +
-                                                '/' +
-                                                article.art_source +
-                                                '/'
-                                            }
-                                        >
-                                            {article.source.name}
-                                        </Link>
-                                    ) : (
-                                        ''
-                                    )}
-                                    &nbsp; | &nbsp;
-                                    {Math.round(
-                                        (new Date() -
-                                            new Date(
-                                                article.art_pub_dt
-                                            )) /
-                                            (1000 * 60 * 60 * 24 * 7)
-                                    )}
-                                    Weeks
-                                </span>
-                            </div>
-                            <div className="label-tag">
-                                <img src={label} alt="" />
-                                <span>
-                                    <Link
-                                        style={{
-                                            textDecoration: 'none',
-                                            color: 'inherit'
-                                        }}
-                                        to={`/articles/category/${article.category}/${article.art_sub_cat}`}
-                                    >
-                                        {article.category}
-                                    </Link>
-                                </span>
-                            </div>
+                            <ArticleSource article={article} />
+                            <ArticleCategory article={article} />
                         </div>
 
                         <div

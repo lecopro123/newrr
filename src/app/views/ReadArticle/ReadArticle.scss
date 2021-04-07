@@ -24,7 +24,7 @@ $secondary: #4a3d3c;
     }
 
     button {
-        // display: none;
+        display: none;
         border: none;
     }
 
@@ -36,21 +36,6 @@ $secondary: #4a3d3c;
     flex-direction: row;
     align-items: center;
     padding: 10px 0;
-
-    &-tag {
-        &:first-child {
-            padding-right: 12px;
-        }
-        padding-top: 12px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        span {
-            color: #0c0c0d;
-            margin-left: 6px;
-        }
-    }
 }
 
 @media only screen and (max-width: 600px) {

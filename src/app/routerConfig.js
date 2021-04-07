@@ -52,9 +52,17 @@ export default function RouterConfig() {
 export function RouteWithSubRoutes(route) {
     if (route.private) {
         return (
-            <PrivateRoute path={route.path}>
-                <route.component />
-            </PrivateRoute>
+            <PrivateRoute
+                exact={route.exact}
+                path={route.path}
+                render={(props) => (
+                    // pass the sub-routes down to keep nesting
+                    <route.component
+                        {...props}
+                        routes={route.routes}
+                    />
+                )}
+            />
         )
     } else
         return (
@@ -72,15 +80,17 @@ export function RouteWithSubRoutes(route) {
         )
 }
 
-function PrivateRoute({ children, ...rest }) {
+function PrivateRoute({ exact, path, render, ...rest }) {
     const auth = useSelector((state) => state.user)
 
     return (
         <Route
+            exact={exact}
+            path={path}
             {...rest}
             render={({ location }) =>
                 auth.isLoggedIn ? (
-                    children
+                    render()
                 ) : (
                     <Redirect
                         to={{
