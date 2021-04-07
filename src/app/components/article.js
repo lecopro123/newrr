@@ -1,7 +1,7 @@
 import { Link, useHistory } from 'react-router-dom'
 import coin from '../assets/coin.png'
-import label from '../assets/label.svg'
-import paper from '../assets/paper.png'
+import ArticleCategory from './articlecategory'
+import ArticleSource from './articlesource'
 
 export default function Article({ article, article_category }) {
     let history = useHistory()
@@ -22,12 +22,7 @@ export default function Article({ article, article_category }) {
                         alt={article.id}
                     />
                     <div className="article-likes">
-                        <img
-                            height="24px"
-                            style={{ margin: '0 6px' }}
-                            src={coin}
-                            alt=""
-                        />
+                        <img src={coin} alt="likes" />
                         {article.art_status}
                     </div>
                     <div className="article-covertext">
@@ -36,35 +31,7 @@ export default function Article({ article, article_category }) {
                 </div>
             </Link>
             <div className="article-meta">
-                <div className="article-source">
-                    <img
-                        height="24px"
-                        style={{ margin: '0 6px' }}
-                        src={paper}
-                        alt=""
-                    />
-                    <Link
-                        style={{
-                            textDecoration: 'none',
-                            color: 'inherit'
-                        }}
-                        to={
-                            '/articles/source/' +
-                            article.source.name +
-                            '/' +
-                            article.art_source +
-                            '/'
-                        }
-                    >
-                        {article.source.name}
-                    </Link>
-                    &nbsp; | &nbsp;
-                    {Math.round(
-                        (new Date() - new Date(article.art_pub_dt)) /
-                            (1000 * 60 * 60 * 24 * 7)
-                    )}
-                    Weeks
-                </div>
+                <ArticleSource article={article} />
                 <div className="article-reduced">
                     <Link
                         style={{ textDecoration: 'none' }}
@@ -87,22 +54,10 @@ export default function Article({ article, article_category }) {
                         </div>
                     </Link>
                 </div>
-                <div className="article-tag">
-                    <img src={label} alt="" />
-                    <span>
-                        <Link
-                            style={{
-                                textDecoration: 'none',
-                                color: 'inherit'
-                            }}
-                            to={`/articles/category/${
-                                article_category || article.category
-                            }/${article.art_sub_cat}`}
-                        >
-                            {article.category || article_category}
-                        </Link>
-                    </span>
-                </div>
+                <ArticleCategory
+                    article={article}
+                    article_category={article_category}
+                />
             </div>
         </div>
     )

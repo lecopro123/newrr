@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { Link } from 'react-router-dom'
 import { getArticleById } from '../../../redux/actions/articleActions'
 import bookmark from '../../assets/bookmark-fill.svg'
 import coin from '../../assets/coin.png'
-import label from '../../assets/label.svg'
-import paper from '../../assets/paper.png'
+import ArticleCategory from '../../components/articlecategory'
+import ArticleSource from '../../components/articlesource'
 import Author from '../../components/author'
 import Layout from '../../components/layout'
 import './ReadArticle.scss'
@@ -71,59 +70,8 @@ export default function ReadArticle() {
                             </div>
                         </div>
                         <div className="label">
-                            <div className="label-tag">
-                                <img
-                                    height="24px"
-                                    style={{ margin: '0 6px' }}
-                                    src={paper}
-                                    alt=""
-                                />
-                                <span>
-                                    {article.source ? (
-                                        <Link
-                                            style={{
-                                                textDecoration:
-                                                    'none',
-                                                color: 'inherit'
-                                            }}
-                                            to={
-                                                '/articles/source/' +
-                                                article.source.name +
-                                                '/' +
-                                                article.art_source +
-                                                '/'
-                                            }
-                                        >
-                                            {article.source.name}
-                                        </Link>
-                                    ) : (
-                                        ''
-                                    )}
-                                    &nbsp; | &nbsp;
-                                    {Math.round(
-                                        (new Date() -
-                                            new Date(
-                                                article.art_pub_dt
-                                            )) /
-                                            (1000 * 60 * 60 * 24 * 7)
-                                    )}
-                                    Weeks
-                                </span>
-                            </div>
-                            <div className="label-tag">
-                                <img src={label} alt="" />
-                                <span>
-                                    <Link
-                                        style={{
-                                            textDecoration: 'none',
-                                            color: 'inherit'
-                                        }}
-                                        to={`/articles/category/${article.category}/${article.art_sub_cat}`}
-                                    >
-                                        {article.category}
-                                    </Link>
-                                </span>
-                            </div>
+                            <ArticleSource article={article} />
+                            <ArticleCategory article={article} />
                         </div>
 
                         <div
