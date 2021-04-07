@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { getArticlesBy } from '../../../../redux/actions/articleActions'
 import nodata from '../../../assets/nodata.svg'
+import search from '../../../assets/search-bg.svg'
 import Article from '../../../components/article'
 import Layout from '../../../components/layout'
+import ShowingBy from '../../../components/showingby'
 
 function useQuery() {
     return new URLSearchParams(useLocation().search)
@@ -54,9 +56,10 @@ export default function ByQuery(props) {
         <Layout>
             <div className="App-main">
                 {!isLoading && (
-                    <div style={{ padding: '.5rem 0' }}>
-                        Search results for: <b>{q}</b>
-                    </div>
+                    <ShowingBy
+                        title={`Results for "${q}"`}
+                        icon={search}
+                    />
                 )}
                 {isLoading ? (
                     <>

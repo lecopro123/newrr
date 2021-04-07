@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { getArticlesBy } from '../../../../redux/actions/articleActions'
+import label from '../../../assets/label.svg'
 import nodata from '../../../assets/nodata.svg'
 import Article from '../../../components/article'
 import Layout from '../../../components/layout'
+import ShowingBy from '../../../components/showingby'
 
 export default function ByCategory(props) {
     let { category, id } = useParams()
@@ -48,9 +50,7 @@ export default function ByCategory(props) {
         <Layout>
             <div className="App-main">
                 {!isLoading && (
-                    <div style={{ padding: '.5rem 0' }}>
-                        Showing category: <b>{category}</b>
-                    </div>
+                    <ShowingBy title={category} icon={label} />
                 )}
                 {isLoading ? (
                     <>

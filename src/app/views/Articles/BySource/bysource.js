@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { getArticlesBy } from '../../../../redux/actions/articleActions'
 import nodata from '../../../assets/nodata.svg'
+import paper from '../../../assets/paper.svg'
 import Article from '../../../components/article'
 import Layout from '../../../components/layout'
+import ShowingBy from '../../../components/showingby'
 
 export default function BySource(props) {
     let { source, id } = useParams()
@@ -48,9 +50,7 @@ export default function BySource(props) {
         <Layout>
             <div className="App-main">
                 {!isLoading && (
-                    <div style={{ padding: '.5rem 0' }}>
-                        Showing by source: <b>{source}</b>
-                    </div>
+                    <ShowingBy title={source} icon={paper} />
                 )}
                 {isLoading ? (
                     <>

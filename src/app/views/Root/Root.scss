@@ -132,6 +132,10 @@ $cover-tint: rgba(245, 245, 245, 0.7);
                 justify-content: center;
                 span {
                     color: $secondary-text;
+                    text-decoration: underline;
+                }
+                p {
+                    color: $secondary-text;
                 }
             }
 
@@ -324,6 +328,44 @@ button {
     .article-tag {
         &:last-child {
             padding-bottom: 0;
+        }
+    }
+}
+
+.bysource {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-end;
+    max-width: 960px;
+
+    &-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 1.5rem;
+        img {
+            height: 80px;
+            width: 80px;
+            // border-radius: 50px;
+            // background-color: #d97e79;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &-text {
+        display: flex;
+        flex-direction: column;
+
+        &-name {
+            color: #0c0c0d;
+        }
+
+        &-description {
+            width: 90%;
         }
     }
 }

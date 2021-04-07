@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { getArticleById } from '../../../redux/actions/articleActions'
+import {
+    getArticleById,
+    toogleBookmark
+} from '../../../redux/actions/articleActions'
 import bookmark from '../../assets/bookmark-fill.svg'
+import check from '../../assets/check.svg'
 import coin from '../../assets/coin.png'
 import ArticleCategory from '../../components/articlecategory'
 import ArticleSource from '../../components/articlesource'
@@ -16,12 +20,17 @@ export default function ReadArticle() {
     const article = useSelector(
         (state) => state.articles.read.data[0]
     )
+    const ids = useSelector((state) => state.bookmarks.ids)
 
     const [loading, setLoading] = useState(true)
 
     function callback() {
         console.log('ARTICLE_LOADED')
         setLoading(false)
+    }
+
+    const handleBookmark = () => {
+        dispatch(toogleBookmark(id))
     }
 
     useEffect(() => {
@@ -32,7 +41,13 @@ export default function ReadArticle() {
         <Layout navbar={true} categories={true}>
             <div className="App-main">
                 {loading ? (
-                    <div className="loader"></div>
+                    <>
+                        <div className="loader"></div>
+                        <p>
+                            We're Fetching the article for You...
+                            <br />
+                        </p>
+                    </>
                 ) : (
                     <div className="article">
                         <div className="cover-container">
@@ -58,13 +73,18 @@ export default function ReadArticle() {
                             </div>
 
                             <div
+                                onClick={handleBookmark}
                                 title="bookmark this article"
                                 className="article-bookmark"
                             >
                                 <img
                                     height="24px"
                                     style={{ margin: '0 6px' }}
-                                    src={bookmark}
+                                    src={
+                                        ids.includes(id)
+                                            ? check
+                                            : bookmark
+                                    }
                                     alt="bookmark"
                                 />
                             </div>

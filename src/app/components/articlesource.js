@@ -25,13 +25,15 @@ export default function ArticleSource({ article }) {
                 >
                     {article.source.name}
                 </Link>
+            </span>
+            <p>
                 &nbsp; | &nbsp;
                 {Math.round(
                     (new Date() - new Date(article.art_pub_dt)) /
                         (1000 * 60 * 60 * 24 * 7)
                 )}
                 &nbsp;Weeks Ago
-            </span>
+            </p>
         </div>
     )
 }

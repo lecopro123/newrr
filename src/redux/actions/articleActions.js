@@ -108,3 +108,67 @@ export const getArticlesBy = (
         })
     }
 }
+
+export const toogleBookmark = (id = 132) => (dispatch) => {
+    let ids = JSON.parse(localStorage.getItem('Bookmarks')) || []
+    if (ids.includes(id)) {
+        ids = ids.filter((x) => x !== id)
+        localStorage.setItem('Bookmarks', JSON.stringify(ids))
+
+        dispatch({ type: types.ADD_REMOVE_BOOKMARK, ids })
+    } else {
+        ids.push(id)
+        localStorage.setItem('Bookmarks', JSON.stringify(ids))
+        dispatch({
+            type: types.ADD_REMOVE_BOOKMARK,
+            ids,
+            page_total: Math.ceil(ids.length / 2),
+            page: 1
+        })
+    }
+}
+
+export const fetchBookmarks = (
+    cb,
+    options = { ids: [], page: 1 }
+) => (dispatch) => {
+    // supress error
+    if (options.page > options.ids.length || options.page < 1) {
+        return cb()
+    }
+
+    function indexIds(ids, per_page = 2) {
+        let tempArray = []
+
+        for (let i = 0; i < ids.length; i += per_page) {
+            let myChunk = ids.slice(i, i + per_page)
+            tempArray.push(myChunk)
+        }
+
+        return tempArray
+    }
+
+    let indexed = indexIds(options.ids)
+    console.log(indexed)
+    let data = []
+
+    indexed[options.page - 1].forEach((id, i) =>
+        fetchEndpoints(
+            `${endpoint.READ_ARTICLES}?format=json&id=${id}`
+        ).then((res) => {
+            data.push(res.data[0])
+            if (i === indexed[options.page - 1].length - 1) {
+                dispatch({
+                    type:
+                        options.page > 1
+                            ? types.GET_MORE_BOOKMARKED_ARTICLES
+                            : types.GET_BOOKMARKED_ARTICLES,
+                    data,
+                    page: options.page
+                })
+                console.log(data)
+                cb()
+            }
+        })
+    )
+}
