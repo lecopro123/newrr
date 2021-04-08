@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchBookmarks } from '../../../../redux/actions/articleActions'
 import nodata from '../../../assets/nodata.svg'
-import Article from '../../../components/article'
-import Layout from '../../../components/layout'
+import { ArticleCard } from '../../../components/article'
+import { Layout } from '../../../components/common'
 
 export default function Bookmarks(props) {
     const bookmarks = useSelector((state) => state.bookmarks)
@@ -66,7 +66,10 @@ export default function Bookmarks(props) {
                     </>
                 ) : bookmarks.hasBookmarks ? (
                     bookmarks.data.map((article) => (
-                        <Article key={article.id} article={article} />
+                        <ArticleCard
+                            key={article.id}
+                            article={article}
+                        />
                     ))
                 ) : (
                     <div>

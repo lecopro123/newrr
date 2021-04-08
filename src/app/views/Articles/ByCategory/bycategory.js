@@ -4,9 +4,11 @@ import { useParams } from 'react-router'
 import { getArticlesBy } from '../../../../redux/actions/articleActions'
 import label from '../../../assets/label.svg'
 import nodata from '../../../assets/nodata.svg'
-import Article from '../../../components/article'
-import Layout from '../../../components/layout'
-import ShowingBy from '../../../components/showingby'
+import {
+    ArticleCard,
+    ArticlesShowingBy
+} from '../../../components/article'
+import { Layout } from '../../../components/common'
 
 export default function ByCategory(props) {
     let { category, id } = useParams()
@@ -50,7 +52,11 @@ export default function ByCategory(props) {
         <Layout>
             <div className="App-main">
                 {!isLoading && (
-                    <ShowingBy title={category} icon={label} />
+                    <ArticlesShowingBy
+                        s
+                        title={category}
+                        icon={label}
+                    />
                 )}
                 {isLoading ? (
                     <>
@@ -61,7 +67,7 @@ export default function ByCategory(props) {
                     </>
                 ) : articles.data.length ? (
                     articles.data.map((article) => (
-                        <Article
+                        <ArticleCard
                             key={article.id}
                             article_category={articles.from.value}
                             article={article}

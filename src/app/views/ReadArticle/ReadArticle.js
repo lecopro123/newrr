@@ -8,10 +8,10 @@ import {
 import bookmark from '../../assets/bookmark-fill.svg'
 import check from '../../assets/check.svg'
 import coin from '../../assets/coin.png'
-import ArticleCategory from '../../components/articlecategory'
-import ArticleSource from '../../components/articlesource'
-import Author from '../../components/author'
-import Layout from '../../components/layout'
+import { ArticleAuthor } from '../../components/article'
+import ArticleCategory from '../../components/article/ArticleCategory/articlecategory'
+import ArticleSource from '../../components/article/ArticleSource/articlesource'
+import { Layout } from '../../components/common'
 import './ReadArticle.scss'
 
 export default function ReadArticle() {
@@ -104,7 +104,7 @@ export default function ReadArticle() {
                         <div className="divider"></div>
 
                         {article.author_data.map((author, i) => (
-                            <Author
+                            <ArticleAuthor
                                 key={i}
                                 hasAuthor={true}
                                 author={author}

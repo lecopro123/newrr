@@ -1,7 +1,5 @@
 import { useRef } from 'react'
-import Categories from './categories'
-import Footer from './footer'
-import NavBar from './navbar'
+import { CatBar, Footer, NavBar } from '..'
 
 export default function Layout({
     children,
@@ -16,7 +14,7 @@ export default function Layout({
             <div className="App">
                 <div ref={topRef} />
 
-                {categories && <Categories />}
+                {categories && <CatBar />}
                 {children}
 
                 <Footer topRef={topRef} />

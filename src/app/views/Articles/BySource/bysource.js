@@ -4,9 +4,9 @@ import { useParams } from 'react-router'
 import { getArticlesBy } from '../../../../redux/actions/articleActions'
 import nodata from '../../../assets/nodata.svg'
 import paper from '../../../assets/paper.svg'
-import Article from '../../../components/article'
-import Layout from '../../../components/layout'
-import ShowingBy from '../../../components/showingby'
+import { ArticleCard } from '../../../components/article'
+import ShowingBy from '../../../components/article/ArticlesShowingBy/showingby'
+import { Layout } from '../../../components/common'
 
 export default function BySource(props) {
     let { source, id } = useParams()
@@ -61,7 +61,10 @@ export default function BySource(props) {
                     </>
                 ) : articles.data.length ? (
                     articles.data.map((article) => (
-                        <Article key={article.id} article={article} />
+                        <ArticleCard
+                            key={article.id}
+                            article={article}
+                        />
                     ))
                 ) : (
                     <div>

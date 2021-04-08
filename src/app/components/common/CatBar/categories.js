@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getArticleCategories } from '../../redux/actions/articleActions'
-import colors from '../assets/category-colors.json'
+import { getArticleCategories } from '../../../../redux/actions/articleActions'
+import colors from '../../../assets/category-colors.json'
 
 export default function Categories() {
     const categories = useSelector((state) => state.categories)

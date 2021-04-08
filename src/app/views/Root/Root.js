@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getReadArticles } from '../../../redux/actions/articleActions'
-import Article from '../../components/article'
-import Layout from '../../components/layout'
+import { ArticleCard } from '../../components/article'
+import { Layout } from '../../components/common'
 import './Root.scss'
 
 export default function Root(props) {
@@ -44,7 +44,10 @@ export default function Root(props) {
                     </>
                 ) : (
                     articles.data.map((article) => (
-                        <Article key={article.id} article={article} />
+                        <ArticleCard
+                            key={article.id}
+                            article={article}
+                        />
                     ))
                 )}
             </div>

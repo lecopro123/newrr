@@ -1,9 +1,8 @@
 import { Link, useHistory } from 'react-router-dom'
-import coin from '../assets/coin.png'
-import ArticleCategory from './articlecategory'
-import ArticleSource from './articlesource'
+import { ArticleCategory, ArticleSource } from '..'
+import coin from '../../../assets/coin.png'
 
-export default function Article({ article, article_category }) {
+function ArticleCard({ article, article_category }) {
     let history = useHistory()
 
     return (
@@ -62,3 +61,5 @@ export default function Article({ article, article_category }) {
         </div>
     )
 }
+
+export default ArticleCard

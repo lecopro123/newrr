@@ -1,5 +1,5 @@
-import chevronUp from '../assets/up-chevron.svg'
-import { AuthButton } from '../auth/auth'
+import chevronUp from '../../../assets/up-chevron.svg'
+import { AuthButton } from '../../auth'
 
 function Footer({ topRef }) {
     return (
