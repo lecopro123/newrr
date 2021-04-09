@@ -2,9 +2,9 @@ import ArticlesConfig from './views/Articles/articlesConfig'
 import ByCategory from './views/Articles/ByCategory/bycategory'
 import ByQuery from './views/Articles/ByQuery/byquery'
 import BySource from './views/Articles/BySource/bysource'
+import Home from './views/Home/Home'
 import Login from './views/Login/Login'
 import ReadArticle from './views/ReadArticle/ReadArticle'
-import Root from './views/Root/Root'
 import Bookmarks from './views/User/Bookmarks/Bookmarks'
 import UserConfig from './views/User/userConfig'
 
@@ -21,7 +21,7 @@ export const routes = [
     {
         path: '/',
         exact: true,
-        component: Root
+        component: Home
     },
     {
         path: '/login',

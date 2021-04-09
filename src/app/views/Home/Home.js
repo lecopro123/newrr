@@ -5,7 +5,7 @@ import { ArticleCard } from '../../components/article'
 import { Layout } from '../../components/common'
 import { Button } from '../../components/ui'
 
-export default function Root(props) {
+export default function Home() {
     const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(true)
     const [moreLoading, setmoreLoading] = useState(false)
