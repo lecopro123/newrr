@@ -13,7 +13,7 @@ import ArticleCategory from '../../components/article/ArticleCategory/articlecat
 import ArticleSource from '../../components/article/ArticleSource/articlesource'
 import { Layout } from '../../components/common'
 import { Button, Divider } from '../../components/ui'
-import './ReadArticle.scss'
+import './Read.scss'
 
 export default function ReadArticle() {
     let { id } = useParams()

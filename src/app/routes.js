@@ -4,7 +4,7 @@ import ByQuery from './views/Articles/ByQuery/byquery'
 import BySource from './views/Articles/BySource/bysource'
 import Home from './views/Home/Home'
 import Login from './views/Login/Login'
-import ReadArticle from './views/ReadArticle/ReadArticle'
+import Read from './views/Read/Read'
 import Bookmarks from './views/User/Bookmarks/Bookmarks'
 import UserConfig from './views/User/userConfig'
 
@@ -47,7 +47,7 @@ export const routes = [
     },
     {
         path: '/article/read/:id/',
-        component: ReadArticle,
+        component: Read,
         private: true
     },
     {
