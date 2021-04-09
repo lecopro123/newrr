@@ -39,15 +39,13 @@ export default function ReadArticle() {
     }, [id, dispatch])
 
     return (
-        <Layout navbar={true} categories={true}>
-            {loading ? (
-                <>
-                    <div className="loader"></div>
-                    <p style={{ padding: '12px 0' }}>
-                        Loading Article, Hang On!
-                    </p>
-                </>
-            ) : (
+        <Layout
+            loading={loading}
+            loadingText="Article loading, Hang On!"
+            navbar={true}
+            categories={true}
+        >
+            {!loading && (
                 <div className="article">
                     <div className="cover-container">
                         <img
@@ -101,7 +99,6 @@ export default function ReadArticle() {
                     ></div>
 
                     <Divider />
-
                     {article.author_data.map((author, i) => (
                         <ArticleAuthor
                             key={i}
@@ -111,11 +108,21 @@ export default function ReadArticle() {
                     ))}
 
                     <div className="action-btns">
-                        <Button className="btn-primary">
+                        <Button
+                            style={{
+                                padding: '0 2.5rem',
+                                marginRight: '2.5rem'
+                            }}
+                            className="btn-primary"
+                        >
                             Take a Quiz
                         </Button>
-                        &emsp;
-                        <Button className="btn-primary">
+                        <Button
+                            style={{
+                                padding: '0 2.5rem'
+                            }}
+                            className="btn-primary"
+                        >
                             Discussion
                         </Button>
                     </div>

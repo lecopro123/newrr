@@ -31,8 +31,10 @@ function ArticleCard({ article, article_category }) {
                 </div>
             </Link>
             <div className="article-meta">
-                <ArticleSource article={article} />
-                <div className="article-reduced">
+                <div className="article-meta-source">
+                    <ArticleSource article={article} />
+                </div>
+                <div className="article-meta-reduced">
                     <Link
                         style={{ textDecoration: 'none' }}
                         to={'/article/read/' + article.id}
@@ -54,10 +56,12 @@ function ArticleCard({ article, article_category }) {
                         </div>
                     </Link>
                 </div>
-                <ArticleCategory
-                    article={article}
-                    article_category={article_category}
-                />
+                <div className="article-meta-category">
+                    <ArticleCategory
+                        article={article}
+                        article_category={article_category}
+                    />
+                </div>
             </div>
         </div>
     )

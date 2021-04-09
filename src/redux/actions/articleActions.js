@@ -1,17 +1,24 @@
 import * as endpoint from '../../api/endpoints'
 import fetchEndpoints from '../../api/fetchEndpoints'
+import categorydata from '../../app/assets/category-detailed.json'
 import * as types from '../types'
 
-export const getArticleCategories = () => (dispatch) =>
-    fetchEndpoints(`${endpoint.ARTICLE_CATEGORIES}?format=json`).then(
-        (res) => {
-            dispatch({
-                type: types.GET_ARTICLE_CATEGORIES,
-                data: res.data,
-                error: res.error
-            })
-        }
-    )
+export const getArticleCategories = (local = false) => (dispatch) =>
+    !local
+        ? fetchEndpoints(
+              `${endpoint.ARTICLE_CATEGORIES}?format=json`
+          ).then((res) => {
+              dispatch({
+                  type: types.GET_ARTICLE_CATEGORIES,
+                  data: res.data,
+                  error: res.error
+              })
+          })
+        : dispatch({
+              type: types.GET_ARTICLE_CATEGORIES,
+              data: categorydata,
+              error: 0
+          })
 
 export const getReadArticles = (cb, options = { page: 1 }) => (
     dispatch

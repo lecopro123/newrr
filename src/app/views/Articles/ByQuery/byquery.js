@@ -8,12 +8,8 @@ import { ArticleCard } from '../../../components/article'
 import ShowingBy from '../../../components/article/ArticlesShowingBy/showingby'
 import { Layout } from '../../../components/common'
 
-function useQuery() {
-    return new URLSearchParams(useLocation().search)
-}
-
-export default function ByQuery(props) {
-    let query = useQuery()
+export default function ByQuery() {
+    let query = new URLSearchParams(useLocation().search)
     let q = query.get('q')
     const articles = useSelector((state) => state.articlesby)
     const [isLoading, setIsLoading] = useState(true)
@@ -53,30 +49,32 @@ export default function ByQuery(props) {
     }, [dispatch, setIsLoading, q])
 
     return (
-        <Layout>
+        <Layout
+            loading={isLoading}
+            loadingText={`Searching for "${q}"`}
+        >
             <ShowingBy
                 showingby="search"
                 title={`Results for "${q}"`}
                 icon={search}
             />
 
-            {isLoading ? (
-                <>
-                    <div className="loader"></div>
-                    <p style={{ paddingTop: '12px' }}>Loading..</p>
-                </>
-            ) : articles.data.length ? (
-                articles.data.map((article) => (
-                    <ArticleCard key={article.id} article={article} />
-                ))
-            ) : (
-                <div>
-                    <img height="200px" src={nodata} alt="" />
-                    <br />
-                    <p>Nothing yet, Coming Soon</p>
-                    <br />
-                </div>
-            )}
+            {!isLoading &&
+                (articles.data.length ? (
+                    articles.data.map((article) => (
+                        <ArticleCard
+                            key={article.id}
+                            article={article}
+                        />
+                    ))
+                ) : (
+                    <div>
+                        <img height="200px" src={nodata} alt="" />
+                        <p style={{ padding: '12px 0' }}>
+                            Nothing yet, Coming Soon
+                        </p>
+                    </div>
+                ))}
 
             {!isLoading && articles.page + 1 <= articles.page_total && (
                 <div

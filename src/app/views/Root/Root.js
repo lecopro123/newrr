@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getReadArticles } from '../../../redux/actions/articleActions'
 import { ArticleCard } from '../../components/article'
 import { Layout } from '../../components/common'
-import { Button, Loader } from '../../components/ui'
+import { Button } from '../../components/ui'
 
 export default function Root(props) {
     const dispatch = useDispatch()
@@ -34,19 +34,12 @@ export default function Root(props) {
     }, [dispatch, setIsLoading, articles.data.length])
 
     return (
-        <Layout>
-            {isLoading ? (
-                <>
-                    <Loader />
-                    <p style={{ padding: '12px 0' }}>
-                        Hang on, Loading..
-                    </p>
-                </>
-            ) : (
+        <Layout loading={isLoading}>
+            {!isLoading &&
                 articles.data.map((article) => (
                     <ArticleCard key={article.id} article={article} />
-                ))
-            )}
+                ))}
+
             {!isLoading && articles.page + 1 <= articles.page_total && (
                 <Button
                     onClick={handleViewMore}

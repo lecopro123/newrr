@@ -5,7 +5,7 @@ import nodata from '../../../assets/nodata.svg'
 import { ArticleCard } from '../../../components/article'
 import { Layout } from '../../../components/common'
 
-export default function Bookmarks(props) {
+export default function Bookmarks() {
     const bookmarks = useSelector((state) => state.bookmarks)
     const [isLoading, setIsLoading] = useState(true)
 
@@ -27,12 +27,6 @@ export default function Bookmarks(props) {
         )
     }
 
-    // const renderBookmarks=(ids=[])=>{
-    //     ids.map((id)=>{
-
-    //     })
-    // }
-
     useEffect(() => {
         setIsLoading(true)
         function initCallback() {
@@ -49,22 +43,18 @@ export default function Bookmarks(props) {
     }, [dispatch, bookmarks.ids])
 
     return (
-        <Layout>
-            <div className="App-main">
-                {!isLoading && (
-                    <div style={{ padding: '.5rem 0' }}>
-                        Showing <b>Bookmarks</b>
-                    </div>
-                )}
+        <Layout
+            loading={isLoading}
+            loadingText="loading your bookmarks"
+        >
+            {!isLoading && (
+                <div style={{ padding: '.5rem 0' }}>
+                    Showing <b>Bookmarks</b>
+                </div>
+            )}
 
-                {isLoading ? (
-                    <>
-                        <div className="loader"></div>
-                        <p>Loading..</p>
-                        <br />
-                        <br />
-                    </>
-                ) : bookmarks.hasBookmarks ? (
+            {!isLoading &&
+                (bookmarks.hasBookmarks ? (
                     bookmarks.data.map((article) => (
                         <ArticleCard
                             key={article.id}
@@ -74,12 +64,11 @@ export default function Bookmarks(props) {
                 ) : (
                     <div>
                         <img height="200px" src={nodata} alt="" />
-                        <br />
-                        <p>Nothing yet, Add Some</p>
-                        <br />
+                        <p style={{ padding: '12px 0' }}>
+                            Nothing yet, Add Some
+                        </p>
                     </div>
-                )}
-            </div>
+                ))}
 
             {!isLoading &&
                 bookmarks.page + 1 <= bookmarks.page_total && (
@@ -97,8 +86,12 @@ export default function Bookmarks(props) {
                     </div>
                 )}
 
-            <div>ids:{bookmarks.ids.length}</div>
-            <div>datas:{bookmarks.data.length}</div>
+            {!isLoading && (
+                <>
+                    <div>ids: {bookmarks.ids.length}</div>
+                    <div>datas: {bookmarks.data.length}</div>
+                </>
+            )}
         </Layout>
     )
 }

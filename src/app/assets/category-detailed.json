@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "sub_cat": "Editorials",
+        "days": "",
+        "pub_days": "",
+        "color": "#7167F6"
+    },
+    {
+        "id": 2,
+        "sub_cat": "Business",
+        "days": "WEDNESDAY",
+        "pub_days": "SATURDAY",
+        "color": "#ED4468"
+    },
+    {
+        "id": 3,
+        "sub_cat": "Indian Politics",
+        "days": "TUESDAY",
+        "pub_days": "FRIDAY",
+        "color": "#52C0C4"
+    },
+    {
+        "id": 4,
+        "sub_cat": "Science & Technology",
+        "days": "SUNDAY",
+        "pub_days": "WEDNESDAY",
+        "color": "#FDD835"
+    },
+    {
+        "id": 5,
+        "sub_cat": "Economy",
+        "days": "WEDNESDAY",
+        "pub_days": "SATURDAY",
+        "color": "#0077C2"
+    },
+    {
+        "id": 6,
+        "sub_cat": "Startups & Industries",
+        "days": null,
+        "pub_days": null,
+        "color": "#C30000"
+    },
+    {
+        "id": 7,
+        "sub_cat": "Legal",
+        "days": "SATURDAY",
+        "pub_days": "TUESDAY",
+        "color": "#34515E"
+    },
+    {
+        "id": 8,
+        "sub_cat": "World Affairs",
+        "days": "FRIDAY",
+        "pub_days": "MONDAY",
+        "color": "#4B830D"
+    },
+    {
+        "id": 9,
+        "sub_cat": "Not-So-Recent",
+        "days": "",
+        "pub_days": "MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY",
+        "color": "#C88719"
+    },
+    {
+        "id": 10,
+        "sub_cat": "Culture",
+        "days": "MONDAY",
+        "pub_days": "THURSDAY",
+        "color": "#004ECB"
+    },
+    {
+        "id": 11,
+        "sub_cat": "Policy",
+        "days": "THURSDAY",
+        "pub_days": "SUNDAY",
+        "color": "#6A0080"
+    },
+    {
+        "id": 12,
+        "sub_cat": "Psychology & Mental Health",
+        "days": "SUNDAY",
+        "pub_days": "WEDNESDAY",
+        "color": "#EC4498"
+    }
+]
