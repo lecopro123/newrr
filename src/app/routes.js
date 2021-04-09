@@ -6,6 +6,7 @@ import Home from './views/Home/Home'
 import Login from './views/Login/Login'
 import Read from './views/Read/Read'
 import Bookmarks from './views/User/Bookmarks/Bookmarks'
+import Profile from './views/User/Profile/Profile'
 import UserConfig from './views/User/userConfig'
 
 /**
@@ -58,6 +59,10 @@ export const routes = [
             {
                 path: '/user/bookmarks',
                 component: Bookmarks
+            },
+            {
+                path: '/user',
+                component: Profile
             }
         ]
     }
