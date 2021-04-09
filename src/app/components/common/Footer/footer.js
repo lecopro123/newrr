@@ -1,11 +1,12 @@
 import chevronUp from '../../../assets/up-chevron.svg'
 import { AuthButton } from '../../auth'
+import './footer.scss'
 
 function Footer({ topRef }) {
     return (
-        <div className="App-footer">
-            <div
-                className="top-btn"
+        <div className="footer">
+            <button
+                className="btn-circle"
                 onClick={() =>
                     topRef.current.scrollIntoView({
                         behavior: 'smooth',
@@ -15,8 +16,10 @@ function Footer({ topRef }) {
                 }
             >
                 <img src={chevronUp} alt="^"></img>
-            </div>
-            <p>Ⓒ 2020 - 2021 Reading Right. All rights reserved.</p>
+            </button>
+            <p className="copyright-text">
+                Ⓒ 2020 - 2021 Reading Right. All rights reserved.
+            </p>
             <AuthButton />
         </div>
     )

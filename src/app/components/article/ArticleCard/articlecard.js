@@ -1,6 +1,7 @@
 import { Link, useHistory } from 'react-router-dom'
 import { ArticleCategory, ArticleSource } from '..'
 import coin from '../../../assets/coin.png'
+import './articlecard.scss'
 
 function ArticleCard({ article, article_category }) {
     let history = useHistory()

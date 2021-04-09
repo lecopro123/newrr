@@ -1,22 +1,28 @@
 import { Link } from 'react-router-dom'
 import logo from '../../../assets/logo.png'
-import menuIcon from '../../../assets/menu.svg'
+import MenuIcon from '../../../assets/menu.svg'
 import searchIcon from '../../../assets/search.svg'
+import { Button } from '../../ui'
+import './navbar.scss'
 
 function NavBar(props) {
     return (
-        <div className="App-header">
-            <div className="App-header-actions">
-                <div className="menu">
-                    <img src={menuIcon} alt="m"></img>
-                </div>
+        <div className="navbar">
+            <div className="navbar-actions">
+                <Button className="btn-rectangle">
+                    <img src={MenuIcon} alt="menu" />
+                </Button>
                 <Link to="/">
-                    <img className="logo" src={logo} alt="Logo" />
+                    <img
+                        style={{ height: '9.5rem' }}
+                        src={logo}
+                        alt="Logo"
+                    />
                 </Link>
                 <Link to="/articles/search?q=coffee">
-                    <div className="search">
-                        <img src={searchIcon} alt="s"></img>
-                    </div>
+                    <Button className="btn-circle">
+                        <img src={searchIcon} alt="search"></img>
+                    </Button>
                 </Link>
             </div>
         </div>

@@ -9,6 +9,7 @@ import {
     ArticlesShowingBy
 } from '../../../components/article'
 import { Layout } from '../../../components/common'
+import { Loader } from '../../../components/ui'
 
 export default function ByCategory(props) {
     let { category, id } = useParams()
@@ -50,38 +51,33 @@ export default function ByCategory(props) {
 
     return (
         <Layout>
-            <div className="App-main">
-                {!isLoading && (
-                    <ArticlesShowingBy
-                        s
-                        title={category}
-                        icon={label}
+            <ArticlesShowingBy
+                showingby="category"
+                title={category}
+                icon={label}
+            />
+
+            {isLoading ? (
+                <>
+                    <Loader />
+                    <p style={{ paddingTop: '12px' }}>Loading..</p>
+                </>
+            ) : articles.data.length ? (
+                articles.data.map((article) => (
+                    <ArticleCard
+                        key={article.id}
+                        article_category={articles.from.value}
+                        article={article}
                     />
-                )}
-                {isLoading ? (
-                    <>
-                        <div className="loader"></div>
-                        <p>Loading..</p>
-                        <br />
-                        <br />
-                    </>
-                ) : articles.data.length ? (
-                    articles.data.map((article) => (
-                        <ArticleCard
-                            key={article.id}
-                            article_category={articles.from.value}
-                            article={article}
-                        />
-                    ))
-                ) : (
-                    <div>
-                        <img height="200px" src={nodata} alt="" />
-                        <br />
-                        <p>Nothing yet, Coming Soon</p>
-                        <br />
-                    </div>
-                )}
-            </div>
+                ))
+            ) : (
+                <div>
+                    <img height="200px" src={nodata} alt="" />
+                    <br />
+                    <p>Nothing yet, Coming Soon</p>
+                    <br />
+                </div>
+            )}
 
             {!isLoading && articles.page + 1 <= articles.page_total && (
                 <div

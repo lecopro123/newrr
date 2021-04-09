@@ -1,0 +1,39 @@
+$primary: #d97e79;
+$secondary: #4a3d3c;
+
+.author {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    max-width: 960px;
+
+    &-avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 1.5rem;
+        div {
+            height: 100px;
+            width: 100px;
+            border-radius: 50px;
+            background-color: $primary;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &-text {
+        display: flex;
+        flex-direction: column;
+
+        &-name {
+            color: #0c0c0d;
+        }
+
+        &-description {
+            width: 90%;
+        }
+    }
+}

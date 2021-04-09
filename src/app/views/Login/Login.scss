@@ -11,6 +11,7 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 .circle2 {
     background-image: url(../../assets/circle2.png);
     position: absolute;
@@ -35,16 +36,13 @@
 }
 
 .flex-grid {
-    // border: 1px solid rgba(#707070, 0.4);
     position: relative;
     display: flex;
     flex-direction: row;
     width: 95%;
     max-width: 70rem;
-    // width: 70rem;
     height: calc(100% - 12rem);
     margin: 6rem auto;
-    // border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
 }
 
@@ -81,6 +79,18 @@
     }
 }
 
+.sidebar {
+    &-logo {
+        height: 9.5rem;
+    }
+
+    &-text {
+        text-align: center;
+    }
+}
+
+// @media queries here
+
 @media only screen and (max-width: 600px) {
     .bg-grid {
         flex-direction: column;
@@ -93,33 +103,5 @@
     }
     .col {
         width: 100%;
-        // background: #000;
     }
-}
-
-.sidebar {
-    &-logo {
-        height: 9.5rem;
-    }
-
-    &-text {
-        text-align: center;
-    }
-}
-
-input,
-.input {
-    appearance: none;
-    outline: none;
-
-    height: 40px;
-    border: 1px solid rgba(#707070, 0.4);
-    border-radius: 20px;
-    margin: 12px 0;
-    width: 50%;
-    text-align: center;
-}
-
-.otp-btn {
-    padding: 0 2.2rem;
 }

@@ -99,8 +99,11 @@ export const getArticlesBy = (
                         ? types.GOT_MORE_ARTICLES_BY_CATEGORY
                         : types.GOT_ARTICLES_BY_CATEGORY,
                 data: res.data,
+
+                // * NO PAGE AND ERROR RETURED FROM API (Needed Fix)
                 // error: res.error,
                 // page_total: res.page_total,
+
                 source_type: by.type,
                 source_value: by.value
             })
@@ -132,7 +135,6 @@ export const fetchBookmarks = (
     cb,
     options = { ids: [], page: 1 }
 ) => (dispatch) => {
-    // supress error
     if (options.page > options.ids.length || options.page < 1) {
         return cb()
     }
@@ -149,7 +151,6 @@ export const fetchBookmarks = (
     }
 
     let indexed = indexIds(options.ids)
-    console.log(indexed)
     let data = []
 
     indexed[options.page - 1].forEach((id, i) =>
@@ -166,7 +167,6 @@ export const fetchBookmarks = (
                     data,
                     page: options.page
                 })
-                console.log(data)
                 cb()
             }
         })

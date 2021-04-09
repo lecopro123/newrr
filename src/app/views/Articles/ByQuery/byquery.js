@@ -54,36 +54,29 @@ export default function ByQuery(props) {
 
     return (
         <Layout>
-            <div className="App-main">
-                {!isLoading && (
-                    <ShowingBy
-                        title={`Results for "${q}"`}
-                        icon={search}
-                    />
-                )}
-                {isLoading ? (
-                    <>
-                        <div className="loader"></div>
-                        <p>Loading..</p>
-                        <br />
-                        <br />
-                    </>
-                ) : articles.data.length ? (
-                    articles.data.map((article) => (
-                        <ArticleCard
-                            key={article.id}
-                            article={article}
-                        />
-                    ))
-                ) : (
-                    <div>
-                        <img height="200px" src={nodata} alt="" />
-                        <br />
-                        <p>Nothing yet, Coming Soon</p>
-                        <br />
-                    </div>
-                )}
-            </div>
+            <ShowingBy
+                showingby="search"
+                title={`Results for "${q}"`}
+                icon={search}
+            />
+
+            {isLoading ? (
+                <>
+                    <div className="loader"></div>
+                    <p style={{ paddingTop: '12px' }}>Loading..</p>
+                </>
+            ) : articles.data.length ? (
+                articles.data.map((article) => (
+                    <ArticleCard key={article.id} article={article} />
+                ))
+            ) : (
+                <div>
+                    <img height="200px" src={nodata} alt="" />
+                    <br />
+                    <p>Nothing yet, Coming Soon</p>
+                    <br />
+                </div>
+            )}
 
             {!isLoading && articles.page + 1 <= articles.page_total && (
                 <div

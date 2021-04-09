@@ -1,0 +1,62 @@
+//base styles
+
+$primary: #d97e79;
+$secondary: #4a3d3c;
+$white: #fff;
+$black: #000;
+
+.btn,
+button {
+    &-primary {
+        @extend .btn;
+    }
+    &-secondary {
+        @extend .btn;
+        background: $secondary;
+
+        &:disabled {
+            background: rgba($secondary, 0.4);
+        }
+    }
+
+    &-circle {
+        @extend .btn;
+        width: 40px;
+        padding: 0;
+
+        img {
+            height: 13px;
+        }
+    }
+
+    &-rectangle {
+        width: 40px;
+        background: #4a3d3c;
+        border-radius: 6px;
+
+        * {
+            height: 13px;
+        }
+    }
+
+    height: 40px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+
+    border: none;
+    cursor: pointer;
+    background: $primary;
+    color: $white;
+    box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:disabled {
+        box-shadow: none;
+        cursor: default;
+        background: rgba($primary, 0.6);
+    }
+}

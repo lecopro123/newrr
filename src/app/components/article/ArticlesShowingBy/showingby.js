@@ -1,23 +1,29 @@
-export default function ShowingBy({ title = '', icon, desc = '' }) {
+import { Divider } from '../../ui'
+import './showingby.scss'
+
+export default function ShowingBy({
+    title = '',
+    showingby = '',
+    icon,
+    desc = ''
+}) {
     return (
         <>
-            <div className="divider"></div>
-
-            <div className="bysource">
-                <div className="bysource-icon">
+            <Divider />
+            <div className="by">
+                <div className="by-icon">
                     <img src={icon} alt="source-logo" />
                 </div>
-                <div className="bysource-text">
+                <div className="by-text">
                     <div className="author-text-description">
-                        Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit.
+                        You're&nbsp;viewing&nbsp;{showingby}
                     </div>
-                    <div className="bysource-text-name">
+                    <div className="by-text-name">
                         <h1>{title}</h1>
                     </div>
                 </div>
             </div>
-            <div className="divider"></div>
+            <Divider />
         </>
     )
 }

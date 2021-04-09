@@ -48,33 +48,29 @@ export default function BySource(props) {
 
     return (
         <Layout>
-            <div className="App-main">
-                {!isLoading && (
-                    <ShowingBy title={source} icon={paper} />
-                )}
-                {isLoading ? (
-                    <>
-                        <div className="loader"></div>
-                        <p>Loading..</p>
-                        <br />
-                        <br />
-                    </>
-                ) : articles.data.length ? (
-                    articles.data.map((article) => (
-                        <ArticleCard
-                            key={article.id}
-                            article={article}
-                        />
-                    ))
-                ) : (
-                    <div>
-                        <img height="200px" src={nodata} alt="" />
-                        <br />
-                        <p>Nothing yet, Coming Soon</p>
-                        <br />
-                    </div>
-                )}
-            </div>
+            <ShowingBy
+                showingby="source"
+                title={source}
+                icon={paper}
+            />
+
+            {isLoading ? (
+                <>
+                    <div className="loader"></div>
+                    <p style={{ paddingTop: '12px' }}>Loading..</p>
+                </>
+            ) : articles.data.length ? (
+                articles.data.map((article) => (
+                    <ArticleCard key={article.id} article={article} />
+                ))
+            ) : (
+                <div>
+                    <img height="200px" src={nodata} alt="" />
+                    <br />
+                    <p>Nothing yet, Coming Soon</p>
+                    <br />
+                </div>
+            )}
 
             {!isLoading && articles.page + 1 <= articles.page_total && (
                 <div
