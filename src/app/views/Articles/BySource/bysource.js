@@ -8,7 +8,7 @@ import { ArticleCard } from '../../../components/article'
 import ShowingBy from '../../../components/article/ArticlesShowingBy/showingby'
 import { Layout } from '../../../components/common'
 
-export default function BySource(props) {
+export default function BySource() {
     let { source, id } = useParams()
     const articles = useSelector((state) => state.articlesby)
     const [isLoading, setIsLoading] = useState(true)
@@ -47,30 +47,29 @@ export default function BySource(props) {
     }, [dispatch, setIsLoading, id, source])
 
     return (
-        <Layout>
+        <Layout loading={isLoading} loadingText="loading source...">
             <ShowingBy
                 showingby="source"
                 title={source}
                 icon={paper}
             />
 
-            {isLoading ? (
-                <>
-                    <div className="loader"></div>
-                    <p style={{ paddingTop: '12px' }}>Loading..</p>
-                </>
-            ) : articles.data.length ? (
-                articles.data.map((article) => (
-                    <ArticleCard key={article.id} article={article} />
-                ))
-            ) : (
-                <div>
-                    <img height="200px" src={nodata} alt="" />
-                    <br />
-                    <p>Nothing yet, Coming Soon</p>
-                    <br />
-                </div>
-            )}
+            {!isLoading &&
+                (articles.data.length ? (
+                    articles.data.map((article) => (
+                        <ArticleCard
+                            key={article.id}
+                            article={article}
+                        />
+                    ))
+                ) : (
+                    <div>
+                        <img height="200px" src={nodata} alt="" />
+                        <p style={{ padding: '12px 0' }}>
+                            Nothing yet, Coming Soon
+                        </p>
+                    </div>
+                ))}
 
             {!isLoading && articles.page + 1 <= articles.page_total && (
                 <div

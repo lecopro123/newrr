@@ -1,0 +1,36 @@
+$primary-text: #0c0c0d;
+$secondary-text: rgba(12, 12, 13, 0.8);
+
+.article-tag {
+    &-logo {
+        height: 24px;
+        margin-right: 6px;
+    }
+
+    &:last-child {
+        padding-left: 12px;
+    }
+
+    padding-top: 12px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+    &-title {
+        color: $secondary-text;
+        text-decoration: underline;
+    }
+
+    &-date {
+        color: $secondary-text;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .article-tag {
+        &:last-child {
+            padding-left: 0;
+        }
+    }
+}

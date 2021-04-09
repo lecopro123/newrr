@@ -39,3 +39,29 @@ export default function Categories() {
         </div>
     )
 }
+
+const CategoriesFromLocal = ({ categories = [] }) => (
+    <div className="categories">
+        {categories.map((c, i) => {
+            return (
+                <span key={i}>
+                    <Link
+                        to={`/articles/category/${c.sub_cat}/${c.id}/`}
+                    >
+                        <span
+                            style={{
+                                backgroundColor: c.color
+                            }}
+                            className="categories-link"
+                        >
+                            {c.sub_cat}
+                        </span>
+                    </Link>
+                    {categories.length - 1 !== i && ' '}
+                </span>
+            )
+        })}
+    </div>
+)
+
+export { CategoriesFromLocal }

@@ -6,25 +6,22 @@ import {
     verifyOTPRequest
 } from '../../../redux/actions/userActions'
 import logo from '../../assets/logo.png'
-import { Button, InputField } from '../../components/ui'
-import Loader from '../../components/ui/Loader'
+import { Button, InputField, Loader } from '../../components/ui'
 import './Login.scss'
 
 export default function Login(props) {
     const dispatch = useDispatch()
+    let history = useHistory()
+    let location = useLocation()
+    let { from } = location.state || { from: { pathname: '/' } }
+
+    const loginData = useSelector((state) => state.user)
     const [phone, setPhone] = useState(null)
     const [OTP, setOTP] = useState(null)
     const [hasOTP, setHasOTP] = useState(false)
     const [otpLoading, setOtpLoading] = useState(false)
     const [verifyingOtp, setVerifyingOtp] = useState(false)
     const [msg, setMsg] = useState({ loadingMsg: '', errorMsg: '' })
-
-    let history = useHistory()
-    let location = useLocation()
-
-    let { from } = location.state || { from: { pathname: '/' } }
-
-    const loginData = useSelector((state) => state.user)
 
     function callback() {
         console.log('OTP_RECEIVED')
@@ -47,7 +44,7 @@ export default function Login(props) {
                 history.replace(from)
             }, 100)
         } else {
-            setMsg({ errorMsg: 'Wrong OTP, Try Again!' })
+            setMsg({ errorMsg: 'Invalid OTP, try again!' })
             setVerifyingOtp(false)
         }
     }
@@ -137,7 +134,7 @@ export default function Login(props) {
                         />
                         {msg.errorMsg && (
                             <p style={{ marginBottom: '.5em' }}>
-                                {msg.errorMsg + ' '}
+                                {msg.errorMsg}&nbsp;
                                 <span
                                     style={{
                                         cursor: 'pointer',
