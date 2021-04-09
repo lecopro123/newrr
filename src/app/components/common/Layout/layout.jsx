@@ -1,7 +1,6 @@
 import { useRef } from 'react'
-import Categories from './categories'
-import Footer from './footer'
-import NavBar from './navbar'
+import { CatBar, Footer, NavBar } from '..'
+import './layout.scss'
 
 export default function Layout({
     children,
@@ -11,16 +10,15 @@ export default function Layout({
     const topRef = useRef(null)
 
     return (
-        <>
+        <div>
             {navbar && <NavBar />}
             <div className="App">
                 <div ref={topRef} />
 
-                {categories && <Categories />}
-                {children}
-
+                {categories && <CatBar />}
+                <div className="App-main">{children}</div>
                 <Footer topRef={topRef} />
             </div>
-        </>
+        </div>
     )
 }

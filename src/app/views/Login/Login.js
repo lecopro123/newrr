@@ -6,6 +6,8 @@ import {
     verifyOTPRequest
 } from '../../../redux/actions/userActions'
 import logo from '../../assets/logo.png'
+import { Button, InputField } from '../../components/ui'
+import Loader from '../../components/ui/Loader'
 import './Login.scss'
 
 export default function Login(props) {
@@ -99,24 +101,21 @@ export default function Login(props) {
                             continue
                         </div>
 
-                        <input
+                        <InputField
                             onChange={(e) => setPhone(e.target.value)}
-                            type="text"
+                            type="number"
                             placeholder="Your phone number"
                             className="input"
                             pattern="[1-9]{1}[0-9]{9}"
                         />
 
-                        <div
-                            className="btn otp-btn"
-                            onClick={handleOtpRequest}
-                        >
+                        <Button onClick={handleOtpRequest}>
                             GET OTP
-                        </div>
+                        </Button>
                     </div>
                 ) : verifyingOtp ? (
                     <div className="col">
-                        <div className="loader"></div>
+                        <Loader style={{ marginBottom: '12px' }} />
                         {loginData.isLoggedIn ? (
                             <p>OTP Verification Succesful</p>
                         ) : (
@@ -129,9 +128,9 @@ export default function Login(props) {
                             Enter OTP Here {loginData.OTP}
                         </div>
 
-                        <input
+                        <InputField
                             onChange={(e) => setOTP(e.target.value)}
-                            type="text"
+                            type="number"
                             placeholder="Enter OTP here"
                             className="input"
                             pattern="[0-9]{4}"
@@ -151,13 +150,12 @@ export default function Login(props) {
                                 </span>
                             </p>
                         )}
-                        <button
+                        <Button
                             disabled={otpLoading}
-                            className="btn otp-btn"
                             onClick={handleLoginBtn}
                         >
                             LOGIN
-                        </button>
+                        </Button>
                     </div>
                 )}
             </div>

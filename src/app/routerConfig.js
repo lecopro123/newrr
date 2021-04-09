@@ -6,7 +6,7 @@ import {
     Route,
     Switch
 } from 'react-router-dom'
-import NotFound from './auth/notfound'
+import { NotFound } from './components/common'
 import { routes } from './routes'
 
 export default function RouterConfig() {

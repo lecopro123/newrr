@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getReadArticles } from '../../../redux/actions/articleActions'
-import Article from '../../components/article'
-import Layout from '../../components/layout'
-import './Root.scss'
+import { ArticleCard } from '../../components/article'
+import { Layout } from '../../components/common'
+import { Button, Loader } from '../../components/ui'
 
 export default function Root(props) {
     const dispatch = useDispatch()
@@ -35,36 +35,29 @@ export default function Root(props) {
 
     return (
         <Layout>
-            <div className="App-main">
-                {isLoading ? (
-                    <>
-                        <div className="loader"></div>
-                        <p>Hang on, Loading..</p>
-                        <br />
-                    </>
-                ) : (
-                    articles.data.map((article) => (
-                        <Article key={article.id} article={article} />
-                    ))
-                )}
-            </div>
-
+            {isLoading ? (
+                <>
+                    <Loader />
+                    <p style={{ padding: '12px 0' }}>
+                        Hang on, Loading..
+                    </p>
+                </>
+            ) : (
+                articles.data.map((article) => (
+                    <ArticleCard key={article.id} article={article} />
+                ))
+            )}
             {!isLoading && articles.page + 1 <= articles.page_total && (
-                <div
+                <Button
                     onClick={handleViewMore}
-                    className="btn-container"
+                    loading={moreLoading}
+                    disabled={moreLoading}
+                    className={
+                        moreLoading ? 'btn-circle' : 'btn-primary'
+                    }
                 >
-                    <button
-                        disabled={moreLoading}
-                        className="more-btn"
-                    >
-                        {moreLoading ? (
-                            <div className="loader-small"></div>
-                        ) : (
-                            'View More'
-                        )}
-                    </button>
-                </div>
+                    View More
+                </Button>
             )}
         </Layout>
     )

@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getArticleCategories } from '../../redux/actions/articleActions'
-import colors from '../assets/category-colors.json'
+import { getArticleCategories } from '../../../../redux/actions/articleActions'
+import colors from '../../../assets/category-colors.json'
+import './categories.scss'
 
 export default function Categories() {
     const categories = useSelector((state) => state.categories)
@@ -15,7 +16,7 @@ export default function Categories() {
     }, [dispatch, categories.data.length])
 
     return (
-        <div className="App-Categories">
+        <div className="categories">
             {categories.data.map((c, i) => {
                 return (
                     <span key={i}>
@@ -26,7 +27,7 @@ export default function Categories() {
                                 style={{
                                     backgroundColor: colors[i].color
                                 }}
-                                className="link"
+                                className="categories-link"
                             >
                                 {c.sub_cat}
                             </span>

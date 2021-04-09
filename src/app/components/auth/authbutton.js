@@ -1,9 +1,9 @@
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
-import { userLogOutRequest } from '../../redux/actions/userActions'
+import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
+import { userLogOutRequest } from '../../../redux/actions/userActions'
 
-export function AuthButton() {
+export default function AuthButton() {
     let history = useHistory()
     const auth = useSelector((state) => state.user)
     const dispatch = useDispatch()

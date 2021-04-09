@@ -1,20 +1,17 @@
-export const GET_ARTICLES = 'GET_ARTICLES'
-export const GET_MORE_ARTICLES = 'GET_MORE_ARTICLES'
-
-export const GOT_SINGLE_ARTICLE = 'GOT_SINGLE_ARTICLE'
-
 export const GET_ARTICLE_CATEGORIES = 'GET_ARTICLE_CATEGORIES'
 export const GET_ARTICLE_SOURCES = 'GET_ARTICLE_SOURCES'
 
-// Authentication
-
+// User Authentication
 export const OTP_REQUEST = 'OTP_REQUEST'
 export const OTP_VERIFICATION_SUCCESS = 'OTP_VERIFICATION_SUCCESS'
 export const OTP_VERIFICATION_FAILURE = 'OTP_VERIFICATION_FAILURE'
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 
-// Articles By
+// Fetch Articles
+export const GET_ARTICLES = 'GET_ARTICLES'
+export const GET_MORE_ARTICLES = 'GET_MORE_ARTICLES'
 
+// Fetch Articles By (...any)
 export const GOT_ARTICLES_BY_CATEGORY = 'GOT_ARTICLES_BY_CATEGORY'
 export const GOT_MORE_ARTICLES_BY_CATEGORY =
     'GOT_MORE_ARTICLES_BY_CATEGORY'
@@ -25,11 +22,13 @@ export const GOT_MORE_ARTICLES_BY_SOURCE =
 
 export const GOT_ARTICLES_BY_QUERY = 'GOT_ARTICLES_BY_QUERY'
 export const GOT_MORE_ARTICLES_BY_QUERY = 'GOT_MORE_ARTICLES_BY_QUERY'
+// ...more (e.g by_author)
 
-//..more (e.g by_author)
+// Fetch Single Article
+export const GOT_SINGLE_ARTICLE = 'GOT_SINGLE_ARTICLE'
 
+// User Bookmarks
 export const ADD_REMOVE_BOOKMARK = 'ADD_REMOVE_BOOKMARK'
-
 export const GET_MORE_BOOKMARKED_ARTICLES =
     'GET_MORE_BOOKMARKED_ARTICLES'
 export const GET_BOOKMARKED_ARTICLES = 'GET_BOOKMARKED_ARTICLES'

@@ -4,9 +4,9 @@ import { useParams } from 'react-router'
 import { getArticlesBy } from '../../../../redux/actions/articleActions'
 import nodata from '../../../assets/nodata.svg'
 import paper from '../../../assets/paper.svg'
-import Article from '../../../components/article'
-import Layout from '../../../components/layout'
-import ShowingBy from '../../../components/showingby'
+import { ArticleCard } from '../../../components/article'
+import ShowingBy from '../../../components/article/ArticlesShowingBy/showingby'
+import { Layout } from '../../../components/common'
 
 export default function BySource(props) {
     let { source, id } = useParams()
@@ -48,30 +48,29 @@ export default function BySource(props) {
 
     return (
         <Layout>
-            <div className="App-main">
-                {!isLoading && (
-                    <ShowingBy title={source} icon={paper} />
-                )}
-                {isLoading ? (
-                    <>
-                        <div className="loader"></div>
-                        <p>Loading..</p>
-                        <br />
-                        <br />
-                    </>
-                ) : articles.data.length ? (
-                    articles.data.map((article) => (
-                        <Article key={article.id} article={article} />
-                    ))
-                ) : (
-                    <div>
-                        <img height="200px" src={nodata} alt="" />
-                        <br />
-                        <p>Nothing yet, Coming Soon</p>
-                        <br />
-                    </div>
-                )}
-            </div>
+            <ShowingBy
+                showingby="source"
+                title={source}
+                icon={paper}
+            />
+
+            {isLoading ? (
+                <>
+                    <div className="loader"></div>
+                    <p style={{ paddingTop: '12px' }}>Loading..</p>
+                </>
+            ) : articles.data.length ? (
+                articles.data.map((article) => (
+                    <ArticleCard key={article.id} article={article} />
+                ))
+            ) : (
+                <div>
+                    <img height="200px" src={nodata} alt="" />
+                    <br />
+                    <p>Nothing yet, Coming Soon</p>
+                    <br />
+                </div>
+            )}
 
             {!isLoading && articles.page + 1 <= articles.page_total && (
                 <div

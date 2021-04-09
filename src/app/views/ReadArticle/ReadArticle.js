@@ -8,10 +8,11 @@ import {
 import bookmark from '../../assets/bookmark-fill.svg'
 import check from '../../assets/check.svg'
 import coin from '../../assets/coin.png'
-import ArticleCategory from '../../components/articlecategory'
-import ArticleSource from '../../components/articlesource'
-import Author from '../../components/author'
-import Layout from '../../components/layout'
+import { ArticleAuthor } from '../../components/article'
+import ArticleCategory from '../../components/article/ArticleCategory/articlecategory'
+import ArticleSource from '../../components/article/ArticleSource/articlesource'
+import { Layout } from '../../components/common'
+import { Button, Divider } from '../../components/ui'
 import './ReadArticle.scss'
 
 export default function ReadArticle() {
@@ -39,93 +40,87 @@ export default function ReadArticle() {
 
     return (
         <Layout navbar={true} categories={true}>
-            <div className="App-main">
-                {loading ? (
-                    <>
-                        <div className="loader"></div>
-                        <p>
-                            We're Fetching the article for You...
-                            <br />
-                        </p>
-                    </>
-                ) : (
-                    <div className="article">
-                        <div className="cover-container">
+            {loading ? (
+                <>
+                    <div className="loader"></div>
+                    <p style={{ padding: '12px 0' }}>
+                        Loading Article, Hang On!
+                    </p>
+                </>
+            ) : (
+                <div className="article">
+                    <div className="cover-container">
+                        <img
+                            className="article-cover"
+                            src={
+                                'https://www.readingright.in/' +
+                                article.art_image
+                            }
+                            alt={article.id}
+                        />
+                        <div className="article-likes">
                             <img
-                                className="article-cover"
-                                src={
-                                    'https://www.readingright.in/' +
-                                    article.art_image
-                                }
-                                alt={article.id}
+                                height="24px"
+                                style={{ margin: '0 6px' }}
+                                src={coin}
+                                alt=""
                             />
-                            <div className="article-likes">
-                                <img
-                                    height="24px"
-                                    style={{ margin: '0 6px' }}
-                                    src={coin}
-                                    alt=""
-                                />
-                                {article.art_status}
-                            </div>
-                            <div className="article-covertext">
-                                {article.art_head}
-                            </div>
-
-                            <div
-                                onClick={handleBookmark}
-                                title="bookmark this article"
-                                className="article-bookmark"
-                            >
-                                <img
-                                    height="24px"
-                                    style={{ margin: '0 6px' }}
-                                    src={
-                                        ids.includes(id)
-                                            ? check
-                                            : bookmark
-                                    }
-                                    alt="bookmark"
-                                />
-                            </div>
+                            {article.art_status}
                         </div>
-                        <div className="label">
-                            <ArticleSource article={article} />
-                            <ArticleCategory article={article} />
+                        <div className="article-covertext">
+                            {article.art_head}
                         </div>
 
                         <div
-                            className="article-content"
-                            dangerouslySetInnerHTML={{
-                                __html: article.art_data
-                            }}
-                        ></div>
-
-                        <div className="divider"></div>
-
-                        {article.author_data.map((author, i) => (
-                            <Author
-                                key={i}
-                                hasAuthor={true}
-                                author={author}
+                            onClick={handleBookmark}
+                            title="bookmark this article"
+                            className="article-bookmark"
+                        >
+                            <img
+                                height="24px"
+                                style={{ margin: '0 6px' }}
+                                src={
+                                    ids.includes(id)
+                                        ? check
+                                        : bookmark
+                                }
+                                alt="bookmark"
                             />
-                        ))}
-
-                        <div className="action-btns">
-                            <div
-                                style={{
-                                    marginRight: '1.5rem',
-                                    marginBottom: '1.5rem'
-                                }}
-                                className="btn"
-                            >
-                                Take a Quiz
-                            </div>
-                            <div className="btn">Discussion</div>
                         </div>
                     </div>
-                )}
-            </div>
+                    <div className="label">
+                        <ArticleSource article={article} />
+                        <ArticleCategory article={article} />
+                    </div>
+
+                    <div
+                        className="article-content"
+                        dangerouslySetInnerHTML={{
+                            __html: article.art_data
+                        }}
+                    ></div>
+
+                    <Divider />
+
+                    {article.author_data.map((author, i) => (
+                        <ArticleAuthor
+                            key={i}
+                            hasAuthor={true}
+                            author={author}
+                        />
+                    ))}
+
+                    <div className="action-btns">
+                        <Button className="btn-primary">
+                            Take a Quiz
+                        </Button>
+                        &emsp;
+                        <Button className="btn-primary">
+                            Discussion
+                        </Button>
+                    </div>
+                </div>
+            )}
         </Layout>
     )
 }

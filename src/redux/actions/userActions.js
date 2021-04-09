@@ -37,15 +37,6 @@ export const verifyOTPRequest = (
         }
     })
 
-// {
-//     if (options.userOTP === options.serverOTP) {
-//         dispatch({ type: types.OTP_VERIFICATION_SUCCESS })
-//         localStorage.setItem('OTP', options.userOTP)
-//     } else dispatch({ type: types.OTP_VERIFICATION_FAILURE })
-
-//     cb()
-// }
-
 export const userLogOutRequest = (cb) => (dispatch) => {
     dispatch({ type: types.USER_LOGGED_OUT })
     localStorage.removeItem('OTP')

@@ -1,3 +1,6 @@
+import { Divider } from '../../ui'
+import './author.scss'
+
 export default function Author({ author }) {
     return (
         <>
@@ -26,7 +29,7 @@ export default function Author({ author }) {
                     ></div>
                 </div>
             </div>
-            <div className="divider"></div>
+            <Divider />
         </>
     )
 }

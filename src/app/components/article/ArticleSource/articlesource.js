@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import paper from '../assets/paper.png'
+import paper from '../../../assets/paper.png'
 
 export default function ArticleSource({ article }) {
     return (

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import label from '../assets/label.svg'
+import label from '../../../assets/label.svg'
 
 export default function ArticleCategory({
     article,

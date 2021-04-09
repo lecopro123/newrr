@@ -9,6 +9,7 @@ $secondary: #4a3d3c;
     line-height: auto;
     text-align: center;
 
+    // text color force black
     // * {
     //     color: #0c0c0d !important;
     // }
@@ -44,57 +45,9 @@ $secondary: #4a3d3c;
     }
 }
 
-.author {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: flex-start;
-    max-width: 960px;
-
-    &-avatar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 1.5rem;
-        div {
-            height: 100px;
-            width: 100px;
-            border-radius: 50px;
-            background-color: $primary;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-
-    &-text {
-        display: flex;
-        flex-direction: column;
-
-        &-name {
-            color: #0c0c0d;
-        }
-
-        &-description {
-            width: 90%;
-        }
-    }
-}
-
-.divider {
-    border-top: 1px solid lightgray;
-    display: block;
-    width: 95%;
-    margin: 3rem 0;
-}
-
 .action-btns {
     display: flex;
     flex-direction: row;
-}
-
-.btn {
-    padding: 0 2.2rem;
 }
 
 .article-bookmark {
