@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import {
@@ -7,7 +7,9 @@ import {
 } from '../../../redux/actions/articleActions'
 import bookmark from '../../assets/bookmark-fill.svg'
 import check from '../../assets/check.svg'
+import chevron from '../../assets/chevron-up.svg'
 import coin from '../../assets/coin.png'
+import x from '../../assets/x.svg'
 import { ArticleAuthor } from '../../components/article'
 import ArticleCategory from '../../components/article/ArticleCategory/articlecategory'
 import ArticleSource from '../../components/article/ArticleSource/articlesource'
@@ -37,6 +39,42 @@ export default function ReadArticle() {
     useEffect(() => {
         dispatch(getArticleById(callback, { id }))
     }, [id, dispatch])
+    const [popupdata, setPopupData] = useState({
+        text: '',
+        type: '',
+        content: ''
+    })
+    const popRef = useRef(null)
+
+    const handlePopUp = ({ target }) => {
+        let hasData = populatePopup(target)
+        console.log(target)
+        if (popRef.current.classList.contains('open')) {
+            if (!hasData) {
+                popRef.current.classList.toggle('open')
+            }
+        } else {
+            if (hasData) {
+                if (popRef.current.classList.contains('expanded')) {
+                    popRef.current.classList.toggle('expanded')
+                }
+                popRef.current.classList.toggle('open')
+            }
+        }
+
+        console.log(popRef.current.classList)
+    }
+
+    const populatePopup = (target) => {
+        if (!target.dataset.meaning) return false
+        setPopupData({
+            text: target.textContent,
+            type: target.dataset.title || 'meaning',
+            content: target.dataset.meaning
+        })
+
+        return true
+    }
 
     return (
         <Layout
@@ -92,6 +130,7 @@ export default function ReadArticle() {
                     </div>
 
                     <div
+                        onClick={handlePopUp}
                         className="article-content"
                         dangerouslySetInnerHTML={{
                             __html: article.art_data
@@ -128,6 +167,43 @@ export default function ReadArticle() {
                     </div>
                 </div>
             )}
+
+            <div ref={popRef} className="popup">
+                <div onClick={handlePopUp} className="close-btn">
+                    <img src={x} alt="x" />
+                </div>
+                <div
+                    onClick={() =>
+                        popRef.current.classList.toggle('expanded')
+                    }
+                    className="expand-btn"
+                >
+                    <img src={chevron} alt="^" />
+                </div>
+                <div className="wrapper">
+                    <div className="title">
+                        <h2>
+                            {popupdata.text}&nbsp;
+                            <span style={{ fontSize: '16px' }}>
+                                ({popupdata.type})
+                            </span>
+                        </h2>
+                    </div>
+                    <div
+                        onClick={() =>
+                            popRef.current.classList.toggle(
+                                'expanded'
+                            )
+                        }
+                        className="meaning"
+                    >
+                        {popupdata.content.replace(
+                            /%[0-9|A-Z|a-z]{2}/gi,
+                            ' '
+                        )}
+                    </div>
+                </div>
+            </div>
         </Layout>
     )
 }
