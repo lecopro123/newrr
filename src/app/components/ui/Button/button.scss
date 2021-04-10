@@ -5,8 +5,7 @@ $secondary: #4a3d3c;
 $white: #fff;
 $black: #000;
 
-.btn,
-button {
+.btn {
     &-primary {
         @extend .btn;
     }
@@ -30,11 +29,13 @@ button {
     }
 
     &-rectangle {
+        @extend .btn;
+
         width: 40px;
         background: #4a3d3c;
         border-radius: 6px;
 
-        * {
+        img {
             height: 13px;
         }
     }

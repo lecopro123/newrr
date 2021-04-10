@@ -10,12 +10,12 @@ import { Button, InputField, Loader } from '../../components/ui'
 import './Login.scss'
 
 export default function Login(props) {
-    const dispatch = useDispatch()
+    let dispatch = useDispatch()
     let history = useHistory()
     let location = useLocation()
     let { from } = location.state || { from: { pathname: '/' } }
+    let loginData = useSelector((state) => state.user)
 
-    const loginData = useSelector((state) => state.user)
     const [phone, setPhone] = useState(null)
     const [OTP, setOTP] = useState(null)
     const [hasOTP, setHasOTP] = useState(false)
@@ -75,7 +75,7 @@ export default function Login(props) {
                     <div>Welcome To</div>
                     <img className="sidebar-logo" src={logo} alt="" />
                     <div className="sidebar-text">
-                        Login to read smarticles, explore class notes{' '}
+                        Login to read smarticles, explore class notes
                         <br />
                         and many more
                     </div>

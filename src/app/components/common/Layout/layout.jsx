@@ -21,11 +21,14 @@ export default function Layout({
             <div className="App">
                 <div ref={topRef} />
 
-                {categories && categorieslocal ? (
-                    <CategoriesFromLocal categories={CATEGORIES} />
-                ) : (
-                    <CatBar />
-                )}
+                {categories &&
+                    (categorieslocal ? (
+                        <CategoriesFromLocal
+                            categories={CATEGORIES}
+                        />
+                    ) : (
+                        <CatBar />
+                    ))}
                 <div className="App-main">
                     {children}
                     {loading && (

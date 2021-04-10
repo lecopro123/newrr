@@ -1,0 +1,159 @@
+$primary: #d97e79;
+$secondary: #4a3d3c;
+
+.article-content {
+    width: 95vw;
+    max-width: 900px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    line-height: auto;
+    text-align: center;
+
+    strong {
+        display: block;
+        padding: 0.5rem 0;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        font-weight: bolder;
+    }
+
+    span {
+        cursor: pointer;
+    }
+
+    button {
+        border: none;
+        background: #fff;
+        cursor: pointer;
+    }
+
+    text-overflow: ellipsis !important;
+}
+
+.label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .label {
+        flex-direction: column;
+    }
+}
+
+.action-btns {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.article-bookmark {
+    position: absolute;
+    bottom: -30px;
+    height: 60px;
+    width: 60px;
+    background-color: $primary;
+    border-radius: 30px;
+    right: 1.5rem;
+    box-shadow: 0 2px 8px rgba(12, 12, 13, 0.3);
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    position: fixed;
+    display: none;
+    height: 0vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #2d2d2d;
+    color: #fafafb;
+    overflow-y: auto;
+
+    .close-btn,
+    .expand-btn {
+        background: $primary;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        height: 20px;
+        width: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .expand-btn {
+        @extend .close-btn;
+
+        right: 48px;
+    }
+
+    .wrapper {
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .title {
+        padding: 12px 12px 0 12px;
+    }
+    .meaning {
+        padding: 12px;
+    }
+}
+
+.open {
+    height: 20vh;
+    display: block;
+    animation: swipeup 0.3s ease;
+}
+
+.expanded {
+    transition: 0.1s ease;
+    height: 70vh;
+
+    .expand-btn {
+        @extend .close-btn;
+
+        img {
+            transform: rotate(-180deg);
+        }
+        right: 48px;
+    }
+}
+
+@keyframes swipeup {
+    from {
+        height: 0vh;
+    }
+    to {
+        height: 20vh;
+    }
+}
+
+.close {
+    height: 0vh;
+    animation: swipedown 0.3s ease;
+}
+
+@keyframes swipedown {
+    from {
+        height: 20vh;
+    }
+    to {
+        height: 0vh;
+    }
+}
