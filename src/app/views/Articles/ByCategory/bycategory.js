@@ -19,7 +19,7 @@ export default function ByCategory() {
 
     function callback() {
         setmoreLoading(false)
-        console.log('VIEW_MORE_SUCCESS')
+        console.log(`FETCHED_CATEGORY_PAGE_${articles.page + 1}`)
     }
 
     const handleViewMore = () => {
@@ -36,7 +36,7 @@ export default function ByCategory() {
     useEffect(() => {
         setIsLoading(true)
         function initCallback() {
-            console.log('FETCHED_CATEGORY')
+            console.log('FETCHED_CATEGORY_PAGE_1')
             setIsLoading(false)
         }
         dispatch(

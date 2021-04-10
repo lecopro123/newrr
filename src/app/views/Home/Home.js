@@ -13,7 +13,7 @@ export default function Home() {
 
     function callback() {
         setmoreLoading(false)
-        console.log('VIEW_MORE_SUCCESS')
+        console.log(`PAGE_${articles.page + 1}_SUCCESS`)
     }
 
     const handleViewMore = () => {
@@ -25,7 +25,7 @@ export default function Home() {
 
     useEffect(() => {
         function initCallback() {
-            console.log('INITIAL_LOAD')
+            console.log('PAGE_1_SUCCESS')
             setIsLoading(false)
         }
 

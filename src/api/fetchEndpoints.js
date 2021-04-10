@@ -4,19 +4,12 @@ export default function fetchEndpoints(
     endpoint,
     options = {
         method: 'GET',
-        headers: [
-            { name: 'Content-Type', value: 'application/json' }
-        ],
+        headers: [], // e.g { name: 'Content-Type', value: 'application/json' }
         body: ''
     }
 ) {
     const requestURL = BASE_URI + `${endpoint}`
     const requestHeaders = new Headers()
-
-    // requestHeaders.append(
-    //   'Authorization',
-    //   'Client-ID CDk34t9WKXMunCgr3HpxuI1sDh3sy02h9LSp7Wu7BUA'
-    // )
 
     options.headers &&
         options.headers.map((header) =>
