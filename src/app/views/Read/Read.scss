@@ -25,7 +25,7 @@ $secondary: #4a3d3c;
 
     button {
         border: none;
-        background: #fff;
+        background: #fff !important;
         cursor: pointer;
     }
 
@@ -66,94 +66,4 @@ $secondary: #4a3d3c;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.popup {
-    position: fixed;
-    display: none;
-    height: 0vh;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #2d2d2d;
-    color: #fafafb;
-    overflow-y: auto;
-
-    .close-btn,
-    .expand-btn {
-        background: $primary;
-    }
-
-    .close-btn {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        height: 20px;
-        width: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .expand-btn {
-        @extend .close-btn;
-
-        right: 48px;
-    }
-
-    .wrapper {
-        max-width: 900px;
-        margin: auto;
-    }
-
-    .title {
-        padding: 12px 12px 0 12px;
-    }
-    .meaning {
-        padding: 12px;
-    }
-}
-
-.open {
-    height: 20vh;
-    display: block;
-    animation: swipeup 0.3s ease;
-}
-
-.expanded {
-    transition: 0.1s ease;
-    height: 70vh;
-
-    .expand-btn {
-        @extend .close-btn;
-
-        img {
-            transform: rotate(-180deg);
-        }
-        right: 48px;
-    }
-}
-
-@keyframes swipeup {
-    from {
-        height: 0vh;
-    }
-    to {
-        height: 20vh;
-    }
-}
-
-.close {
-    height: 0vh;
-    animation: swipedown 0.3s ease;
-}
-
-@keyframes swipedown {
-    from {
-        height: 20vh;
-    }
-    to {
-        height: 0vh;
-    }
 }

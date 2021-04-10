@@ -18,7 +18,7 @@ export default function ByQuery() {
 
     function callback() {
         setmoreLoading(false)
-        console.log('VIEW_MORE_SUCCESS')
+        console.log(`FETCHED_SEARCH_PAGE_${articles.page + 1}`)
     }
 
     const handleViewMore = () => {
@@ -33,10 +33,9 @@ export default function ByQuery() {
     }
 
     useEffect(() => {
-        console.log(q)
         setIsLoading(true)
         function initCallback() {
-            console.log('FETCHED_CATEGORY')
+            console.log('FETCHED_SEARCH_PAGE_1')
             setIsLoading(false)
         }
         dispatch(

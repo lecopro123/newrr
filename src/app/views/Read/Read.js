@@ -7,10 +7,8 @@ import {
 } from '../../../redux/actions/articleActions'
 import bookmark from '../../assets/bookmark-fill.svg'
 import check from '../../assets/check.svg'
-import chevron from '../../assets/chevron-up.svg'
 import coin from '../../assets/coin.png'
-import x from '../../assets/x.svg'
-import { ArticleAuthor } from '../../components/article'
+import { ArticleAuthor, ArticlePopup } from '../../components/article'
 import ArticleCategory from '../../components/article/ArticleCategory/articlecategory'
 import ArticleSource from '../../components/article/ArticleSource/articlesource'
 import { Layout } from '../../components/common'
@@ -24,8 +22,17 @@ export default function ReadArticle() {
         (state) => state.articles.read.data[0]
     )
     const ids = useSelector((state) => state.bookmarks.ids)
-
     const [loading, setLoading] = useState(true)
+    const [popupdata, setPopupData] = useState({
+        type: '',
+        title: '',
+        comment: '',
+        commentStatus: '',
+        image: '',
+        meaning: '',
+        videoLinks: ''
+    })
+    const popRef = useRef(null)
 
     function callback() {
         console.log('ARTICLE_LOADED')
@@ -39,12 +46,6 @@ export default function ReadArticle() {
     useEffect(() => {
         dispatch(getArticleById(callback, { id }))
     }, [id, dispatch])
-    const [popupdata, setPopupData] = useState({
-        text: '',
-        type: '',
-        content: ''
-    })
-    const popRef = useRef(null)
 
     const handlePopUp = ({ target }) => {
         let hasData = populatePopup(target)
@@ -61,16 +62,26 @@ export default function ReadArticle() {
                 popRef.current.classList.toggle('open')
             }
         }
-
-        console.log(popRef.current.classList)
     }
 
     const populatePopup = (target) => {
         if (!target.dataset.meaning) return false
         setPopupData({
-            text: target.textContent,
-            type: target.dataset.title || 'meaning',
-            content: target.dataset.meaning
+            type:
+                target.type === 'button'
+                    ? ''
+                    : `(${target.dataset.title})`,
+            title:
+                target.type === 'button'
+                    ? target.dataset.line ||
+                      target.dataset.title + target.textContent ||
+                      `${target.textContent} Explanation`
+                    : target.textContent,
+            meaning: target.dataset.meaning || '',
+            comment: target.dataset.comment || '',
+            commentStatus: target.dataset.commentStatus || '',
+            image: target.dataset.image || '',
+            videoLinks: target.dataset.videoLinks || ''
         })
 
         return true
@@ -106,7 +117,6 @@ export default function ReadArticle() {
                         <div className="article-covertext">
                             {article.art_head}
                         </div>
-
                         <div
                             onClick={handleBookmark}
                             title="bookmark this article"
@@ -168,42 +178,11 @@ export default function ReadArticle() {
                 </div>
             )}
 
-            <div ref={popRef} className="popup">
-                <div onClick={handlePopUp} className="close-btn">
-                    <img src={x} alt="x" />
-                </div>
-                <div
-                    onClick={() =>
-                        popRef.current.classList.toggle('expanded')
-                    }
-                    className="expand-btn"
-                >
-                    <img src={chevron} alt="^" />
-                </div>
-                <div className="wrapper">
-                    <div className="title">
-                        <h2>
-                            {popupdata.text}&nbsp;
-                            <span style={{ fontSize: '16px' }}>
-                                ({popupdata.type})
-                            </span>
-                        </h2>
-                    </div>
-                    <div
-                        onClick={() =>
-                            popRef.current.classList.toggle(
-                                'expanded'
-                            )
-                        }
-                        className="meaning"
-                    >
-                        {popupdata.content.replace(
-                            /%[0-9|A-Z|a-z]{2}/gi,
-                            ' '
-                        )}
-                    </div>
-                </div>
-            </div>
+            <ArticlePopup
+                popRef={popRef}
+                handlePopUp={handlePopUp}
+                popupdata={popupdata}
+            />
         </Layout>
     )
 }

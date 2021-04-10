@@ -103,8 +103,8 @@ export const getArticlesBy = (
                 page: options.page,
                 type:
                     options.page > 1
-                        ? types.GOT_MORE_ARTICLES_BY_CATEGORY
-                        : types.GOT_ARTICLES_BY_CATEGORY,
+                        ? types.GOT_MORE_ARTICLES_BY_QUERY
+                        : types.GOT_ARTICLES_BY_QUERY,
                 data: res.data,
 
                 // * NO PAGE AND ERROR RETURED FROM API (Needed Fix)

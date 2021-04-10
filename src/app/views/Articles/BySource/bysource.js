@@ -17,7 +17,7 @@ export default function BySource() {
 
     function callback() {
         setmoreLoading(false)
-        console.log('VIEW_MORE_SUCCESS')
+        console.log(`FETCHED_SOURCE_PAGE_${articles.page + 1}`)
     }
 
     const handleViewMore = () => {
@@ -34,7 +34,7 @@ export default function BySource() {
     useEffect(() => {
         setIsLoading(true)
         function initCallback() {
-            console.log('FETCHED_CATEGORY')
+            console.log('FETCHED_SOURCE_PAGE_1')
             setIsLoading(false)
         }
         dispatch(
