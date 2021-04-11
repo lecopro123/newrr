@@ -42,7 +42,7 @@ $black: #000;
 
     height: 40px;
     padding: 10px 20px;
-    text-transform: uppercase;
+    padding-top: 16px;
 
     border: none;
     cursor: pointer;
@@ -51,6 +51,7 @@ $black: #000;
     box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
     border-radius: 20px;
     font-family: Josefin Sans;
+    font-size: 16px;
 
     display: flex;
     align-items: center;

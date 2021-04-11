@@ -23,11 +23,15 @@ const ArticlePopup = ({ popRef, handlePopUp, popupdata }) => {
             <div className="wrapper">
                 <div className="title">
                     {popupdata.type && (
-                        <em style={{ color: 'gray' }}>
+                        <small style={{ color: 'gray' }}>
                             {popupdata.type}
-                        </em>
+                        </small>
                     )}
                     <h2
+                        style={{
+                            fontFamily: 'Josefin Sans',
+                            color: '#242323'
+                        }}
                         dangerouslySetInnerHTML={{
                             __html: popupdata.title
                         }}

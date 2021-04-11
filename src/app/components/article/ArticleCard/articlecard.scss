@@ -21,8 +21,7 @@ $cover-tint: rgba(245, 245, 245, 0.8);
         cursor: pointer;
         max-width: 1080px;
         // box-shadow: 0px 6px 30px rgba(#000000, 0.4);
-        box-shadow: 0 3px 12px -1px rgb(7, 10, 25 / 20%),
-            0 22px 27px -20px rgb(7, 10, 25 / 20%);
+        box-shadow: 0 3px 12px -1px #cdced1, 0 22px 27px -20px #cdced1;
     }
 
     &-cover {
@@ -54,6 +53,7 @@ $cover-tint: rgba(245, 245, 245, 0.8);
         box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
     }
     &-likes {
+        font-family: Josefin Sans;
         color: $primary-text;
         box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
         position: absolute;
@@ -85,6 +85,7 @@ $cover-tint: rgba(245, 245, 245, 0.8);
             margin-top: 6px;
             padding: 6px 0;
             div {
+                font-size: 16px;
                 color: #424242;
                 white-space: normal;
                 text-align: center;
