@@ -1,28 +1,76 @@
 $primary: #d97e79;
 $secondary: #4a3d3c;
 
+.data-images {
+    width: 100% !important;
+    height: auto !important;
+    padding: 12px;
+}
+
+.photos {
+    line-height: 0;
+    // padding: 12px;
+
+    -webkit-column-count: 5;
+    -webkit-column-gap: 0px;
+    -moz-column-count: 5;
+    -moz-column-gap: 0px;
+    column-count: 5;
+    column-gap: 0px;
+}
+
+@media (max-width: 1200px) {
+    .photos {
+        -moz-column-count: 4;
+        -webkit-column-count: 4;
+        column-count: 4;
+    }
+}
+@media (max-width: 1000px) {
+    .photos {
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+}
+@media (max-width: 800px) {
+    .photos {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+}
+@media (max-width: 600px) {
+    .photos {
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+    }
+}
+
 .popup {
+    // overflow-x: visible;
+    box-shadow: 0 0 8px 1px rgba(7, 10, 25, 0.4);
     position: fixed;
     display: none;
-    height: 0vh;
+    height: 0%;
     bottom: 0;
     left: 0;
     right: 0;
-    background: #2d2d2d;
-    color: #fafafb;
+    background: #fff;
+    // background: #121212;
+    // color: #fafafb;
     overflow-y: auto;
 
-    .close-btn,
-    .expand-btn {
-        background: $primary;
-    }
-
     .close-btn {
+        box-shadow: 2px 2px 2px -1px rgba(7, 10, 25, 0.2);
+        background: $primary;
         position: absolute;
-        top: 12px;
-        right: 12px;
-        height: 20px;
-        width: 20px;
+        border-radius: 15px;
+        top: 6px;
+        right: 28px;
+        height: 30px;
+        width: 30px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -32,7 +80,7 @@ $secondary: #4a3d3c;
     .expand-btn {
         @extend .close-btn;
 
-        right: 48px;
+        right: 65px;
     }
 
     .wrapper {
@@ -64,7 +112,6 @@ $secondary: #4a3d3c;
         img {
             transform: rotate(-180deg);
         }
-        right: 48px;
     }
 }
 
@@ -84,7 +131,7 @@ $secondary: #4a3d3c;
 
 @keyframes swipedown {
     from {
-        height: 20vh;
+        height: 100vh;
     }
     to {
         height: 0vh;

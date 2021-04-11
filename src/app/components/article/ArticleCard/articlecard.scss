@@ -1,6 +1,6 @@
-$primary-text: #0c0c0d;
+$primary-text: #424242;
 $secondary-text: rgba(12, 12, 13, 0.8);
-$cover-tint: rgba(245, 245, 245, 0.7);
+$cover-tint: rgba(245, 245, 245, 0.8);
 
 .article {
     position: relative;
@@ -20,7 +20,9 @@ $cover-tint: rgba(245, 245, 245, 0.7);
         height: 400px;
         cursor: pointer;
         max-width: 1080px;
-        box-shadow: 0px 6px 30px rgba(#000000, 0.4);
+        // box-shadow: 0px 6px 30px rgba(#000000, 0.4);
+        box-shadow: 0 3px 12px -1px rgb(7, 10, 25 / 20%),
+            0 22px 27px -20px rgb(7, 10, 25 / 20%);
     }
 
     &-cover {
@@ -31,7 +33,10 @@ $cover-tint: rgba(245, 245, 245, 0.7);
     }
 
     &-covertext {
-        color: #0c0c0d;
+        font-family: Josefin Sans;
+        color: #242323;
+        font-weight: 300;
+
         overflow: hidden;
         display: flex;
         width: auto;
@@ -46,9 +51,11 @@ $cover-tint: rgba(245, 245, 245, 0.7);
         padding: 20px;
         padding-left: 30px;
         border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
     }
     &-likes {
         color: $primary-text;
+        box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
         position: absolute;
         height: 2.5rem;
         background-color: $cover-tint;
@@ -78,7 +85,7 @@ $cover-tint: rgba(245, 245, 245, 0.7);
             margin-top: 6px;
             padding: 6px 0;
             div {
-                color: #0c0c0d;
+                color: #424242;
                 white-space: normal;
                 text-align: center;
                 line-height: 20px;

@@ -67,13 +67,13 @@ export default function ReadArticle() {
     const populatePopup = (target) => {
         if (!target.dataset.meaning) return false
         setPopupData({
-            type:
-                target.type === 'button'
-                    ? ''
-                    : `(${target.dataset.title})`,
+            type: target.dataset.title
+                ? `${target.dataset.title}`
+                : '',
             title:
                 target.type === 'button'
-                    ? target.dataset.line ||
+                    ? (target.dataset.line &&
+                          unescape(target.dataset.line)) ||
                       target.dataset.title + target.textContent ||
                       `${target.textContent} Explanation`
                     : target.textContent,
