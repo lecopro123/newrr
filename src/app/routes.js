@@ -30,6 +30,7 @@ export const routes = [
         component: Login
     },
     {
+        exact: true,
         path: '/search',
         component: Search
     },

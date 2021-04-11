@@ -45,7 +45,6 @@ export default function ReadArticle() {
             x.innerHTML = str
 
             let btns = x.getElementsByTagName('button')
-            console.log(btns)
 
             let bcount = 0
             let qcount = 0
@@ -63,9 +62,6 @@ export default function ReadArticle() {
             }
 
             setArticleHTML(x)
-
-            console.log(bcount, qcount)
-            console.log(x)
 
             setLoading(false)
         }
