@@ -155,7 +155,7 @@ export default function ReadArticle() {
                         onClick={handlePopUp}
                         className="article-content"
                         dangerouslySetInnerHTML={{
-                            __html: unescape(article.art_data)
+                            __html: article.art_data
                         }}
                     ></div>
 
