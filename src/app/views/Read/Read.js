@@ -21,6 +21,9 @@ export default function ReadArticle() {
     )
     const ids = useSelector((state) => state.bookmarks.ids)
     const [loading, setLoading] = useState(true)
+
+    let [articleHTML, setArticleHTML] = useState('')
+
     const [popupdata, setPopupData] = useState({
         type: '',
         title: '',
@@ -37,7 +40,33 @@ export default function ReadArticle() {
     }
 
     useEffect(() => {
-        function index() {
+        function index(str) {
+            let x = document.createElement('div')
+            x.innerHTML = str
+
+            let btns = x.getElementsByTagName('button')
+            console.log(btns)
+
+            let bcount = 0
+            let qcount = 0
+
+            for (let i = 0; i < btns.length; i++) {
+                if (btns[i].dataset.title === 'Extra Facts') {
+                    bcount++
+                    // btns[i].append('[' + bcount + ']')
+                    btns[i].append(`<sup>${bcount}</sup>`)
+                } else if (btns[i].dataset.title === 'Explanation') {
+                    qcount++
+                    // btns[i].append('[' + qcount + ']')
+                    btns[i].append(`<sup>${qcount}</sup>`)
+                }
+            }
+
+            setArticleHTML(x)
+
+            console.log(bcount, qcount)
+            console.log(x)
+
             setLoading(false)
         }
         dispatch(getArticleById(index, { id }))
@@ -70,7 +99,7 @@ export default function ReadArticle() {
                 target.type === 'button'
                     ? (target.dataset.line &&
                           unescape(target.dataset.line)) ||
-                      target.dataset.title + target.textContent ||
+                      target.dataset.title + target.innerHTML ||
                       `${target.textContent} Explanation`
                     : target.textContent,
             meaning: target.dataset.meaning || '',
@@ -155,7 +184,9 @@ export default function ReadArticle() {
                         onClick={handlePopUp}
                         className="article-content"
                         dangerouslySetInnerHTML={{
-                            __html: article.art_data
+                            __html: decodeHTMLEntities(
+                                articleHTML.innerHTML
+                            )
                         }}
                     ></div>
 
@@ -197,4 +228,10 @@ export default function ReadArticle() {
             />
         </Layout>
     )
+}
+
+function decodeHTMLEntities(text) {
+    var textArea = document.createElement('textarea')
+    textArea.innerHTML = text
+    return textArea.value
 }

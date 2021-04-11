@@ -51,7 +51,7 @@ export const getArticleById = (cb, options = { id: 132 }) => (
             error: res.error,
             article_id: options.id
         })
-        cb()
+        cb(res.data[0].art_data)
     })
 
 export const getArticlesBy = (
