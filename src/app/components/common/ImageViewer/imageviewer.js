@@ -16,6 +16,7 @@ const ImageViewer = ({
             className="image-bg"
             {...rest}
         >
+            <div className="toast">Click anywhere to close</div>
             <img
                 className="image-current"
                 src={imagelink}
