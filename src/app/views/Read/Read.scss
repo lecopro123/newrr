@@ -2,13 +2,14 @@ $primary: #d97e79;
 $secondary: #4a3d3c;
 
 .article-content {
-    font-style: Roboto !important;
+    font-family: Roboto !important;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
     color: #424242;
     width: 95vw;
     max-width: 900px;
     padding-top: 20px;
     padding-bottom: 20px;
-    line-height: auto;
     text-align: center;
 
     strong {

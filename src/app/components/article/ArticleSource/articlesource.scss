@@ -18,11 +18,13 @@ $secondary-text: rgba(12, 12, 13, 0.8);
     justify-content: center;
 
     &-title {
+        font-family: Josefin Sans;
         color: $secondary-text;
         text-decoration: underline;
     }
 
     &-date {
+        font-family: Josefin Sans;
         color: $secondary-text;
     }
 }

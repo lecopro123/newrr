@@ -19,7 +19,7 @@ function NavBar(props) {
                         alt="Logo"
                     />
                 </Link>
-                <Link to="/articles/search?q=coffee">
+                <Link to="/search">
                     <Button className="btn-circle">
                         <img src={searchIcon} alt="search"></img>
                     </Button>

@@ -15,7 +15,7 @@ const ArticleCategory = ({
             src={label}
             alt="paper-icon"
         />
-        <span className="article-tag-title">
+        <small className="article-tag-title">
             <Link
                 style={{
                     textDecoration: 'none',
@@ -27,7 +27,7 @@ const ArticleCategory = ({
             >
                 {article.category || article_category}
             </Link>
-        </span>
+        </small>
     </div>
 )
 
