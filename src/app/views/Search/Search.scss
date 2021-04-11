@@ -61,6 +61,11 @@
     text-align: left;
     padding: 6px 48px 6px 12px;
     border-radius: 0px;
+
+    &:hover,
+    &:focus {
+        box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
+    }
 }
 
 .search-title-text {
