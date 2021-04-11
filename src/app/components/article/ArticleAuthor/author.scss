@@ -17,6 +17,7 @@ $secondary: #4a3d3c;
             height: 100px;
             width: 100px;
             border-radius: 50px;
+            box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
             background-color: $primary;
             display: flex;
             justify-content: center;
@@ -29,11 +30,13 @@ $secondary: #4a3d3c;
         flex-direction: column;
 
         &-name {
-            color: #0c0c0d;
+            color: #242323;
+            font-family: Josefin Sans;
         }
 
         &-description {
             width: 90%;
+            color: #242323;
         }
     }
 }

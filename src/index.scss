@@ -4,6 +4,15 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Josefin Sans';
+    src: local('Josefin Sans'),
+        url(./app/assets/fonts/josefin-sans-v17-latin-regular.woff)
+            format('woff');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+}
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen',

@@ -1,0 +1,21 @@
+.image-bg {
+    background: #121212;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.is-active {
+    display: flex;
+}
+
+.image-current {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 900px;
+}

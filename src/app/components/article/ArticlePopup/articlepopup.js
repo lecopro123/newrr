@@ -1,16 +1,12 @@
+import { useState } from 'react'
 import chevron from '../../../assets/chevron-up.svg'
 import x from '../../../assets/x.svg'
+import ImageViewer from '../../common/ImageViewer/imageviewer'
 import './articlepopup.scss'
 
 const ArticlePopup = ({ popRef, handlePopUp, popupdata }) => {
-    const renderData = (uri) => {
-        try {
-            var a = decodeURIComponent(uri)
-            return a
-        } catch (e) {
-            return uri.replace(/%[0-9|A-Z|a-z]{2}/gi, ' ')
-        }
-    }
+    const [open, setOpen] = useState(false)
+    const [link, setLink] = useState('')
     return (
         <div ref={popRef} className="popup">
             <div onClick={handlePopUp} className="close-btn">
@@ -26,12 +22,16 @@ const ArticlePopup = ({ popRef, handlePopUp, popupdata }) => {
             </div>
             <div className="wrapper">
                 <div className="title">
-                    <h2>
-                        {popupdata.title}&nbsp;
-                        <span style={{ fontSize: '16px' }}>
+                    {popupdata.type && (
+                        <em style={{ color: 'gray' }}>
                             {popupdata.type}
-                        </span>
-                    </h2>
+                        </em>
+                    )}
+                    <h2
+                        dangerouslySetInnerHTML={{
+                            __html: popupdata.title
+                        }}
+                    ></h2>
                 </div>
                 <div
                     onClick={() =>
@@ -39,7 +39,53 @@ const ArticlePopup = ({ popRef, handlePopUp, popupdata }) => {
                     }
                     className="meaning"
                 >
-                    {renderData(popupdata.meaning)}
+                    {unescape(popupdata.meaning)}
+                </div>
+                <div>
+                    {popupdata.videoLinks &&
+                        unescape(popupdata.videoLinks)
+                            .split(',')
+                            .map((v_link, i) => (
+                                <iframe
+                                    key={i}
+                                    style={{
+                                        border: 'none',
+                                        margin: '12px',
+                                        width: '100%',
+                                        maxWidth: '400px',
+                                        height: '250px'
+                                    }}
+                                    src={
+                                        'https://www.youtube.com/embed/' +
+                                        new URLSearchParams(
+                                            new URL(
+                                                unescape(v_link)
+                                            ).search
+                                        ).get('v')
+                                    }
+                                    title="YouTube video player"
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                                    allowFullScreen
+                                ></iframe>
+                            ))}
+                </div>
+                <div className="photos">
+                    {open && (
+                        <ImageViewer imagelink={link} open={open} />
+                    )}
+                    {popupdata.image &&
+                        popupdata.image.split(',').map((image, i) => (
+                            <img
+                                onClick={() => {
+                                    setLink(image)
+                                    setOpen(!open)
+                                }}
+                                className="data-images"
+                                key={i}
+                                src={image}
+                                alt={image}
+                            />
+                        ))}
                 </div>
             </div>
         </div>
