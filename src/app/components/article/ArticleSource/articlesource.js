@@ -9,7 +9,7 @@ const ArticleSource = ({ style = {}, article, ...rest }) => (
             src={paper}
             alt="paper-icon"
         />
-        <span className="article-tag-title">
+        <small className="article-tag-title">
             <Link
                 style={{
                     color: 'inherit'
@@ -24,15 +24,15 @@ const ArticleSource = ({ style = {}, article, ...rest }) => (
             >
                 {article.source.name}
             </Link>
-        </span>
-        <p className="article-tag-date">
+        </small>
+        <small className="article-tag-date">
             &nbsp; | &nbsp;
             {Math.round(
                 (new Date() - new Date(article.art_pub_dt)) /
                     (1000 * 60 * 60 * 24 * 7)
             )}
             &nbsp;Weeks Ago
-        </p>
+        </small>
     </div>
 )
 

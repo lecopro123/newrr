@@ -72,9 +72,14 @@ export default function Login(props) {
 
             <div className="flex-grid">
                 <div className="col sidebar">
-                    <div>Welcome To</div>
+                    <div style={{ fontFamily: 'Josefin Sans' }}>
+                        Welcome To
+                    </div>
                     <img className="sidebar-logo" src={logo} alt="" />
-                    <div className="sidebar-text">
+                    <div
+                        style={{ fontFamily: 'Josefin Sans' }}
+                        className="sidebar-text"
+                    >
                         Login to read smarticles, explore class notes
                         <br />
                         and many more
