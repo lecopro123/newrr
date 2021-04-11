@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { CatBar, Footer, NavBar } from '..'
 import CATEGORIES from '../../../assets/category-detailed.json'
+import Search from '../../../views/Search/Search'
 import { Loader } from '../../ui'
 import { CategoriesFromLocal } from '../CatBar/categories'
 import './layout.scss'
@@ -14,10 +15,15 @@ export default function Layout({
     categorieslocal = true
 }) {
     const topRef = useRef(null)
+    const searchRef = useRef(null)
+
+    const openSearch = () => {
+        searchRef.current.classList.toggle('is-open')
+    }
 
     return (
         <div>
-            {navbar && <NavBar />}
+            {navbar && <NavBar opensearch={openSearch} />}
             <div className="App">
                 <div ref={topRef} />
 
@@ -42,6 +48,7 @@ export default function Layout({
                 </div>
                 <Footer topRef={topRef} />
             </div>
+            <Search searchRef={searchRef} />
         </div>
     )
 }
