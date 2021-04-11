@@ -28,6 +28,11 @@ const ArticlePopup = ({ popRef, handlePopUp, popupdata }) => {
                         </small>
                     )}
                     <h2
+                        onClick={() =>
+                            popRef.current.classList.toggle(
+                                'expanded'
+                            )
+                        }
                         style={{
                             fontFamily: 'Josefin Sans',
                             color: '#242323'
