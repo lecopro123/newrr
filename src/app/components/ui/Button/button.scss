@@ -8,6 +8,12 @@ $black: #000;
 .btn {
     &-primary {
         @extend .btn;
+
+        &:hover {
+            background: #ffffff;
+            color: #d97e79;
+            transition-duration: 0.4s;
+        }
     }
     &-secondary {
         @extend .btn;
@@ -23,21 +29,49 @@ $black: #000;
         width: 40px;
         padding: 0;
 
-        img {
-            height: 13px;
+        &:hover {
+            transition-duration: 0.4s;
+            background: #ffffff;
+            color: #d97e79;
+            svg {
+                fill: #d97e79;
+            }
         }
     }
 
     &-rectangle {
-        @extend .btn;
-
+        border: none;
+        cursor: pointer;
+        height: 40px;
         width: 40px;
-        background: #4a3d3c;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
+
         border-radius: 6px;
 
-        img {
-            height: 13px;
+        background: $secondary;
+        color: #fff;
+
+        svg {
+            fill: #fff;
         }
+
+        &:hover {
+            transition-duration: 0.4s;
+            background: #ffffff;
+            color: $secondary;
+            svg {
+                fill: $secondary;
+            }
+        }
+    }
+
+    svg {
+        fill: #fff;
+        height: 16px;
     }
 
     height: 40px;

@@ -1,19 +1,23 @@
 .categories {
     background-color: #fff;
     text-align: center;
-    // display: inline-block;
     padding: 10px 5px;
-    // margin-bottom: 6px;
 
     &-link {
         font-family: Josefin Sans;
 
         // text-decoration: underline;
         display: inline-block;
-        font-size: 0.9rem;
+        font-size: 16px;
         color: #fff;
         padding: 4px 8px;
         padding-top: 8px;
         margin-bottom: 4px;
+        &:hover {
+            background-color: #f9f9f9 !important;
+            transition-duration: 0.4s;
+            top: -10px;
+            color: #424242;
+        }
     }
 }

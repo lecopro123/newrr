@@ -69,4 +69,15 @@ $secondary: #4a3d3c;
     display: flex;
     justify-content: center;
     align-items: center;
+    svg {
+        fill: #fff;
+    }
+
+    &:hover {
+        transition-duration: 0.4s;
+        background: #fff;
+        svg {
+            fill: $primary;
+        }
+    }
 }

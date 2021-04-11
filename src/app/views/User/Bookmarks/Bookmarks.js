@@ -86,12 +86,12 @@ export default function Bookmarks() {
                     </div>
                 )}
 
-            {!isLoading && (
+            {/* {!isLoading && (
                 <>
                     <div>ids: {bookmarks.ids.length}</div>
                     <div>datas: {bookmarks.data.length}</div>
                 </>
-            )}
+            )} */}
         </Layout>
     )
 }
