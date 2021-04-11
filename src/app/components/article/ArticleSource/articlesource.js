@@ -12,6 +12,7 @@ const ArticleSource = ({ style = {}, article, ...rest }) => (
         <small className="article-tag-title">
             <Link
                 style={{
+                    textDecoration: 'none',
                     color: 'inherit'
                 }}
                 to={

@@ -2,13 +2,25 @@ $primary-text: #424242;
 $secondary-text: rgba(12, 12, 13, 0.8);
 $cover-tint: rgba(245, 245, 245, 0.8);
 
+@keyframes apearcer {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
 .article {
+    animation: apearcer 0.4s ease;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.6rem;
 
     &:first-child {
         margin-top: 1.5rem;
@@ -51,6 +63,13 @@ $cover-tint: rgba(245, 245, 245, 0.8);
         padding-left: 30px;
         border-radius: 4px;
         box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
+
+        &:hover {
+            bottom: 1.7rem;
+            // top: 10px;
+            background-color: #ffffff;
+            transition: 0.4s ease;
+        }
     }
     &-likes {
         font-family: Josefin Sans;

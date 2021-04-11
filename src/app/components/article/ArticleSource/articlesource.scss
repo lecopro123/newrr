@@ -21,6 +21,12 @@ $secondary-text: rgba(12, 12, 13, 0.8);
         font-family: Josefin Sans;
         color: $secondary-text;
         text-decoration: underline;
+
+        &:hover {
+            text-decoration: none;
+            color: #d97e79;
+            transition-duration: 0.4s;
+        }
     }
 
     &-date {

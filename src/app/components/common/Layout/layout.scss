@@ -6,6 +6,7 @@
     flex-direction: column;
 
     &-main {
+        min-height: 50vh;
         position: relative;
         background-color: #fff;
         overflow-x: hidden;
