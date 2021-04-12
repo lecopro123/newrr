@@ -46,7 +46,15 @@ const CategoriesFromLocal = ({
     data = []
 }) => (
     <div className="categories">
-        <div onClick={toggleView} className="switch-mode-icon">
+        <div
+            onClick={toggleView}
+            style={{
+                backgroundColor: isCategoryView
+                    ? '#d97e79'
+                    : ' #4a3d3c'
+            }}
+            className="switch-mode-icon"
+        >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -66,6 +74,7 @@ const CategoriesFromLocal = ({
                         >
                             <span
                                 style={{
+                                    backgroundColor: c.color,
                                     borderBottom:
                                         '3px solid ' + c.color
                                 }}
@@ -84,6 +93,7 @@ const CategoriesFromLocal = ({
                         >
                             <span
                                 style={{
+                                    backgroundColor: c.color,
                                     borderBottom:
                                         '3px solid ' + c.color
                                 }}
