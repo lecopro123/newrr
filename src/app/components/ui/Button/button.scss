@@ -10,9 +10,12 @@ $black: #000;
         @extend .btn;
 
         &:hover {
+            transition-duration: 0.4s;
             background: #ffffff;
             color: #d97e79;
-            transition-duration: 0.4s;
+            svg {
+                fill: #d97e79;
+            }
         }
     }
     &-secondary {

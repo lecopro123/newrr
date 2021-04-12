@@ -1,0 +1,198 @@
+.floating-action-btn {
+    z-index: 999999;
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: #d97e79;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // box-shadow: 0 4px 12px rgba(#000, 0.2);
+    box-shadow: 0 2px 8px rgba(12, 12, 13, 0.3);
+
+    cursor: pointer;
+
+    &:hover {
+        color: #d97e79;
+        background-color: #f2f2f2;
+
+        svg {
+            fill: #d97e79;
+        }
+    }
+}
+
+.float-hidden {
+    display: none;
+}
+
+.floating-icon {
+    fill: #fff;
+}
+
+//navbar
+.bottom-navbar-container {
+    // block
+    // z-index: 9999999999999;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    // background-color: chocolate;
+}
+
+.bottom-navbar {
+    box-shadow: 0 0 12px rgba(#000, 0.12);
+    // z-index: 999999999;
+    position: fixed; //absolute to block
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background: #fff;
+    display: none;
+
+    &-open {
+        display: flex;
+        animation: apearcer 0.1s ease;
+    }
+
+    &-hide-btn {
+        cursor: pointer;
+        background: #d97e79;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 12px;
+
+        svg {
+            fill: #fff;
+            transform: rotate(90deg);
+        }
+
+        &:hover {
+            transition-duration: 0.4s;
+            background: #ffffff;
+            color: #d97e79;
+            svg {
+                fill: #d97e79;
+            }
+        }
+    }
+
+    &-title {
+        text-align: center;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem;
+    }
+
+    &-menuitems {
+        // background: chocolate;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 0 12px;
+
+        &-item {
+            position: relative;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            padding: 0 8px;
+            cursor: pointer;
+
+            font-family: Josefin Sans;
+            font-size: 18px;
+            font-weight: 400;
+
+            // background: chocolate;
+
+            &:hover {
+                &::after {
+                    position: absolute;
+                    bottom: 0;
+                    content: '';
+                    display: block;
+                    background: #d97e79;
+                    height: 3px;
+                    width: 100%;
+                }
+                // text-decoration: underline;
+                color: #d97e79;
+                transition-duration: 0.4s;
+                // border-bottom: 3px solid #d97e79;
+            }
+
+            // height: 45px;
+            // border-radius: 6px;
+            // width: 45px;
+            // background: #d97e79;
+        }
+    }
+
+    .bottom-navbar-user-container {
+        display: flex;
+        padding: 0 12px 17.5px 12px;
+
+        // background: chartreuse;
+    }
+
+    &-user {
+        align-self: flex-end;
+        text-align: left;
+
+        cursor: pointer;
+
+        height: 45px;
+        width: 45px;
+        border-radius: 50%;
+        background: #4a3d3c;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        color: #fff;
+        align-items: center;
+    }
+}
+
+//user
+
+.user-popup {
+    display: none;
+    position: fixed; //absolute to block
+    bottom: 92px;
+    right: 12px;
+    width: 240px;
+    height: 300px;
+    border: 1px solid #eeeeee;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 4px 12px rgba(#000, 0.12);
+}
+
+.user-popup-open {
+    display: block;
+    animation: apearcer 0.1s ease;
+}
+
+.unhide {
+    display: block;
+}
