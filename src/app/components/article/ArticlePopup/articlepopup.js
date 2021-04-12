@@ -6,6 +6,15 @@ import './articlepopup.scss'
 
 const ArticlePopup = ({ popRef, handlePopUp, popupdata }) => {
     const [open, setOpen] = useState(false)
+    function isURL(t) {
+        let ex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
+        var regex = new RegExp(ex)
+        if (t.match(regex)) {
+            return true
+        } else {
+            return false
+        }
+    }
     const [link, setLink] = useState('')
     return (
         <div ref={popRef} className="popup">
@@ -54,29 +63,31 @@ const ArticlePopup = ({ popRef, handlePopUp, popupdata }) => {
                     {popupdata.videoLinks &&
                         unescape(popupdata.videoLinks)
                             .split(',')
-                            .map((v_link, i) => (
-                                <iframe
-                                    key={i}
-                                    style={{
-                                        border: 'none',
-                                        margin: '12px',
-                                        width: '100%',
-                                        maxWidth: '400px',
-                                        height: '250px'
-                                    }}
-                                    src={
-                                        'https://www.youtube.com/embed/' +
-                                        new URLSearchParams(
-                                            new URL(
-                                                unescape(v_link)
-                                            ).search
-                                        ).get('v')
-                                    }
-                                    title="YouTube video player"
-                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
-                                    allowFullScreen
-                                ></iframe>
-                            ))}
+                            .map((v_link, i) => {
+                                return isURL(v_link) ? (
+                                    <iframe
+                                        key={i}
+                                        style={{
+                                            border: 'none',
+                                            margin: '12px',
+                                            width: '100%',
+                                            maxWidth: '400px',
+                                            height: '250px'
+                                        }}
+                                        src={
+                                            'https://www.youtube.com/embed/' +
+                                            new URLSearchParams(
+                                                new URL(
+                                                    unescape(v_link)
+                                                ).search
+                                            ).get('v')
+                                        }
+                                        title="YouTube video player"
+                                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                ) : null
+                            })}
                 </div>
                 <div className="photos">
                     {open && (

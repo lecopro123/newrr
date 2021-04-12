@@ -1,0 +1,110 @@
+[
+    {
+        "id": "6",
+        "global_class_id": "1",
+        "global_subject_id": "10",
+        "institute_id": "46",
+        "subject_name": "English",
+        "subject_image": "https://tools.readingright.in/assets/uploads/English-Dashboard.svg",
+        "status": "active"
+    },
+    {
+        "id": "7",
+        "global_class_id": "1",
+        "global_subject_id": "11",
+        "institute_id": "46",
+        "subject_name": "English",
+        "subject_image": "https://tools.readingright.in/assets/uploads/English-Dashboard-509f6.svg",
+        "status": "active"
+    },
+    {
+        "id": "8",
+        "global_class_id": "1",
+        "global_subject_id": "12",
+        "institute_id": "46",
+        "subject_name": "English",
+        "subject_image": "https://tools.readingright.in/assets/uploads/English-Dashboard-d7e4b.svg",
+        "status": "active"
+    },
+    {
+        "id": "9",
+        "global_class_id": "1",
+        "global_subject_id": "13",
+        "institute_id": "46",
+        "subject_name": "Mathematics",
+        "subject_image": "https://tools.readingright.in/assets/uploads/Maths-Dashboard-bde72.svg",
+        "status": "active"
+    },
+    {
+        "id": "10",
+        "global_class_id": "1",
+        "global_subject_id": "14",
+        "institute_id": "46",
+        "subject_name": "Science",
+        "subject_image": "https://tools.readingright.in/assets/uploads/science-23491.svg",
+        "status": "active"
+    },
+    {
+        "id": "11",
+        "global_class_id": "1",
+        "global_subject_id": "15",
+        "institute_id": "46",
+        "subject_name": "Social Studies",
+        "subject_image": "https://tools.readingright.in/assets/uploads/SOCIAL-STUDIES-589e1.svg",
+        "status": "active"
+    },
+    {
+        "id": "12",
+        "global_class_id": "1",
+        "global_subject_id": "16",
+        "institute_id": "46",
+        "subject_name": "Computer Studies",
+        "subject_image": "https://tools.readingright.in/assets/uploads/Computer-Dashboard.svg",
+        "status": "active"
+    },
+    {
+        "id": "13",
+        "global_class_id": "1",
+        "global_subject_id": "17",
+        "institute_id": "46",
+        "subject_name": "Mathematics",
+        "subject_image": "https://tools.readingright.in/assets/uploads/Maths-Dashboard-49e61.svg",
+        "status": "active"
+    },
+    {
+        "id": "14",
+        "global_class_id": "1",
+        "global_subject_id": "18",
+        "institute_id": "46",
+        "subject_name": "EVS",
+        "subject_image": "https://tools.readingright.in/assets/uploads/science-30ea9.svg",
+        "status": "active"
+    },
+    {
+        "id": "15",
+        "global_class_id": "1",
+        "global_subject_id": "19",
+        "institute_id": "46",
+        "subject_name": "General Knowledge",
+        "subject_image": "https://tools.readingright.in/assets/uploads/GENERAL-KNOWLEDGE-d1b86.svg",
+        "status": "active"
+    },
+    {
+        "id": "88",
+        "global_class_id": "1",
+        "global_subject_id": "102",
+        "institute_id": "46",
+        "subject_name": "Science",
+        "subject_image": "https://tools.readingright.in/assets/uploads/science.svg",
+        "status": "active"
+    },
+    {
+        "id": "25",
+        "global_class_id": "1",
+        "global_subject_id": "19",
+        "institute_id": "46",
+        "subject_name": "General Knowledge",
+        "subject_image": "https://tools.readingright.in/assets/uploads/GENERAL-KNOWLEDGE-d1b86.svg",
+        "status": "active"
+    }
+]

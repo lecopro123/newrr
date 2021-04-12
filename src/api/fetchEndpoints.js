@@ -6,9 +6,10 @@ export default function fetchEndpoints(
         method: 'GET',
         headers: [], // e.g { name: 'Content-Type', value: 'application/json' }
         body: ''
-    }
+    },
+    baseurl = BASE_URI
 ) {
-    const requestURL = BASE_URI + `${endpoint}`
+    const requestURL = baseurl + `${endpoint}`
     const requestHeaders = new Headers()
 
     options.headers &&

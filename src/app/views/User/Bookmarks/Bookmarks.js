@@ -52,8 +52,8 @@ export default function Bookmarks() {
             loadingText="loading your bookmarks"
         >
             <ArticlesShowingBy
-                showingby="bookmarks"
-                title="bookmarks"
+                showingby="archives"
+                title="Archives"
                 icon={bookmarkIcon}
             />
 

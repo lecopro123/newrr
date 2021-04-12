@@ -116,6 +116,24 @@ export const getArticlesBy = (
             })
             cb()
         })
+    } else if (by.type === 'author') {
+        fetchEndpoints(
+            `${endpoint.ARTICLE_AUTHORS}?format=json&a_id=${by.value}`
+        ).then((res) => {
+            dispatch({
+                page: options.page,
+                type:
+                    options.page > 1
+                        ? types.GOT_MORE_ARTICLES_BY_AUTHOR
+                        : types.GOT_ARTICLES_BY_AUTHOR,
+                data: res.data,
+                error: res.error,
+                page_total: res.page_total,
+                source_type: by.type,
+                source_value: by.value
+            })
+            cb()
+        })
     }
 }
 
