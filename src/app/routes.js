@@ -5,7 +5,6 @@ import BySource from './views/Articles/BySource/bysource'
 import Home from './views/Home/Home'
 import Login from './views/Login/Login'
 import Read from './views/Read/Read'
-import Search from './views/Search/Search'
 import Bookmarks from './views/User/Bookmarks/Bookmarks'
 import Profile from './views/User/Profile/Profile'
 import UserConfig from './views/User/userConfig'
@@ -28,11 +27,6 @@ export const routes = [
     {
         path: '/login',
         component: Login
-    },
-    {
-        exact: true,
-        path: '/search',
-        component: Search
     },
     {
         path: '/articles',

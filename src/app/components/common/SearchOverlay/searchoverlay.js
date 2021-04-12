@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useHistory } from 'react-router'
-import './Search.scss'
+import './searchoverlay.scss'
 
-const Search = ({ searchRef }) => {
+const SearchOverlay = ({ searchRef }) => {
     const [text, setText] = useState('')
     const searchInputRef = useRef(null)
 
@@ -94,4 +94,4 @@ const Search = ({ searchRef }) => {
     )
 }
 
-export default Search
+export default SearchOverlay

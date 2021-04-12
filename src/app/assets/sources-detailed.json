@@ -1,0 +1,93 @@
+[
+    {
+        "id": 5,
+        "art_source": "The Caravan",
+        "icon": null,
+        "star_value": null,
+        "color": "#06d6a0"
+    },
+    {
+        "id": 6,
+        "art_source": "Economic & Political Weekly",
+        "icon": null,
+        "star_value": null,
+        "color": "#3d405b"
+    },
+    {
+        "id": 7,
+        "art_source": "Frontline-Hindu",
+        "icon": null,
+        "star_value": null,
+        "color": "#ffd166"
+    },
+    {
+        "id": 8,
+        "art_source": "Live Mint",
+        "icon": null,
+        "star_value": null,
+        "color": "#006d77"
+    },
+    {
+        "id": 9,
+        "art_source": "Observer Research Foundation",
+        "icon": null,
+        "star_value": null,
+        "color": "#ee6c4d"
+    },
+    {
+        "id": 10,
+        "art_source": "Wion",
+        "icon": null,
+        "star_value": null,
+        "color": "#8338ec"
+    },
+    {
+        "id": 11,
+        "art_source": "The Ken",
+        "icon": null,
+        "star_value": null,
+        "color": "#343a40"
+    },
+    {
+        "id": 12,
+        "art_source": "The Wire",
+        "icon": null,
+        "star_value": null,
+        "color": "#9a031e"
+    },
+    {
+        "id": 13,
+        "art_source": "Article 14",
+        "icon": null,
+        "star_value": null,
+        "color": "#e56b6f"
+    },
+    {
+        "id": 14,
+        "art_source": "Brookings India",
+        "icon": null,
+        "star_value": null,
+        "color": "#4a4e69"
+    },
+    {
+        "id": 15,
+        "art_source": "The Hindu",
+        "icon": null,
+        "star_value": null,
+        "color": "#540d6e"
+    },
+    {
+        "id": 17,
+        "art_source": "The Print",
+        "icon": null,
+        "star_value": null,
+        "color": "#3a5a40"
+    },
+    {
+        "id": 18,
+        "art_source": "Live Law",
+        "icon": null,
+        "star_value": null,
+        "color": "#735d78"
+    }
+]

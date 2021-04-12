@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import logo from '../../../assets/logo.png'
+import logo from '../../../assets/rr_logo.svg'
 import { Button } from '../../ui'
 import './navbar.scss'
 
@@ -22,7 +22,10 @@ function NavBar({ opensearch }) {
                 </Button>
                 <Link to="/">
                     <img
-                        style={{ height: '9.5rem' }}
+                        style={{
+                            height: '9.5rem',
+                            padding: '1.5rem'
+                        }}
                         src={logo}
                         alt="Logo"
                     />

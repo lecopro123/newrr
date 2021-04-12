@@ -1,7 +1,7 @@
-import { useRef } from 'react'
-import { CatBar, Footer, NavBar } from '..'
+import { useRef, useState } from 'react'
+import { CatBar, Footer, NavBar, SearchOverlay } from '..'
 import CATEGORIES from '../../../assets/category-detailed.json'
-import Search from '../../../views/Search/Search'
+import SOURCES from '../../../assets/sources-detailed.json'
 import { Loader } from '../../ui'
 import { CategoriesFromLocal } from '../CatBar/categories'
 import './layout.scss'
@@ -17,38 +17,42 @@ export default function Layout({
     const topRef = useRef(null)
     const searchRef = useRef(null)
 
+    const [isCategoryView, setIsCategoryView] = useState(true)
+
     const openSearch = () => {
         searchRef.current.classList.toggle('is-open')
     }
 
-    return (
-        <div>
-            {navbar && <NavBar opensearch={openSearch} />}
-            <div className="App">
-                <div ref={topRef} />
+    const toggleView = () => setIsCategoryView(!isCategoryView)
 
-                {categories &&
-                    (categorieslocal ? (
-                        <CategoriesFromLocal
-                            categories={CATEGORIES}
-                        />
-                    ) : (
-                        <CatBar />
-                    ))}
-                <div className="App-main">
-                    {children}
-                    {loading && (
-                        <>
-                            <Loader />
-                            <p style={{ padding: '12px 0' }}>
-                                {loadingText}
-                            </p>
-                        </>
-                    )}
-                </div>
-                <Footer topRef={topRef} />
+    return (
+        <div className="App">
+            {navbar && <NavBar opensearch={openSearch} />}
+            <div ref={topRef} />
+
+            {categories &&
+                (categorieslocal ? (
+                    <CategoriesFromLocal
+                        isCategoryView={isCategoryView}
+                        toggleView={toggleView}
+                        data={isCategoryView ? CATEGORIES : SOURCES}
+                    />
+                ) : (
+                    <CatBar />
+                ))}
+            <div className="App-main">
+                {children}
+                {loading && (
+                    <>
+                        <Loader />
+                        <p style={{ padding: '12px 0' }}>
+                            {loadingText}
+                        </p>
+                    </>
+                )}
             </div>
-            <Search searchRef={searchRef} />
+            <Footer topRef={topRef} />
+            <SearchOverlay searchRef={searchRef} />
         </div>
     )
 }
