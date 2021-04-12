@@ -1,4 +1,5 @@
-import { Divider } from '../../ui'
+import { Link } from 'react-router-dom'
+import { Button, Divider } from '../../ui'
 import './author.scss'
 
 export default function Author({ author }) {
@@ -23,10 +24,18 @@ export default function Author({ author }) {
 
                     <div
                         dangerouslySetInnerHTML={{
-                            __html: author.author_desc || '__'
+                            __html: author.author_desc
                         }}
                         className="author-text-description"
                     ></div>
+
+                    <Button
+                        Component={Link}
+                        to={`/articles/author/${author.author_name}/${author.author_id}/`}
+                        className="author-text-articles btn-primary"
+                    >
+                        View all articles
+                    </Button>
                 </div>
             </div>
             <Divider />

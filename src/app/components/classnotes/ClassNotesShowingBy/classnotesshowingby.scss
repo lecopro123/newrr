@@ -1,0 +1,15 @@
+.classnotes-by-text {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+
+    &-name {
+        color: #0c0c0d;
+        font-family: Josefin Sans;
+    }
+
+    &-description {
+        color: #434343;
+    }
+}

@@ -63,7 +63,12 @@ const FloatingButton = ({ props }) => {
                     >
                         Archives
                     </div>
-                    <div className="bottom-navbar-menuitems-item">
+                    <div
+                        onClick={() =>
+                            history.push('/classnotes/subjects')
+                        }
+                        className="bottom-navbar-menuitems-item"
+                    >
                         Class Notes
                     </div>
                     <div className="bottom-navbar-menuitems-item">

@@ -1,0 +1,32 @@
+.subjects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.subjectcard {
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(#000, 0.12);
+
+    &-cover {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        position: relative;
+
+        img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &-text {
+        font-family: Josefin Sans;
+        font-weight: 400;
+        padding: 12px;
+        text-align: center;
+    }
+}

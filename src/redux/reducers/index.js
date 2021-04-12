@@ -3,6 +3,8 @@ import articlesbyReducer from './articlesbyReducer'
 import articlesReducer from './articlesReducer'
 import bookmarksReducer from './bookmarksReducer'
 import categoriesReducer from './categoriesReducer'
+import subjectContentReducer from './subjectContentReducer'
+import subjectsReducer from './subjectsReducer'
 import userReducer from './userReducer'
 
 export default combineReducers({
@@ -10,5 +12,7 @@ export default combineReducers({
     categories: categoriesReducer,
     articlesby: articlesbyReducer,
     user: userReducer,
-    bookmarks: bookmarksReducer
+    bookmarks: bookmarksReducer,
+    subjects: subjectsReducer,
+    subjectcontent: subjectContentReducer
 })
