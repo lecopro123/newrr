@@ -18,6 +18,10 @@
 
     cursor: pointer;
 
+    svg {
+        fill: #fff;
+    }
+
     &:hover {
         color: #d97e79;
         background-color: #f2f2f2;
@@ -32,16 +36,12 @@
     display: none;
 }
 
-.floating-icon {
-    fill: #fff;
-}
-
 //navbar
 .bottom-navbar-container {
     // block
     // z-index: 9999999999999;
     display: none;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
@@ -52,7 +52,7 @@
 .bottom-navbar {
     box-shadow: 0 0 12px rgba(#000, 0.12);
     // z-index: 999999999;
-    position: fixed; //absolute to block
+    position: sticky; //absolute to block
     bottom: 0;
     right: 0;
     left: 0;
