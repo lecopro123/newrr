@@ -10,6 +10,7 @@ import { ArticleAuthor, ArticlePopup } from '../../components/article'
 import ArticleCategory from '../../components/article/ArticleCategory/articlecategory'
 import ArticleSource from '../../components/article/ArticleSource/articlesource'
 import { Layout } from '../../components/common'
+import { Bookmark, Check } from '../../components/icons'
 import { Button, Divider } from '../../components/ui'
 import './Read.scss'
 
@@ -144,30 +145,9 @@ export default function ReadArticle() {
                             className="article-bookmark"
                         >
                             {ids.includes(id) ? (
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="#fff"
-                                    viewBox="0 0 24 24"
-                                    width="24"
-                                    height="24"
-                                >
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M21.03 5.72a.75.75 0 010 1.06l-11.5 11.5a.75.75 0 01-1.072-.012l-5.5-5.75a.75.75 0 111.084-1.036l4.97 5.195L19.97 5.72a.75.75 0 011.06 0z"
-                                    ></path>
-                                </svg>
+                                <Check />
                             ) : (
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    width="24"
-                                    height="24"
-                                >
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M6.69 2a1.75 1.75 0 00-1.75 1.756L5 21.253a.75.75 0 001.219.583L12 17.21l5.782 4.625A.75.75 0 0019 21.25V3.75A1.75 1.75 0 0017.25 2H6.69z"
-                                    ></path>
-                                </svg>
+                                <Bookmark />
                             )}
                         </div>
                     </div>

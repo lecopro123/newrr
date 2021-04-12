@@ -18,13 +18,24 @@ export default function Layout({
     const topRef = useRef(null)
     const searchRef = useRef(null)
 
-    const [isCategoryView, setIsCategoryView] = useState(true)
+    const viewModeIsCategoryView = () => {
+        const m = localStorage.getItem('isCategoryView')
+        if (m === null) return true
+        return JSON.parse(localStorage.getItem('isCategoryView'))
+    }
+
+    const [isCategoryView, setIsCategoryView] = useState(
+        viewModeIsCategoryView()
+    )
 
     const openSearch = () => {
         searchRef.current.classList.toggle('is-open')
     }
 
-    const toggleView = () => setIsCategoryView(!isCategoryView)
+    const toggleView = () => {
+        localStorage.setItem('isCategoryView', !isCategoryView)
+        setIsCategoryView(!isCategoryView)
+    }
 
     return (
         <div className="App">

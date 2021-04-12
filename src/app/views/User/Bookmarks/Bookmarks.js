@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchBookmarks } from '../../../../redux/actions/articleActions'
+import bookmarkIcon from '../../../assets/bookmark-fill.svg'
 import nodata from '../../../assets/nodata.svg'
-import { ArticleCard } from '../../../components/article'
+import {
+    ArticleCard,
+    ArticlesShowingBy
+} from '../../../components/article'
 import { Layout } from '../../../components/common'
 
 export default function Bookmarks() {
@@ -47,11 +51,11 @@ export default function Bookmarks() {
             loading={isLoading}
             loadingText="loading your bookmarks"
         >
-            {!isLoading && (
-                <div style={{ padding: '.5rem 0' }}>
-                    Showing <b>Bookmarks</b>
-                </div>
-            )}
+            <ArticlesShowingBy
+                showingby="bookmarks"
+                title="bookmarks"
+                icon={bookmarkIcon}
+            />
 
             {!isLoading &&
                 (bookmarks.hasBookmarks ? (
