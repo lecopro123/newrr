@@ -1,27 +1,29 @@
 import { TEMP_BASE_URI } from '../../api/base'
-import * as endpoint from '../../api/endpoints'
 import fetchEndpoints from '../../api/fetchEndpoints'
 import subjects from '../../app/assets/subjects.json'
 import * as types from '../types'
 
-export const getAllSubjects = (local = false) => (dispatch) =>
-    !local
-        ? fetchEndpoints(
-              `${endpoint.ARTICLE_CATEGORIES}?format=json`,
-              {},
-              TEMP_BASE_URI
-          ).then((res) => {
-              dispatch({
-                  type: types.GOT_ALL_SUBJECTS,
-                  data: res,
-                  error: 0
-              })
-          })
-        : dispatch({
-              type: types.GOT_ALL_SUBJECTS,
-              data: subjects,
-              error: 0
-          })
+export const getAllSubjects = (cb, useLocal = false) => (
+    dispatch
+) => {
+    if (useLocal) {
+        dispatch({
+            type: types.GOT_ALL_SUBJECTS,
+            data: subjects,
+            error: 0
+        })
+        cb()
+    } else
+        fetchEndpoints(`/subjects`, {}, TEMP_BASE_URI).then((res) => {
+            dispatch({
+                type: types.GOT_ALL_SUBJECTS,
+                data: res,
+                error: 0
+            })
+
+            cb()
+        })
+}
 
 export const getSubjectContent = (
     cb,
