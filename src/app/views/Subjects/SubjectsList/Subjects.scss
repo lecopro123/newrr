@@ -10,6 +10,12 @@
     background-color: #fff;
     box-shadow: 0 4px 12px rgba(#000, 0.12);
 
+    &:hover {
+        background-color: #f9f9f9;
+        transition-duration: 0.4s;
+        transform: translateY(-5px);
+    }
+
     &-cover {
         position: relative;
         width: 300px;

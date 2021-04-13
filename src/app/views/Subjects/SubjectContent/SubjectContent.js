@@ -3,25 +3,46 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { getSubjectContent } from '../../../../redux/actions/subjectActions'
 import nodata from '../../../assets/nodata.svg'
-import { ArticlePopup } from '../../../components/article'
 import { ClassNotesShowingBy } from '../../../components/classnotes'
-import { Layout } from '../../../components/common'
+import { DataPopup, Layout } from '../../../components/common'
 import { ChevronUp } from '../../../components/icons'
 import './SubjectContent.scss'
 
 const SubjectContent = ({ props }) => {
     let { subject, id } = useParams()
+    const dispatch = useDispatch()
     const subjectdata = useSelector((state) => state.subjectcontent)
+
+    const popRef = useRef(null)
     const [isLoading, setIsLoading] = useState(true)
-    let [contentHTML, setContentHTML] = useState('')
+    const [contentHTML, setContentHTML] = useState('')
     const [contentVisible, setContentVisible] = useState(false)
+    const [chapterTitle, setChapterTitle] = useState('')
+    const [popupdata, setPopupData] = useState({
+        type: '',
+        title: '',
+        comment: '',
+        commentStatus: '',
+        image: '',
+        meaning: '',
+        videoLinks: ''
+    })
+
+    useEffect(() => {
+        setIsLoading(true)
+        function initCallback() {
+            console.log('FETCHED_Subject')
+            setIsLoading(false)
+        }
+        dispatch(
+            getSubjectContent(initCallback, { name: subject, id })
+        )
+    }, [dispatch, setIsLoading, id, subject])
 
     function index(str) {
         let x = document.createElement('div')
         x.innerHTML = str
-
         let btns = x.getElementsByTagName('button')
-
         let bcount = 0
         let qcount = 0
 
@@ -38,39 +59,13 @@ const SubjectContent = ({ props }) => {
         setContentVisible(true)
     }
 
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        setIsLoading(true)
-        function initCallback() {
-            console.log('FETCHED_Subject')
-            setIsLoading(false)
-        }
-        dispatch(
-            getSubjectContent(initCallback, { name: subject, id })
-        )
-    }, [dispatch, setIsLoading, id, subject])
-
     const handleChapterLoad = (i) => {
         index(subjectdata.data[i].content_data)
-        // navChapterRef.current.style.display = 'none'
+        setChapterTitle(subjectdata.data[i].content_title)
     }
-
-    const [popupdata, setPopupData] = useState({
-        type: '',
-        title: '',
-        comment: '',
-        commentStatus: '',
-        image: '',
-        meaning: '',
-        videoLinks: ''
-    })
-    const popRef = useRef(null)
-    // const navChapterRef = useRef(null)
 
     const handlePopUp = ({ target }) => {
         let hasData = populatePopup(target)
-        console.log(target)
         if (popRef.current.classList.contains('open')) {
             if (!hasData) {
                 popRef.current.classList.toggle('open')
@@ -107,11 +102,12 @@ const SubjectContent = ({ props }) => {
 
         return true
     }
+
     return (
         <Layout loading={isLoading}>
             <ClassNotesShowingBy
-                showingby="subject"
-                title={subject}
+                showingby={contentVisible ? subject : 'subject'}
+                title={contentVisible ? chapterTitle : subject}
             />
             {contentVisible && (
                 <div className="subject-content-page">
@@ -161,7 +157,7 @@ const SubjectContent = ({ props }) => {
                     ))}
             </div>
 
-            <ArticlePopup
+            <DataPopup
                 popRef={popRef}
                 handlePopUp={handlePopUp}
                 popupdata={popupdata}

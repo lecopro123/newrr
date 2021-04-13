@@ -1,20 +1,17 @@
 import { useState } from 'react'
 import chevron from '../../../assets/chevron-up.svg'
 import x from '../../../assets/x.svg'
-import ImageViewer from '../../common/ImageViewer/imageviewer'
-import './articlepopup.scss'
+import ImageViewer from '../ImageViewer/imageviewer'
+import './datapopup.scss'
 
-const ArticlePopup = ({ popRef, handlePopUp, popupdata }) => {
+function isYoutubeLink(url) {
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/
+    var match = url.match(regExp)
+    return match && match[7].length === 11 ? match[7] : false
+}
+
+const DataPopup = ({ popRef, handlePopUp, popupdata }) => {
     const [open, setOpen] = useState(false)
-    function isURL(t) {
-        let ex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
-        var regex = new RegExp(ex)
-        if (t.match(regex)) {
-            return true
-        } else {
-            return false
-        }
-    }
     const [link, setLink] = useState('')
     return (
         <div ref={popRef} className="popup">
@@ -64,7 +61,7 @@ const ArticlePopup = ({ popRef, handlePopUp, popupdata }) => {
                         unescape(popupdata.videoLinks)
                             .split(',')
                             .map((v_link, i) => {
-                                return isURL(v_link) ? (
+                                return isYoutubeLink(v_link) ? (
                                     <iframe
                                         key={i}
                                         style={{
@@ -76,11 +73,7 @@ const ArticlePopup = ({ popRef, handlePopUp, popupdata }) => {
                                         }}
                                         src={
                                             'https://www.youtube.com/embed/' +
-                                            new URLSearchParams(
-                                                new URL(
-                                                    unescape(v_link)
-                                                ).search
-                                            ).get('v')
+                                            isYoutubeLink(v_link)
                                         }
                                         title="YouTube video player"
                                         allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
@@ -111,4 +104,4 @@ const ArticlePopup = ({ popRef, handlePopUp, popupdata }) => {
         </div>
     )
 }
-export default ArticlePopup
+export default DataPopup
