@@ -65,10 +65,9 @@ $cover-tint: rgba(245, 245, 245, 0.8);
         box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
 
         &:hover {
-            bottom: 1.7rem;
-            // top: 10px;
+            transform: translateY(-5px);
             background-color: #ffffff;
-            transition: 0.4s ease;
+            transition: 0.4s;
         }
     }
     &-likes {

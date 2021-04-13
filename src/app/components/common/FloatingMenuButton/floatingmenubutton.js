@@ -1,9 +1,9 @@
 import { useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Menu, Swap } from '../../icons'
-import './floatingbutton.scss'
+import './floatingmenubutton.scss'
 
-const FloatingButton = ({ props }) => {
+const FloatingMenuButton = ({ props }) => {
     let floatRef = useRef(null)
     let bottomNavRef = useRef(null)
     let userFloatRef = useRef(null)
@@ -92,4 +92,4 @@ const FloatingButton = ({ props }) => {
         </>
     )
 }
-export default FloatingButton
+export default FloatingMenuButton

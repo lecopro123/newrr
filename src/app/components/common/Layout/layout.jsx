@@ -3,8 +3,8 @@ import { CatBar, Footer, NavBar, SearchOverlay } from '..'
 import CATEGORIES from '../../../assets/category-detailed.json'
 import SOURCES from '../../../assets/sources-detailed.json'
 import { Loader } from '../../ui'
-import FloatingButton from '../../ui/FloatingButton'
 import { CategoriesFromLocal } from '../CatBar/categories'
+import FloatingMenuButton from '../FloatingMenuButton'
 import './layout.scss'
 
 export default function Layout({
@@ -65,7 +65,7 @@ export default function Layout({
             </div>
             <Footer topRef={topRef} />
             <SearchOverlay searchRef={searchRef} />
-            <FloatingButton />
+            <FloatingMenuButton />
         </div>
     )
 }
