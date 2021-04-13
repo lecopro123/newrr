@@ -237,9 +237,10 @@
         color: #999999;
         font-size: 12px;
 
-        a {
+        span {
             color: inherit;
             text-decoration: none;
+            cursor: pointer;
         }
     }
 
@@ -256,6 +257,7 @@
         font-size: 16px;
         // font-weight: 600;
         line-height: 40px;
+        cursor: pointer;
 
         &:last-child {
             border-bottom: 0;
