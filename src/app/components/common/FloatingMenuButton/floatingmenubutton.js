@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { userLogOutRequest } from '../../../../redux/actions/userActions'
 import person from '../../../assets/person.svg'
+import { getInitials } from '../../../utils/getInitials'
 import { Menu, Swap } from '../../icons'
 import './floatingmenubutton.scss'
 
@@ -95,7 +96,9 @@ const FloatingMenuButton = ({ props }) => {
                         onClick={toggleUserExpand}
                         className="bottom-navbar-user"
                     >
-                        {auth.isLoggedIn ? 'JD' : '?'}
+                        {auth.isLoggedIn
+                            ? getInitials(auth.user.user_name)
+                            : '?'}
                     </div>
                 </div>
             </div>
@@ -109,21 +112,32 @@ const FloatingMenuButton = ({ props }) => {
                     </div>
                     <div className="at-floating-navigation__content">
                         <h2 className="at-floating-navigation__title">
-                            Jon Doe
+                            {auth.user.user_name}
                         </h2>
                         <p className="at-floating-navigation__description">
-                            <a href="/user/profile">View Profile</a>
+                            <span
+                                onClick={() =>
+                                    history.push('/user/profile')
+                                }
+                            >
+                                View Profile
+                            </span>
                         </p>
                     </div>
                 </header>
 
-                <a
-                    onClick={() => dispatch(userLogOutRequest(null))}
+                <span
+                    onClick={() =>
+                        dispatch(
+                            userLogOutRequest(() =>
+                                history.push('/login')
+                            )
+                        )
+                    }
                     className="at-floating-navigation__item"
-                    href="/login"
                 >
                     Log Out
-                </a>
+                </span>
             </div>
             {/* </div> */}
         </>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { getInitials } from '../../../utils/getInitials'
 import { Button, Divider } from '../../ui'
 import './author.scss'
 
@@ -42,14 +43,3 @@ export default function Author({ author }) {
         </>
     )
 }
-
-const getInitials = (string) =>
-    string
-        .split(' ')
-        .map(([firstLetter]) => firstLetter)
-        .filter(
-            (_, index, array) =>
-                index === 0 || index === array.length - 1
-        )
-        .join('')
-        .toUpperCase()

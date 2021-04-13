@@ -1,18 +1,22 @@
 import * as types from '../types'
 
-const validCredentials = () => {
-    const authorizationToken = localStorage.getItem('OTP')
+const isLoggedIn = () => {
+    const authorizationToken = localStorage.getItem('logged_in')
     if (authorizationToken === null) return false
-    return true
+    return JSON.parse(localStorage.getItem('logged_in'))
+}
+
+const retriveUser = () => {
+    const user_info = localStorage.getItem('user_info')
+    if (user_info === null) return {}
+    return JSON.parse(localStorage.getItem('user_info'))
 }
 
 const initialState = {
-    isLoggedIn: validCredentials(),
-    error: 0,
-    is_old: 0,
-    OTP: validCredentials() ? localStorage.getItem('OTP') : '',
-    response: 0,
-    message: ''
+    isLoggedIn: isLoggedIn(),
+    user: isLoggedIn() ? retriveUser() : {},
+    info: {},
+    OTP: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -20,16 +24,13 @@ const reducer = (state = initialState, action) => {
         case types.OTP_REQUEST:
             return {
                 ...state,
-                error: action.error,
-                is_old: action.is_old,
-                OTP: action.OTP,
-                response: action.response,
-                message: action.message
+                OTP: action.OTP
             }
         case types.OTP_VERIFICATION_SUCCESS:
             return {
                 ...state,
-                isLoggedIn: true
+                isLoggedIn: true,
+                user: action.user
             }
         case types.OTP_VERIFICATION_FAILURE:
             return {
@@ -40,6 +41,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: false
+            }
+        case types.GOT_USER_INFO:
+            return {
+                ...state,
+                info: action.info
             }
         default:
             return state
