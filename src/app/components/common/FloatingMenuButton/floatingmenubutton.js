@@ -1,9 +1,15 @@
 import { useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { userLogOutRequest } from '../../../../redux/actions/userActions'
+import person from '../../../assets/person.svg'
 import { Menu, Swap } from '../../icons'
 import './floatingmenubutton.scss'
 
 const FloatingMenuButton = ({ props }) => {
+    const auth = useSelector((state) => state.user)
+
+    let dispatch = useDispatch()
     let floatRef = useRef(null)
     let bottomNavRef = useRef(null)
     let userFloatRef = useRef(null)
@@ -47,7 +53,6 @@ const FloatingMenuButton = ({ props }) => {
                 >
                     <Swap />
                 </div>
-                {/* <div className="bottom-navbar-title">MENU</div> */}
                 <div className="bottom-navbar-menuitems">
                     <div
                         onClick={() => history.push('/')}
@@ -78,16 +83,48 @@ const FloatingMenuButton = ({ props }) => {
                         Discussion Rooms
                     </div>
                 </div>
-                <div className="bottom-navbar-user-container">
+                <div
+                    onClick={() =>
+                        auth.isLoggedIn
+                            ? null
+                            : history.push('/login')
+                    }
+                    className="bottom-navbar-user-container"
+                >
                     <div
                         onClick={toggleUserExpand}
                         className="bottom-navbar-user"
                     >
-                        JD
+                        {auth.isLoggedIn ? 'JD' : '?'}
                     </div>
                 </div>
             </div>
-            <div ref={userFloatRef} className="user-popup"></div>
+            <div
+                ref={userFloatRef}
+                className="user-popup at-floating-navigation__menu"
+            >
+                <header className="at-floating-navigation__user">
+                    <div className="at-floating-navigation__thumbnail">
+                        <img alt="Andy Tran" src={person} />
+                    </div>
+                    <div className="at-floating-navigation__content">
+                        <h2 className="at-floating-navigation__title">
+                            Jon Doe
+                        </h2>
+                        <p className="at-floating-navigation__description">
+                            <a href="/user/profile">View Profile</a>
+                        </p>
+                    </div>
+                </header>
+
+                <a
+                    onClick={() => dispatch(userLogOutRequest(null))}
+                    className="at-floating-navigation__item"
+                    href="/login"
+                >
+                    Log Out
+                </a>
+            </div>
             {/* </div> */}
         </>
     )
