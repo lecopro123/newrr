@@ -1,7 +1,3 @@
-$primary-text: #424242;
-$secondary-text: rgba(12, 12, 13, 0.8);
-$cover-tint: rgba(245, 245, 245, 0.8);
-
 @keyframes apearcer {
     0% {
         opacity: 0;
@@ -33,7 +29,8 @@ $cover-tint: rgba(245, 245, 245, 0.8);
         cursor: pointer;
         max-width: 950px;
         // box-shadow: 0px 6px 30px rgba(#000000, 0.4);
-        box-shadow: 0 3px 12px -1px #cdced1, 0 22px 27px -20px #cdced1;
+        box-shadow: 0 3px 12px -1px rgba(12, 12, 13, 0.2),
+            0 22px 27px -20px rgba(12, 12, 13, 0.2);
     }
 
     &-cover {
@@ -45,7 +42,8 @@ $cover-tint: rgba(245, 245, 245, 0.8);
 
     &-covertext {
         font-family: Josefin Sans;
-        color: #242323;
+        // color: #242323;
+        color: var(--color-text-heading);
         font-weight: bold;
 
         overflow: hidden;
@@ -58,7 +56,7 @@ $cover-tint: rgba(245, 245, 245, 0.8);
         left: 12px;
 
         right: 1.5rem;
-        background-color: $cover-tint;
+        background-color: var(--color-card-bg);
         padding: 20px;
         padding-left: 30px;
         border-radius: 4px;
@@ -66,17 +64,17 @@ $cover-tint: rgba(245, 245, 245, 0.8);
 
         &:hover {
             transform: translateY(-5px);
-            background-color: #ffffff;
+            background-color: var(--root-bg);
             transition: 0.4s;
         }
     }
     &-likes {
         font-family: Josefin Sans;
-        color: $primary-text;
+        color: var(--color-text-primary);
         box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
         position: absolute;
         height: 2.5rem;
-        background-color: #fff;
+        background-color: var(--color-card-bg);
         position: absolute;
         top: 12px;
         right: 12px;
@@ -105,7 +103,8 @@ $cover-tint: rgba(245, 245, 245, 0.8);
 
             div {
                 font-size: 16px;
-                color: #424242;
+                // color: #424242;
+                color: var(--color-text-primary);
                 white-space: normal;
                 text-align: center;
                 line-height: 20px;

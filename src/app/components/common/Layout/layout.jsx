@@ -17,6 +17,7 @@ export default function Layout({
 }) {
     const topRef = useRef(null)
     const searchRef = useRef(null)
+    const rootRef = useRef(null)
 
     const viewModeIsCategoryView = () => {
         const m = localStorage.getItem('isCategoryView')
@@ -38,8 +39,10 @@ export default function Layout({
     }
 
     return (
-        <div className="App">
-            {navbar && <NavBar opensearch={openSearch} />}
+        <div ref={rootRef} className="App">
+            {navbar && (
+                <NavBar rootRef={rootRef} opensearch={openSearch} />
+            )}
             <div ref={topRef} />
 
             {categories &&
@@ -57,7 +60,7 @@ export default function Layout({
                 {loading && (
                     <>
                         <Loader />
-                        <p style={{ padding: '12px 0' }}>
+                        <p className="page-loading-text">
                             {loadingText}
                         </p>
                     </>

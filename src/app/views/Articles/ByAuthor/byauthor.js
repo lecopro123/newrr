@@ -2,13 +2,12 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { getArticlesBy } from '../../../../redux/actions/articleActions'
-import nodata from '../../../assets/nodata.svg'
 import label from '../../../assets/pencil.svg'
 import {
     ArticleCard,
     ArticlesShowingBy
 } from '../../../components/article'
-import { Layout } from '../../../components/common'
+import { Layout, NoDataFound } from '../../../components/common'
 
 export default function ByAuthor() {
     let { author, id } = useParams()
@@ -66,12 +65,7 @@ export default function ByAuthor() {
                         />
                     ))
                 ) : (
-                    <div>
-                        <img height="200px" src={nodata} alt="" />
-                        <p style={{ padding: '12px 0' }}>
-                            Nothing yet, Coming Soon
-                        </p>
-                    </div>
+                    <NoDataFound />
                 ))}
 
             {!isLoading && articles.page + 1 <= articles.page_total && (

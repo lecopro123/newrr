@@ -1,5 +1,5 @@
 .App {
-    background-color: #fff;
+    background-color: var(--root-bg);
     min-height: 100vh;
     position: relative;
     display: flex;
@@ -8,7 +8,7 @@
     &-main {
         min-height: 50vh;
         position: relative;
-        background-color: #f4f7f6;
+        background-color: var(--color-bg);
         overflow-x: hidden;
         display: flex;
         justify-content: center;
@@ -16,4 +16,9 @@
         align-items: center;
         padding-bottom: 1.5rem;
     }
+}
+
+.page-loading-text {
+    padding: 12px 0;
+    color: var(--color-text-primary);
 }

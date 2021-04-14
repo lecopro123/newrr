@@ -1,5 +1,5 @@
 .categories {
-    background-color: #f4f7f6;
+    background-color: var(--color-bg);
     text-align: center;
     display: flex;
     position: relative;
@@ -22,13 +22,13 @@
     position: relative;
     height: auto;
     padding: 0 12px;
-    background: #d97e79;
     cursor: pointer;
     margin-right: 6px;
     box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
+    color: var(--root-bg);
 
     svg {
-        fill: #fff;
+        fill: var(--root-bg);
     }
 }
 
@@ -42,8 +42,7 @@
     height: 100%;
     font-size: 16px;
     // background: #fff !important;
-    background-color: lawngreen;
-    color: #fff;
+    color: var(--root-bg);
     padding: 4px 6px;
     padding-top: 8px;
 
@@ -64,6 +63,6 @@
         }
         // background-color: initial;
         transition-duration: 0.4s;
-        color: #fff;
+        color: var(--root-bg);
     }
 }

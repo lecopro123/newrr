@@ -1,13 +1,15 @@
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { userLogOutRequest } from '../../../../redux/actions/userActions'
 import person from '../../../assets/person.svg'
+import ThemeContext from '../../../theme/ThemeContext'
 import { getInitials } from '../../../utils/getInitials'
 import { Menu, Swap } from '../../icons'
 import './floatingmenubutton.scss'
 
 const FloatingMenuButton = ({ props }) => {
+    const { auto, toggleAuto } = useContext(ThemeContext)
     const auth = useSelector((state) => state.user)
 
     let dispatch = useDispatch()
@@ -137,6 +139,13 @@ const FloatingMenuButton = ({ props }) => {
                     className="at-floating-navigation__item"
                 >
                     Log Out
+                </span>
+                <span
+                    onClick={toggleAuto}
+                    className="at-floating-navigation__item"
+                >
+                    Dark Mode&emsp;
+                    <small> {auto ? 'auto' : 'custom'}</small>
                 </span>
             </div>
             {/* </div> */}

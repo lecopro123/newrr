@@ -2,7 +2,8 @@ input,
 .input {
     outline: none;
     border: none;
-
+    background: var(--color-input-bg);
+    color: var(--color-text-heading);
     height: 40px;
     // border: 1px solid rgba(#707070, 0.4);
     box-shadow: 0 2px 8px rgba(12, 12, 13, 0.1);

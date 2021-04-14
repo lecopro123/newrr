@@ -4,14 +4,14 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: #fff;
+    background: var(--root-bg);
     // background: green;
-    color: #424242;
     font-family: Josefin Sans;
+    border-bottom: 1px solid var(--color-input-border);
 }
 
 .copyright-text {
     // background-color: green;
     padding-top: 12px;
-    color: #424242;
+    color: var(--color-text-secondary);
 }

@@ -2,9 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { getSubjectContent } from '../../../../redux/actions/subjectActions'
-import nodata from '../../../assets/nodata.svg'
 import { ClassNotesShowingBy } from '../../../components/classnotes'
-import { DataPopup, Layout } from '../../../components/common'
+import {
+    DataPopup,
+    Layout,
+    NoDataFound
+} from '../../../components/common'
 import { ChevronUp } from '../../../components/icons'
 import './SubjectContent.scss'
 
@@ -148,12 +151,7 @@ const SubjectContent = ({ props }) => {
                             </div>
                         ))
                     ) : (
-                        <div>
-                            <img height="200px" src={nodata} alt="" />
-                            <p style={{ padding: '12px 0' }}>
-                                Nothing yet, Coming Soon
-                            </p>
-                        </div>
+                        <NoDataFound />
                     ))}
             </div>
 
