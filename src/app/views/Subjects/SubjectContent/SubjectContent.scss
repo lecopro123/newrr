@@ -7,7 +7,7 @@
 .chapter-list-item {
     &:hover {
         cursor: pointer;
-        background-color: var(--color-bg);
+        background-color: var(--color-input-bg);
         transition-duration: 0.4s;
     }
     animation: apearcer 0.4s ease;
