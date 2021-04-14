@@ -1,6 +1,3 @@
-$primary-text: #0c0c0d;
-$secondary-text: rgba(12, 12, 13, 0.8);
-
 .article-tag {
     &-logo {
         height: 24px;
@@ -19,20 +16,20 @@ $secondary-text: rgba(12, 12, 13, 0.8);
 
     &-title {
         font-family: Josefin Sans;
-        color: $secondary-text;
+        color: var(--color-text-secondary);
         text-decoration: underline;
         font-weight: 600;
 
         &:hover {
             text-decoration: none;
-            color: #d97e79;
+            color: var(--primary-accent);
             transition-duration: 0.4s;
         }
     }
 
     &-date {
         font-family: Josefin Sans;
-        color: $secondary-text;
+        color: var(--color-text-secondary);
     }
 }
 

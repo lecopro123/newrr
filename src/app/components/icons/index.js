@@ -1,6 +1,8 @@
 export { default as ArrowLeft } from './ArrowLeft'
+export { default as AutoBrightness } from './AutoBrightness'
 export { default as Bag } from './Bag'
 export { default as Bookmark } from './Bookmark'
+export { default as Branding } from './Branding'
 export { default as Check } from './Check'
 export { default as ChevronUp } from './ChevronUp'
 export { default as Cross } from './Cross'

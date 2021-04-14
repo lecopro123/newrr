@@ -18,7 +18,7 @@ $secondary: #4a3d3c;
             width: 100px;
             border-radius: 50px;
             box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
-            background-color: $primary;
+            background-color: var(--primary-accent);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,13 +32,13 @@ $secondary: #4a3d3c;
         flex-direction: column;
 
         &-name {
-            color: #242323;
+            color: var(--color-text-heading);
             font-family: Josefin Sans;
         }
 
         &-description {
             width: 100%;
-            color: #424242;
+            color: var(--color-text-primary);
             padding-bottom: 12px;
         }
         &-articles {

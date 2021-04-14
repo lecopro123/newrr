@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import chevron from '../../../assets/chevron-up.svg'
-import x from '../../../assets/x.svg'
+import { ChevronUp, Cross } from '../../icons'
 import ImageViewer from '../ImageViewer/imageviewer'
 import './datapopup.scss'
 
@@ -15,23 +14,24 @@ const DataPopup = ({ popRef, handlePopUp, popupdata }) => {
     const [link, setLink] = useState('')
     return (
         <div ref={popRef} className="popup">
-            <div onClick={handlePopUp} className="close-btn">
-                <img src={x} alt="x" />
+            <div
+                onClick={handlePopUp}
+                className="close-btn btn-circle"
+            >
+                <Cross />
             </div>
             <div
                 onClick={() =>
                     popRef.current.classList.toggle('expanded')
                 }
-                className="expand-btn"
+                className="expand-btn btn-circle"
             >
-                <img src={chevron} alt="^" />
+                <ChevronUp />
             </div>
             <div className="wrapper">
                 <div className="title">
                     {popupdata.type && (
-                        <small style={{ color: 'gray' }}>
-                            {popupdata.type}
-                        </small>
+                        <small>{popupdata.type}</small>
                     )}
                     <h2
                         onClick={() =>
@@ -40,8 +40,7 @@ const DataPopup = ({ popRef, handlePopUp, popupdata }) => {
                             )
                         }
                         style={{
-                            fontFamily: 'Josefin Sans',
-                            color: '#242323'
+                            fontFamily: 'Josefin Sans'
                         }}
                         dangerouslySetInnerHTML={{
                             __html: popupdata.title

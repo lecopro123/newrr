@@ -56,7 +56,7 @@ const CategoriesFromLocal = ({
             }}
             className="switch-mode-icon"
         >
-            <Swap />
+            <Swap style={{ fill: isCategoryView ? '' : '#fff' }} />
         </div>
         <div className="category-link-container">
             {data.map((c, i) => {

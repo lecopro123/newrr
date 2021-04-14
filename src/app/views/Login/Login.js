@@ -5,7 +5,7 @@ import {
     userLoginRequest,
     verifyOTPRequest
 } from '../../../redux/actions/userActions'
-import logo from '../../assets/rr_logo.svg'
+import { Branding } from '../../components/icons'
 import { Button, InputField, Loader } from '../../components/ui'
 import './Login.scss'
 
@@ -73,7 +73,7 @@ export default function Login(props) {
     }
 
     return (
-        <div className="bg">
+        <div className="bg dark">
             <div className="circle1"></div>
             <div className="circle2"></div>
 
@@ -87,7 +87,7 @@ export default function Login(props) {
                     <div style={{ fontFamily: 'Josefin Sans' }}>
                         Welcome To
                     </div>
-                    <img className="sidebar-logo" src={logo} alt="" />
+                    <Branding className="sidebar-logo" />
                     <div
                         style={{ fontFamily: 'Josefin Sans' }}
                         className="sidebar-text"
@@ -123,7 +123,7 @@ export default function Login(props) {
                             pattern="[1-9]{1}[0-9]{9}"
                         />
                         {msg.errorMsg && (
-                            <p style={{ marginBottom: '.5em' }}>
+                            <p className="login-message">
                                 {msg.errorMsg}&nbsp;
                                 <span
                                     style={{
@@ -145,7 +145,9 @@ export default function Login(props) {
                 {(otpLoading || verifyingOtp) && (
                     <div className="col">
                         <Loader style={{ marginBottom: '12px' }} />
-                        <p>{msg.loadingMsg}</p>
+                        <p className="loading-message">
+                            {msg.loadingMsg}
+                        </p>
                     </div>
                 )}
 
@@ -163,7 +165,7 @@ export default function Login(props) {
                             pattern="[0-9]{4}"
                         />
                         {msg.errorMsg && (
-                            <p style={{ marginBottom: '.5em' }}>
+                            <p className="login-message">
                                 {msg.errorMsg}&nbsp;
                                 <span
                                     style={{

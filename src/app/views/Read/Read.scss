@@ -1,11 +1,8 @@
-$primary: #d97e79;
-$secondary: #4a3d3c;
-
 .article-content {
     font-family: Roboto !important;
     line-height: 1.8;
     letter-spacing: 0.5px;
-    color: #424242;
+    color: var(--color-text-primary);
     width: 95vw;
     max-width: 900px;
     padding-top: 20px;
@@ -26,10 +23,14 @@ $secondary: #4a3d3c;
         cursor: pointer;
     }
 
+    sup {
+        color: var(--color-text-secondary) !important;
+    }
+
     button {
         font-size: 23px;
         border: none;
-        background: #f4f7f6 !important;
+        background: var(--color-bg) !important;
         cursor: pointer;
     }
 
@@ -61,7 +62,7 @@ $secondary: #4a3d3c;
     bottom: -30px;
     height: 60px;
     width: 60px;
-    background-color: $primary;
+    background-color: var(--primary-accent);
     border-radius: 30px;
     right: 1.5rem;
     box-shadow: 0 2px 8px rgba(12, 12, 13, 0.3);
@@ -71,14 +72,14 @@ $secondary: #4a3d3c;
     justify-content: center;
     align-items: center;
     svg {
-        fill: #fff;
+        fill: var(--root-bg);
     }
 
     &:hover {
         transition-duration: 0.4s;
-        background: #fff;
+        background: var(--root-bg);
         svg {
-            fill: $primary;
+            fill: var(--primary-accent);
         }
     }
 }
