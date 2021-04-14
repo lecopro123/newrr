@@ -60,7 +60,6 @@ export default function ByCategory() {
                     articles.data.map((article) => (
                         <ArticleCard
                             key={article.id}
-                            article_category={articles.from.value}
                             article={article}
                         />
                     ))

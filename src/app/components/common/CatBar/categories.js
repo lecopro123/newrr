@@ -41,67 +41,71 @@ export default function Categories() {
     )
 }
 
-const CategoriesFromLocal = ({
+export const CategoriesFromLocal = ({
     isCategoryView,
     toggleView,
     data = []
-}) => (
-    <div className="categories">
-        <div
-            onClick={toggleView}
-            style={{
-                backgroundColor: isCategoryView
-                    ? '#d97e79'
-                    : ' #4a3d3c'
-            }}
-            className="switch-mode-icon"
-        >
-            <Swap style={{ fill: isCategoryView ? '' : '#fff' }} />
-        </div>
-        <div className="category-link-container">
-            {data.map((c, i) => {
-                return isCategoryView ? (
-                    <span key={i}>
-                        <Link
-                            style={{ textDecoration: 'none' }}
-                            to={`/articles/category/${c.sub_cat}/${c.id}/`}
-                        >
-                            <span
+}) => {
+    return (
+        <div className="categories">
+            <div
+                onClick={toggleView}
+                style={{
+                    backgroundColor: isCategoryView
+                        ? '#d97e79'
+                        : ' #4a3d3c'
+                }}
+                className="switch-mode-icon"
+            >
+                <Swap
+                    style={{ fill: isCategoryView ? '' : '#fff' }}
+                />
+            </div>
+            <div className="category-link-container">
+                {data.map((c, i) => {
+                    return isCategoryView ? (
+                        <span key={i}>
+                            <Link
                                 style={{
-                                    backgroundColor: c.color,
-                                    borderBottom:
-                                        '3px solid ' + c.color
+                                    textDecoration: 'none'
                                 }}
-                                className="categories-link"
+                                to={`/articles/category/${c.sub_cat}/${c.id}/`}
                             >
-                                {c.sub_cat}
-                            </span>
-                        </Link>
-                        {data.length - 1 !== i && ' '}
-                    </span>
-                ) : (
-                    <span key={i}>
-                        <Link
-                            style={{ textDecoration: 'none' }}
-                            to={`/articles/source/${c.art_source}/${c.id}/`}
-                        >
-                            <span
-                                style={{
-                                    backgroundColor: c.color,
-                                    borderBottom:
-                                        '3px solid ' + c.color
-                                }}
-                                className="categories-link"
+                                <span
+                                    style={{
+                                        backgroundColor: c.color,
+                                        borderBottom:
+                                            '3px solid ' + c.color
+                                    }}
+                                    className="categories-link"
+                                >
+                                    {c.sub_cat}
+                                </span>
+                            </Link>
+                            {}
+                        </span>
+                    ) : (
+                        <span key={i}>
+                            <Link
+                                style={{ textDecoration: 'none' }}
+                                to={`/articles/source/${c.art_source}/${c.id}/`}
                             >
-                                {c.art_source}
-                            </span>
-                        </Link>
-                        {data.length - 1 !== i && ' '}
-                    </span>
-                )
-            })}
+                                <span
+                                    style={{
+                                        backgroundColor: c.color,
+                                        borderBottom:
+                                            '3px solid ' + c.color
+                                    }}
+                                    className="categories-link"
+                                >
+                                    {c.art_source}
+                                </span>
+                            </Link>
+                            {data.length - 1 !== i && ' '}
+                        </span>
+                    )
+                })}
+            </div>
         </div>
-    </div>
-)
-
-export { CategoriesFromLocal }
+    )
+}
