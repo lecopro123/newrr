@@ -144,6 +144,8 @@ const SubjectContent = ({ props }) => {
                                 <div className="chapter-list-item-icon">
                                     <ChevronUp
                                         style={{
+                                            fill:
+                                                'var(--primary-icon)',
                                             transform: 'rotate(90deg)'
                                         }}
                                     />
