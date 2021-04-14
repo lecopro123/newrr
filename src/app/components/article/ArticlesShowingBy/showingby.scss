@@ -14,8 +14,6 @@
         img {
             height: 80px;
             width: 80px;
-            // border-radius: 50px;
-            // background-color: #d97e79;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,11 +25,12 @@
         flex-direction: column;
 
         &-name {
-            color: #0c0c0d;
+            color: var(--color-text-heading);
             font-family: Josefin Sans;
         }
 
         &-description {
+            color: var(--color-text-primary);
             margin: 6px 0;
             width: 90%;
         }

@@ -5,11 +5,12 @@
     text-align: center;
 
     &-name {
-        color: #0c0c0d;
+        color: var(--color-text-heading);
         font-family: Josefin Sans;
     }
 
     &-description {
-        color: #434343;
+        margin: 6px 0;
+        color: var(--color-text-primary);
     }
 }

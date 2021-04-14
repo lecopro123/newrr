@@ -1,3 +1,42 @@
+@import './app/theme/colors';
+
+:root {
+    --root-bg: #{$white};
+    --primary-accent: #{$accent-1};
+    --secondary-accent: #{$accent-2};
+
+    --color-bg: #{$bg-light};
+    --color-card-bg: #{$bg-card-light};
+    --color-text-primary: #{$text-primary-light};
+    --color-text-heading: #{$primary-text-heading};
+    --color-text-secondary: #{$text-secondary-light};
+
+    --color-input-bg: #{$input-bg-light};
+
+    --color-input-border: #{$input-border-light};
+
+    --primary-icon: #{$primary-icon-light};
+    --secondary-icon: #{$secondary-icon-light};
+}
+
+.dark {
+    --root-bg: #{$black};
+
+    --color-bg: #{$bg-dark};
+    --color-card-bg: #{$bg-card-dark};
+    --color-text-primary: #{$text-primary-dark};
+    --color-text-heading: #{$primary-text-heading-dark};
+
+    --color-text-secondary: #{$text-secondary-dark};
+
+    --color-input-bg: #{$input-bg-dark};
+
+    --color-input-border: #{$input-border-dark};
+
+    --primary-icon: #{$primary-icon-dark};
+    --secondary-icon: #{$secondary-icon-dark};
+}
+
 * {
     margin: 0;
     padding: 0;

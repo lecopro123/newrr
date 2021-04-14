@@ -6,10 +6,10 @@ import {
     toogleBookmark
 } from '../../../redux/actions/articleActions'
 import coin from '../../assets/coin.png'
-import { ArticleAuthor, ArticlePopup } from '../../components/article'
+import { ArticleAuthor } from '../../components/article'
 import ArticleCategory from '../../components/article/ArticleCategory/articlecategory'
 import ArticleSource from '../../components/article/ArticleSource/articlesource'
-import { Layout } from '../../components/common'
+import { DataPopup, Layout } from '../../components/common'
 import { Bookmark, Check } from '../../components/icons'
 import { Button, Divider } from '../../components/ui'
 import './Read.scss'
@@ -197,7 +197,7 @@ export default function ReadArticle() {
                 </div>
             )}
 
-            <ArticlePopup
+            <DataPopup
                 popRef={popRef}
                 handlePopUp={handlePopUp}
                 popupdata={popupdata}

@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory, useLocation } from 'react-router'
 import {
     userLoginRequest,
     verifyOTPRequest
 } from '../../../redux/actions/userActions'
-import logo from '../../assets/logo.png'
+import { Branding } from '../../components/icons'
 import { Button, InputField, Loader } from '../../components/ui'
 import './Login.scss'
 
@@ -14,39 +14,50 @@ export default function Login(props) {
     let history = useHistory()
     let location = useLocation()
     let { from } = location.state || { from: { pathname: '/' } }
-    let loginData = useSelector((state) => state.user)
+    const [otpLoading, setOtpLoading] = useState(false)
+    const [verifyingOtp, setVerifyingOtp] = useState(false)
 
     const [phone, setPhone] = useState(null)
     const [OTP, setOTP] = useState(null)
-    const [hasOTP, setHasOTP] = useState(false)
-    const [otpLoading, setOtpLoading] = useState(false)
-    const [verifyingOtp, setVerifyingOtp] = useState(false)
-    const [msg, setMsg] = useState({ loadingMsg: '', errorMsg: '' })
 
-    function callback() {
-        console.log('OTP_RECEIVED')
-        setHasOTP(true)
+    const [responseOTP, setResponseOTP] = useState(null)
+
+    const [msg, setMsg] = useState({
+        loadingMsg: '',
+        errorMsg: 'New User?'
+    })
+
+    function otpCallback(success, res) {
+        if (success) {
+            console.log('USER_AC_EXISTS')
+            setResponseOTP(res)
+            setMsg({ errorMsg: `Didn't receive?` })
+        } else {
+            console.log('USER_AC_DOES_NOT_EXIST')
+            if (res.message === 'Create Account') {
+                setMsg({ errorMsg: 'User does not exist!' })
+            }
+        }
         setOtpLoading(false)
-        setVerifyingOtp(false)
-        setMsg({ errorMsg: `Didn't receive?` })
     }
 
     const handleOtpRequest = () => {
         setOtpLoading(true)
         setMsg({ loadingMsg: 'Sending OTP' })
-        setVerifyingOtp(true)
-        dispatch(userLoginRequest(callback, { phonenumber: phone }))
+        dispatch(
+            userLoginRequest(otpCallback, { phonenumber: phone })
+        )
     }
 
-    function verifyCallback(success) {
+    function verifyCallback(success, msg) {
         if (success) {
             setTimeout(() => {
                 history.replace(from)
             }, 100)
         } else {
-            setMsg({ errorMsg: 'Invalid OTP, try again!' })
-            setVerifyingOtp(false)
+            setMsg({ errorMsg: msg })
         }
+        setVerifyingOtp(false)
     }
 
     const handleLoginBtn = () => {
@@ -55,13 +66,14 @@ export default function Login(props) {
         dispatch(
             verifyOTPRequest(verifyCallback, {
                 userOTP: OTP,
-                phonenumber: phone
+                phonenumber: phone,
+                otpResponse: responseOTP
             })
         )
     }
 
     return (
-        <div className="bg">
+        <div className="bg dark">
             <div className="circle1"></div>
             <div className="circle2"></div>
 
@@ -75,7 +87,7 @@ export default function Login(props) {
                     <div style={{ fontFamily: 'Josefin Sans' }}>
                         Welcome To
                     </div>
-                    <img className="sidebar-logo" src={logo} alt="" />
+                    <Branding className="sidebar-logo" />
                     <div
                         style={{ fontFamily: 'Josefin Sans' }}
                         className="sidebar-text"
@@ -86,7 +98,7 @@ export default function Login(props) {
                     </div>
                 </div>
 
-                {!hasOTP && !otpLoading ? (
+                {!otpLoading && !responseOTP && (
                     <div className="col">
                         <div className="sidebar-text">
                             {from.pathname === '/' ? (
@@ -110,24 +122,39 @@ export default function Login(props) {
                             className="input"
                             pattern="[1-9]{1}[0-9]{9}"
                         />
-
+                        {msg.errorMsg && (
+                            <p className="login-message">
+                                {msg.errorMsg}&nbsp;
+                                <span
+                                    style={{
+                                        cursor: 'pointer',
+                                        color: '#d97e79',
+                                        textDecoration: 'underline'
+                                    }}
+                                >
+                                    Create account
+                                </span>
+                            </p>
+                        )}
                         <Button onClick={handleOtpRequest}>
                             GET OTP
                         </Button>
                     </div>
-                ) : verifyingOtp ? (
+                )}
+
+                {(otpLoading || verifyingOtp) && (
                     <div className="col">
                         <Loader style={{ marginBottom: '12px' }} />
-                        {loginData.isLoggedIn ? (
-                            <p>OTP Verification Succesful</p>
-                        ) : (
-                            <p>{msg.loadingMsg}</p>
-                        )}
+                        <p className="loading-message">
+                            {msg.loadingMsg}
+                        </p>
                     </div>
-                ) : (
+                )}
+
+                {!verifyingOtp && responseOTP && (
                     <div className="col">
                         <div className="sidebar-text">
-                            Enter OTP Here {loginData.OTP}
+                            Enter OTP Here {responseOTP.OTP}
                         </div>
 
                         <InputField
@@ -138,7 +165,7 @@ export default function Login(props) {
                             pattern="[0-9]{4}"
                         />
                         {msg.errorMsg && (
-                            <p style={{ marginBottom: '.5em' }}>
+                            <p className="login-message">
                                 {msg.errorMsg}&nbsp;
                                 <span
                                     style={{

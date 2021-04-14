@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { getArticlesBy } from '../../../../redux/actions/articleActions'
-import nodata from '../../../assets/nodata.svg'
 import paper from '../../../assets/paper.svg'
 import { ArticleCard } from '../../../components/article'
 import ShowingBy from '../../../components/article/ArticlesShowingBy/showingby'
-import { Layout } from '../../../components/common'
+import { Layout, NoDataFound } from '../../../components/common'
 
 export default function BySource() {
     let { source, id } = useParams()
@@ -63,12 +62,7 @@ export default function BySource() {
                         />
                     ))
                 ) : (
-                    <div>
-                        <img height="200px" src={nodata} alt="" />
-                        <p style={{ padding: '12px 0' }}>
-                            Nothing yet, Coming Soon
-                        </p>
-                    </div>
+                    <NoDataFound />
                 ))}
 
             {!isLoading && articles.page + 1 <= articles.page_total && (

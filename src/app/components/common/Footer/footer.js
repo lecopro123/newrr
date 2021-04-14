@@ -1,4 +1,3 @@
-import { AuthButton } from '../../auth'
 import { ChevronUp } from '../../icons'
 import './footer.scss'
 
@@ -20,7 +19,6 @@ function Footer({ topRef }) {
             <p className="copyright-text">
                 Ⓒ 2020 - 2021 Reading Right. All rights reserved.
             </p>
-            <AuthButton />
         </div>
     )
 }

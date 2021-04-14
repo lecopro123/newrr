@@ -27,7 +27,7 @@
 }
 
 .bg {
-    background-color: #e2e3de;
+    background-color: var(--color-bg);
     overflow: hidden;
     min-height: 648px;
 
@@ -61,10 +61,10 @@
     display: flex;
     flex: 1;
     width: 50%;
-    background-color: #fff;
+    background-color: var(--root-bg);
 
     &:last-child {
-        background-color: rgba(grey, 0.2);
+        background-color: var(--color-card-bg);
     }
 }
 
@@ -80,13 +80,27 @@
 }
 
 .sidebar {
+    color: var(--color-text-primary);
     &-logo {
         height: 9.5rem;
+        padding: 1.5rem;
+
+        fill: var(--primary-icon);
     }
 
     &-text {
+        color: var(--color-text-primary);
         text-align: center;
     }
+}
+
+.login-message {
+    margin-bottom: 0.5em;
+    color: var(--color-text-primary);
+}
+
+.loading-message {
+    color: var(--color-text-primary);
 }
 
 // @media queries here

@@ -6,9 +6,16 @@
 }
 
 .subjectcard {
+    background: var(--color-input-bg);
+    animation: apearcer 0.4s ease;
     position: relative;
-    background-color: #fff;
     box-shadow: 0 4px 12px rgba(#000, 0.12);
+
+    &:hover {
+        background-color: var(--root-bg);
+        transition-duration: 0.4s;
+        transform: translateY(-5px);
+    }
 
     &-cover {
         position: relative;
@@ -24,6 +31,7 @@
         }
     }
     &-text {
+        color: var(--color-text-heading);
         font-family: Josefin Sans;
         font-weight: 400;
         padding: 12px;

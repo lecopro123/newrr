@@ -17,7 +17,7 @@ const Subjects = ({ props }) => {
             setIsLoading(false)
         }
         if (subjects.data.length) return setIsLoading(false)
-        dispatch(getAllSubjects(initCallback))
+        dispatch(getAllSubjects(initCallback, false))
     }, [dispatch, setIsLoading, subjects.data.length])
 
     return (

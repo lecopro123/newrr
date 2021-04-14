@@ -1,29 +1,23 @@
 //base styles
-
-$primary: #d97e79;
-$secondary: #4a3d3c;
-$white: #fff;
-$black: #000;
-
 .btn {
     &-primary {
         @extend .btn;
 
         &:hover {
             transition-duration: 0.4s;
-            background: #ffffff;
-            color: #d97e79;
+            background: var(--root-bg);
+            color: var(--primary-accent);
             svg {
-                fill: #d97e79;
+                fill: var(--primary-accent);
             }
         }
     }
     &-secondary {
         @extend .btn;
-        background: $secondary;
+        background: var(--secondary-accent);
 
         &:disabled {
-            background: rgba($secondary, 0.4);
+            background: rgba(var(--secondary-accent), 0.4);
         }
     }
 
@@ -34,10 +28,10 @@ $black: #000;
 
         &:hover {
             transition-duration: 0.4s;
-            background: #ffffff;
-            color: #d97e79;
+            background: var(--root-bg);
+            color: var(--primary-accent);
             svg {
-                fill: #d97e79;
+                fill: var(--primary-accent);
             }
         }
     }
@@ -55,25 +49,25 @@ $black: #000;
 
         border-radius: 6px;
 
-        background: $secondary;
-        color: #fff;
+        background: var(--secondary-accent);
+        color: var(--root-bg);
 
         svg {
-            fill: #fff;
+            fill: var(--root-bg);
         }
 
         &:hover {
             transition-duration: 0.4s;
-            background: #ffffff;
-            color: $secondary;
+            background: var(--root-bg);
+            color: var(--secondary-accent);
             svg {
-                fill: $secondary;
+                fill: var(--secondary-accent);
             }
         }
     }
 
     svg {
-        fill: #fff;
+        fill: var(--root-bg);
         height: 16px;
     }
 
@@ -83,8 +77,8 @@ $black: #000;
 
     border: none;
     cursor: pointer;
-    background: $primary;
-    color: $white;
+    background: var(--primary-accent);
+    color: var(--root-bg);
     box-shadow: 0 2px 8px rgba(12, 12, 13, 0.2);
     border-radius: 20px;
     font-family: Josefin Sans;
@@ -98,6 +92,6 @@ $black: #000;
     &:disabled {
         box-shadow: none;
         cursor: default;
-        background: rgba($primary, 0.6);
+        background: rgba(var(--primary-accent), 0.6);
     }
 }
