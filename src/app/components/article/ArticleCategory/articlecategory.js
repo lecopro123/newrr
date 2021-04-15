@@ -22,7 +22,9 @@ const ArticleCategory = ({
                     color: 'inherit'
                 }}
                 to={`/articles/category/${
-                    article.category || article_category
+                    article.category === ''
+                        ? article_category
+                        : article.category
                 }/${article.art_sub_cat}`}
             >
                 {article.category || article_category}

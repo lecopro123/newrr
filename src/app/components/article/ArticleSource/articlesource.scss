@@ -16,7 +16,7 @@
 
     &-title {
         font-family: Josefin Sans;
-        color: var(--color-text-secondary);
+        color: var(--color-text-heading);
         text-decoration: underline;
         font-weight: 600;
 
@@ -29,7 +29,7 @@
 
     &-date {
         font-family: Josefin Sans;
-        color: var(--color-text-secondary);
+        color: var(--color-text-primary);
         font-weight: 600;
     }
 }

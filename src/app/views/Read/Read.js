@@ -23,7 +23,10 @@ export default function ReadArticle() {
     const ids = useSelector((state) => state.bookmarks.ids)
     const [loading, setLoading] = useState(true)
 
+    const [xy, setXy] = useState({ x: 0, y: 0, wX: 0, wY: 0 })
+
     let [articleHTML, setArticleHTML] = useState('')
+    const [tintOn, setTintOn] = useState(false)
 
     const [popupdata, setPopupData] = useState({
         type: '',
@@ -69,12 +72,20 @@ export default function ReadArticle() {
         dispatch(getArticleById(index, { id }))
     }, [id, dispatch])
 
-    const handlePopUp = ({ target }) => {
-        let hasData = populatePopup(target)
-        console.log(target)
+    const handlePopUp = (e) => {
+        setXy({
+            x: e.screenX,
+            y: e.screenY,
+            wX: window.innerWidth,
+            wY: window.innerHeight
+        })
+
+        let hasData = populatePopup(e.target)
+
         if (popRef.current.classList.contains('open')) {
             if (!hasData) {
                 popRef.current.classList.toggle('open')
+                setTintOn(!tintOn)
             }
         } else {
             if (hasData) {
@@ -82,6 +93,7 @@ export default function ReadArticle() {
                     popRef.current.classList.toggle('expanded')
                 }
                 popRef.current.classList.toggle('open')
+                setTintOn(!tintOn)
             }
         }
     }
@@ -115,6 +127,7 @@ export default function ReadArticle() {
             loadingText="Article loading, Hang On!"
             navbar={true}
             categories={true}
+            tintVisible={tintOn}
         >
             {!loading && (
                 <div className="article">
@@ -162,6 +175,14 @@ export default function ReadArticle() {
                         dangerouslySetInnerHTML={{
                             __html: decodeHTMLEntities(
                                 articleHTML.innerHTML
+                                    .replaceAll(
+                                        'color: red;',
+                                        'color: #D97E79;'
+                                    )
+                                    .replaceAll(
+                                        'color: blue;',
+                                        'color: #3195f2;'
+                                    )
                             )
                         }}
                     ></div>
@@ -198,6 +219,7 @@ export default function ReadArticle() {
             )}
 
             <DataPopup
+                xy={xy}
                 popRef={popRef}
                 handlePopUp={handlePopUp}
                 popupdata={popupdata}

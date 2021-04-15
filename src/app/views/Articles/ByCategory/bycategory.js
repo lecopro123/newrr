@@ -61,6 +61,7 @@ export default function ByCategory() {
                         <ArticleCard
                             key={article.id}
                             article={article}
+                            article_category={category}
                         />
                     ))
                 ) : (

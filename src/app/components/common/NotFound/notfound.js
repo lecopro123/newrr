@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Layout } from '..'
-import notfound from '../../../assets/notfound.png'
+import notfound from '../../../assets/notfound.svg'
 import { Button } from '../../ui'
 
 export default function NotFound(props) {

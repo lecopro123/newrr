@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getArticleCategories } from '../../../../redux/actions/articleActions'
 import colors from '../../../assets/category-colors.json'
-import { Swap } from '../../icons'
 import './categories.scss'
+import SwapMode from './SwapMode/swapmode'
 
 export default function Categories() {
     const categories = useSelector((state) => state.categories)
@@ -49,16 +49,16 @@ export const CategoriesFromLocal = ({
     return (
         <div className="categories">
             <div
-                onClick={toggleView}
-                style={{
-                    backgroundColor: isCategoryView
-                        ? '#d97e79'
-                        : ' #4a3d3c'
-                }}
-                className="switch-mode-icon"
+                // style={{
+                //     backgroundColor: isCategoryView
+                //         ? '#d97e79'
+                //         : ' #4a3d3c'
+                // }}
+                className="swap-mode-icon"
             >
-                <Swap
-                    style={{ fill: isCategoryView ? '' : '#fff' }}
+                <SwapMode
+                    toggleView={toggleView}
+                    isCategoryView={isCategoryView}
                 />
             </div>
             <div className="category-link-container">
@@ -82,7 +82,6 @@ export const CategoriesFromLocal = ({
                                     {c.sub_cat}
                                 </span>
                             </Link>
-                            {}
                         </span>
                     ) : (
                         <span key={i}>

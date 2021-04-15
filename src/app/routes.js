@@ -25,6 +25,7 @@ import UserConfig from './views/User/userConfig'
 export const routes = [
     {
         path: '/',
+        private: true,
         exact: true,
         component: Home
     },
@@ -34,6 +35,7 @@ export const routes = [
     },
     {
         path: '/classnotes',
+        private: true,
         component: SubjectsConfig,
         routes: [
             {

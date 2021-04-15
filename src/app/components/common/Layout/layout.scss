@@ -22,3 +22,19 @@
     padding: 12px 0;
     color: var(--color-text-primary);
 }
+
+.visible {
+    display: block !important;
+}
+
+.popup-bg-tint {
+    background: rgba(7, 10, 25, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    // display: none;
+    align-items: center;
+    justify-content: center;
+}

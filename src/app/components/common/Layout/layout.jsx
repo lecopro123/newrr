@@ -13,11 +13,13 @@ export default function Layout({
     loading = false,
     loadingText = 'loading...',
     categories = true,
-    categorieslocal = true
+    categorieslocal = true,
+    tintVisible = false
 }) {
     const topRef = useRef(null)
     const searchRef = useRef(null)
     const rootRef = useRef(null)
+    const tintRef = useRef(null)
 
     const viewModeIsCategoryView = () => {
         const m = localStorage.getItem('isCategoryView')
@@ -31,6 +33,10 @@ export default function Layout({
 
     const openSearch = () => {
         searchRef.current.classList.toggle('is-open')
+    }
+
+    const toggleTint = () => {
+        tintRef.current.classList.toggle('visible')
     }
 
     const toggleView = () => {
@@ -69,6 +75,13 @@ export default function Layout({
             <Footer topRef={topRef} />
             <SearchOverlay searchRef={searchRef} />
             <FloatingMenuButton />
+            {tintVisible && (
+                <div
+                    ref={tintRef}
+                    onClick={toggleTint}
+                    className="popup-bg-tint"
+                ></div>
+            )}
         </div>
     )
 }
