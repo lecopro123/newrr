@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ChevronUp, Cross } from '../../icons'
 import ImageViewer from '../ImageViewer/imageviewer'
 import './datapopup.scss'
@@ -13,6 +13,25 @@ const DataPopup = ({ xy, popRef, handlePopUp, popupdata }) => {
     // const [coor, setCoor] = useState({ x: xy.x, y: xy.y })
     const [open, setOpen] = useState(false)
     const [link, setLink] = useState('')
+
+    useEffect(() => {
+        let diff = xy.wX - xy.x
+        let diffY = xy.wY - xy.y
+        console.log('X:', diff, 'Y:', diffY)
+        if (diff < 500) {
+            popRef.current.style.left = 'auto'
+            popRef.current.style.right = diff + 'px'
+        }
+        if (diffY < 600) {
+            popRef.current.style.top = 10 + 'px'
+            popRef.current.style.bottom = diffY + 'px'
+        }
+        //  else {
+        //     // popRef.current.style.left = 'auto'
+        //     popRef.current.style.top = xy.x
+        //     popRef.current.style.left = xy.y
+        // }
+    }, [xy.x, xy.wX, popRef, xy.y, xy.wY])
 
     return (
         <div

@@ -23,7 +23,7 @@ export default function ReadArticle() {
     const ids = useSelector((state) => state.bookmarks.ids)
     const [loading, setLoading] = useState(true)
 
-    const [xy, setXy] = useState({ x: 0, y: 0 })
+    const [xy, setXy] = useState({ x: 0, y: 0, wX: 0, wY: 0 })
 
     let [articleHTML, setArticleHTML] = useState('')
 
@@ -72,10 +72,25 @@ export default function ReadArticle() {
     }, [id, dispatch])
 
     const handlePopUp = (e) => {
-        setXy({ x: e.clientX, y: e.clientY })
+        setXy({
+            x: e.clientX,
+            y: e.clientY,
+            wX: window.innerWidth,
+            wY: window.innerHeight
+        })
+
         let hasData = populatePopup(e.target)
 
-        console.log('X:' + e.clientX + ',Y:' + e.clientY)
+        console.log(
+            'X:',
+            e.clientX,
+            ',Y:',
+            e.clientY,
+            'wX:',
+            window.innerWidth,
+            ',wY:',
+            window.innerHeight
+        )
 
         // return
 
