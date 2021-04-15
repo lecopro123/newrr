@@ -1,16 +1,18 @@
-import { useContext, useRef } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { userLogOutRequest } from '../../../../redux/actions/userActions'
 import person from '../../../assets/person.svg'
 import ThemeContext from '../../../theme/ThemeContext'
 import { getInitials } from '../../../utils/getInitials'
-import { Menu, Swap } from '../../icons'
+import { Cross, Menu, Swap } from '../../icons'
 import './floatingmenubutton.scss'
 
 const FloatingMenuButton = ({ props }) => {
     const { auto, toggleAuto } = useContext(ThemeContext)
     const auth = useSelector((state) => state.user)
+
+    const [popupOpen, setPopupOpen] = useState(false)
 
     let dispatch = useDispatch()
     let floatRef = useRef(null)
@@ -32,6 +34,7 @@ const FloatingMenuButton = ({ props }) => {
     }
 
     const toggleUserExpand = () => {
+        setPopupOpen(!popupOpen)
         userFloatRef.current.classList.toggle('user-popup-open')
     }
 
@@ -86,21 +89,18 @@ const FloatingMenuButton = ({ props }) => {
                         Discussion Rooms
                     </div>
                 </div>
-                <div
-                    onClick={() =>
-                        auth.isLoggedIn
-                            ? null
-                            : history.push('/login')
-                    }
-                    className="bottom-navbar-user-container"
-                >
+                <div className="bottom-navbar-user-container">
                     <div
                         onClick={toggleUserExpand}
                         className="bottom-navbar-user"
                     >
-                        {auth.isLoggedIn
-                            ? getInitials(auth.user.user_name)
-                            : '?'}
+                        {popupOpen ? (
+                            <Cross />
+                        ) : auth.isLoggedIn ? (
+                            getInitials(auth.user.user_name)
+                        ) : (
+                            '?'
+                        )}
                     </div>
                 </div>
             </div>
@@ -114,11 +114,14 @@ const FloatingMenuButton = ({ props }) => {
                     </div>
                     <div className="at-floating-navigation__content">
                         <h2 className="at-floating-navigation__title">
-                            {auth.user.user_name}
+                            {auth.isLoggedIn
+                                ? auth.user.user_name
+                                : 'Guest User'}
                         </h2>
                         <p className="at-floating-navigation__description">
                             <span
                                 onClick={() =>
+                                    auth.isLoggedIn &&
                                     history.push('/user/profile')
                                 }
                             >
@@ -130,15 +133,17 @@ const FloatingMenuButton = ({ props }) => {
 
                 <span
                     onClick={() =>
-                        dispatch(
-                            userLogOutRequest(() =>
-                                history.push('/login')
-                            )
-                        )
+                        auth.isLoggedIn
+                            ? dispatch(
+                                  userLogOutRequest(() =>
+                                      history.push('/login')
+                                  )
+                              )
+                            : history.push('/login')
                     }
                     className="at-floating-navigation__item"
                 >
-                    Log Out
+                    {auth.isLoggedIn ? 'Log Out' : 'Log In'}
                 </span>
                 <span
                     onClick={toggleAuto}
