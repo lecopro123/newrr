@@ -37,6 +37,7 @@ export default function ReadArticle() {
         videoLinks: ''
     })
     const popRef = useRef(null)
+    let popupTint = useRef(null)
 
     const handleBookmark = () => {
         dispatch(toogleBookmark(id))
@@ -73,8 +74,8 @@ export default function ReadArticle() {
 
     const handlePopUp = (e) => {
         setXy({
-            x: e.clientX,
-            y: e.clientY,
+            x: e.screenX,
+            y: e.screenY,
             wX: window.innerWidth,
             wY: window.innerHeight
         })
@@ -97,6 +98,7 @@ export default function ReadArticle() {
         if (popRef.current.classList.contains('open')) {
             if (!hasData) {
                 popRef.current.classList.toggle('open')
+                popupTint.current.classList.toggle('visible')
             }
         } else {
             if (hasData) {
@@ -104,6 +106,7 @@ export default function ReadArticle() {
                     popRef.current.classList.toggle('expanded')
                 }
                 popRef.current.classList.toggle('open')
+                popupTint.current.classList.toggle('visible')
             }
         }
     }
@@ -184,6 +187,14 @@ export default function ReadArticle() {
                         dangerouslySetInnerHTML={{
                             __html: decodeHTMLEntities(
                                 articleHTML.innerHTML
+                                    .replaceAll(
+                                        'color: red;',
+                                        'color: #D97E79;'
+                                    )
+                                    .replaceAll(
+                                        'color: blue;',
+                                        'color: #3195f2;'
+                                    )
                             )
                         }}
                     ></div>
@@ -223,6 +234,7 @@ export default function ReadArticle() {
                 xy={xy}
                 popRef={popRef}
                 handlePopUp={handlePopUp}
+                popupTint={popupTint}
                 popupdata={popupdata}
             />
         </Layout>

@@ -16,6 +16,7 @@ const SubjectContent = ({ props }) => {
     const dispatch = useDispatch()
     const subjectdata = useSelector((state) => state.subjectcontent)
 
+    let popupTint = useRef(null)
     const popRef = useRef(null)
     const [isLoading, setIsLoading] = useState(true)
     const [contentHTML, setContentHTML] = useState('')
@@ -72,6 +73,7 @@ const SubjectContent = ({ props }) => {
         if (popRef.current.classList.contains('open')) {
             if (!hasData) {
                 popRef.current.classList.toggle('open')
+                popupTint.current.classList.toggle('visible')
             }
         } else {
             if (hasData) {
@@ -79,6 +81,7 @@ const SubjectContent = ({ props }) => {
                     popRef.current.classList.toggle('expanded')
                 }
                 popRef.current.classList.toggle('open')
+                popupTint.current.classList.toggle('visible')
             }
         }
     }
@@ -120,6 +123,14 @@ const SubjectContent = ({ props }) => {
                         dangerouslySetInnerHTML={{
                             __html: decodeHTMLEntities(
                                 contentHTML.innerHTML
+                                    .replaceAll(
+                                        'color: red;',
+                                        'color: #D97E79;'
+                                    )
+                                    .replaceAll(
+                                        'color: blue;',
+                                        'color: #3195f2;'
+                                    )
                             )
                         }}
                     ></div>
@@ -158,6 +169,7 @@ const SubjectContent = ({ props }) => {
             </div>
 
             <DataPopup
+                popupTint={popupTint}
                 popRef={popRef}
                 handlePopUp={handlePopUp}
                 popupdata={popupdata}

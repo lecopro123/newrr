@@ -82,7 +82,6 @@ export const CategoriesFromLocal = ({
                                     {c.sub_cat}
                                 </span>
                             </Link>
-                            {}
                         </span>
                     ) : (
                         <span key={i}>
