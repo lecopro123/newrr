@@ -10,10 +10,16 @@ function isYoutubeLink(url) {
 }
 
 const DataPopup = ({ xy, popRef, handlePopUp, popupdata }) => {
+    // const [coor, setCoor] = useState({ x: xy.x, y: xy.y })
     const [open, setOpen] = useState(false)
     const [link, setLink] = useState('')
+
     return (
-        <div ref={popRef} className="popup">
+        <div
+            style={{ left: xy.x + 'px', top: xy.y + 'px' }}
+            ref={popRef}
+            className="popup"
+        >
             <div
                 onClick={handlePopUp}
                 className="close-btn btn-circle"
@@ -34,11 +40,13 @@ const DataPopup = ({ xy, popRef, handlePopUp, popupdata }) => {
                         <small>{popupdata.type}</small>
                     )}
                     <h2
-                        onClick={() =>
-                            popRef.current.classList.toggle(
-                                'expanded'
-                            )
-                        }
+                        // onClick={dragElement}
+                        className="title-popup"
+                        // onClick={() =>
+                        //     popRef.current.classList.toggle(
+                        //         'expanded'
+                        //     )
+                        // }
                         style={{
                             fontFamily: 'Josefin Sans'
                         }}
@@ -48,7 +56,6 @@ const DataPopup = ({ xy, popRef, handlePopUp, popupdata }) => {
                     ></h2>
                 </div>
                 <div
-                    style={{ bottom: xy.x, left: xy.y }}
                     onClick={() =>
                         popRef.current.classList.toggle('expanded')
                     }

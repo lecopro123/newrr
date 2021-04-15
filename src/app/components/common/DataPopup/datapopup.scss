@@ -5,6 +5,12 @@
     flex: 0 0 auto;
 }
 
+.title-popup {
+    annotation {
+        color: black !important;
+    }
+}
+
 @media screen and (min-width: 1024px) {
     .photos img {
         width: calc(100% / 6);
@@ -34,13 +40,26 @@
 }
 
 .popup {
+    &::before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        bottom: 100%;
+        left: 1.5em;
+        border: 0.55rem solid transparent;
+        border-top: none;
+        border-bottom-color: var(--color-input-bg);
+        filter: drop-shadow(0 0 8px 1px rgba(7, 10, 25, 0.2));
+    }
     // overflow-x: visible;
     z-index: 99999999999999;
     box-shadow: 0 0 8px 1px rgba(7, 10, 25, 0.2);
-    position: absolute;
-    display: inline-block;
+    position: fixed;
+    display: block;
     display: none;
     width: 400px;
+
     // top: 100px;
     // bottom: 100px;
     // left: 100px;
@@ -48,7 +67,7 @@
     background: var(--color-input-bg);
     // background: #121212;
     // color: #fafafb;
-    overflow-y: auto;
+    // overflow-y: auto;
 
     .close-btn {
         box-shadow: 2px 2px 2px -1px rgba(7, 10, 25, 0.2);
@@ -72,12 +91,13 @@
     }
 
     .wrapper {
+        overflow-y: auto;
         max-width: 900px;
         margin: auto;
     }
 
     .title {
-        cursor: pointer;
+        cursor: move;
         padding: 12px 12px 0 12px;
         color: var(--color-text-heading);
 
@@ -97,7 +117,7 @@
 }
 
 .open {
-    height: 20vh;
+    height: 70vh;
     display: block;
     // animation: swipeup 0.3s ease;
 }
