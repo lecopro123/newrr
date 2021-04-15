@@ -81,16 +81,16 @@ export default function ReadArticle() {
 
         let hasData = populatePopup(e.target)
 
-        console.log(
-            'X:',
-            e.clientX,
-            ',Y:',
-            e.clientY,
-            'wX:',
-            window.innerWidth,
-            ',wY:',
-            window.innerHeight
-        )
+        // console.log(
+        //     'X:',
+        //     e.clientX,
+        //     ',Y:',
+        //     e.clientY,
+        //     'wX:',
+        //     window.innerWidth,
+        //     ',wY:',
+        //     window.innerHeight
+        // )
 
         // return
 

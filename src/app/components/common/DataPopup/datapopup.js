@@ -21,16 +21,18 @@ const DataPopup = ({ xy, popRef, handlePopUp, popupdata }) => {
         if (diff < 500) {
             popRef.current.style.left = 'auto'
             popRef.current.style.right = diff + 'px'
+            console.log('flip-x')
         }
         if (diffY < 600) {
             popRef.current.style.top = 10 + 'px'
             popRef.current.style.bottom = diffY + 'px'
+            console.log('flip-y')
+        } else {
+            // popRef.current.style.left = 'auto'
+            popRef.current.style.top = xy.x
+            popRef.current.style.left = xy.y
+            console.log('no-flip')
         }
-        //  else {
-        //     // popRef.current.style.left = 'auto'
-        //     popRef.current.style.top = xy.x
-        //     popRef.current.style.left = xy.y
-        // }
     }, [xy.x, xy.wX, popRef, xy.y, xy.wY])
 
     return (
