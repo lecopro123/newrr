@@ -74,7 +74,7 @@ export default function ReadArticle() {
     const handlePopUp = (e) => {
         let hasData = populatePopup(e.target)
 
-        // console.log(e)
+        console.log('X:' + e.clientX + ',Y:' + e.clientY)
         setXy({ x: e.clientX, y: e.clientY })
 
         // return
