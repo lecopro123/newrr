@@ -36,6 +36,7 @@ const DataPopup = ({ popupTint, popRef, handlePopUp, popupdata }) => {
                             <small>{popupdata.type}</small>
                         )}
                         <h2
+                            className="title-popup"
                             // onClick={() =>
                             //     popRef.current.classList.toggle(
                             //         'expanded'
@@ -108,12 +109,6 @@ const DataPopup = ({ popupTint, popRef, handlePopUp, popupdata }) => {
                     </div>
                 </div>
             </div>
-
-            <div
-                ref={popupTint}
-                onClick={handlePopUp}
-                className="popup-bg-tint"
-            ></div>
         </>
     )
 }

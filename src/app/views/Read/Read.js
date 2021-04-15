@@ -26,6 +26,7 @@ export default function ReadArticle() {
     const [xy, setXy] = useState({ x: 0, y: 0, wX: 0, wY: 0 })
 
     let [articleHTML, setArticleHTML] = useState('')
+    const [tintOn, setTintOn] = useState(false)
 
     const [popupdata, setPopupData] = useState({
         type: '',
@@ -37,7 +38,6 @@ export default function ReadArticle() {
         videoLinks: ''
     })
     const popRef = useRef(null)
-    let popupTint = useRef(null)
 
     const handleBookmark = () => {
         dispatch(toogleBookmark(id))
@@ -82,23 +82,10 @@ export default function ReadArticle() {
 
         let hasData = populatePopup(e.target)
 
-        // console.log(
-        //     'X:',
-        //     e.clientX,
-        //     ',Y:',
-        //     e.clientY,
-        //     'wX:',
-        //     window.innerWidth,
-        //     ',wY:',
-        //     window.innerHeight
-        // )
-
-        // return
-
         if (popRef.current.classList.contains('open')) {
             if (!hasData) {
                 popRef.current.classList.toggle('open')
-                popupTint.current.classList.toggle('visible')
+                setTintOn(!tintOn)
             }
         } else {
             if (hasData) {
@@ -106,7 +93,7 @@ export default function ReadArticle() {
                     popRef.current.classList.toggle('expanded')
                 }
                 popRef.current.classList.toggle('open')
-                popupTint.current.classList.toggle('visible')
+                setTintOn(!tintOn)
             }
         }
     }
@@ -140,6 +127,7 @@ export default function ReadArticle() {
             loadingText="Article loading, Hang On!"
             navbar={true}
             categories={true}
+            tintVisible={tintOn}
         >
             {!loading && (
                 <div className="article">
@@ -234,7 +222,6 @@ export default function ReadArticle() {
                 xy={xy}
                 popRef={popRef}
                 handlePopUp={handlePopUp}
-                popupTint={popupTint}
                 popupdata={popupdata}
             />
         </Layout>

@@ -16,7 +16,8 @@ const SubjectContent = ({ props }) => {
     const dispatch = useDispatch()
     const subjectdata = useSelector((state) => state.subjectcontent)
 
-    let popupTint = useRef(null)
+    const [tintOn, setTintOn] = useState(false)
+
     const popRef = useRef(null)
     const [isLoading, setIsLoading] = useState(true)
     const [contentHTML, setContentHTML] = useState('')
@@ -73,7 +74,7 @@ const SubjectContent = ({ props }) => {
         if (popRef.current.classList.contains('open')) {
             if (!hasData) {
                 popRef.current.classList.toggle('open')
-                popupTint.current.classList.toggle('visible')
+                setTintOn(!tintOn)
             }
         } else {
             if (hasData) {
@@ -81,7 +82,7 @@ const SubjectContent = ({ props }) => {
                     popRef.current.classList.toggle('expanded')
                 }
                 popRef.current.classList.toggle('open')
-                popupTint.current.classList.toggle('visible')
+                setTintOn(!tintOn)
             }
         }
     }
@@ -110,7 +111,7 @@ const SubjectContent = ({ props }) => {
     }
 
     return (
-        <Layout loading={isLoading}>
+        <Layout tintVisible={tintOn} loading={isLoading}>
             <ClassNotesShowingBy
                 showingby={contentVisible ? subject : 'subject'}
                 title={contentVisible ? chapterTitle : subject}
@@ -169,7 +170,6 @@ const SubjectContent = ({ props }) => {
             </div>
 
             <DataPopup
-                popupTint={popupTint}
                 popRef={popRef}
                 handlePopUp={handlePopUp}
                 popupdata={popupdata}
