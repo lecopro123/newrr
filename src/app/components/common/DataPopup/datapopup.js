@@ -9,7 +9,7 @@ function isYoutubeLink(url) {
     return match && match[7].length === 11 ? match[7] : false
 }
 
-const DataPopup = ({ popRef, handlePopUp, popupdata }) => {
+const DataPopup = ({ xy, popRef, handlePopUp, popupdata }) => {
     const [open, setOpen] = useState(false)
     const [link, setLink] = useState('')
     return (
@@ -48,6 +48,7 @@ const DataPopup = ({ popRef, handlePopUp, popupdata }) => {
                     ></h2>
                 </div>
                 <div
+                    style={{ bottom: xy.x, left: xy.y }}
                     onClick={() =>
                         popRef.current.classList.toggle('expanded')
                     }

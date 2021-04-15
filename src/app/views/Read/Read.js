@@ -23,6 +23,8 @@ export default function ReadArticle() {
     const ids = useSelector((state) => state.bookmarks.ids)
     const [loading, setLoading] = useState(true)
 
+    const [xy, setXy] = useState({ x: 0, y: 0 })
+
     let [articleHTML, setArticleHTML] = useState('')
 
     const [popupdata, setPopupData] = useState({
@@ -69,9 +71,14 @@ export default function ReadArticle() {
         dispatch(getArticleById(index, { id }))
     }, [id, dispatch])
 
-    const handlePopUp = ({ target }) => {
-        let hasData = populatePopup(target)
-        console.log(target)
+    const handlePopUp = (e) => {
+        let hasData = populatePopup(e.target)
+
+        // console.log(e)
+        setXy({ x: e.clientX, y: e.clientY })
+
+        // return
+
         if (popRef.current.classList.contains('open')) {
             if (!hasData) {
                 popRef.current.classList.toggle('open')
@@ -198,6 +205,7 @@ export default function ReadArticle() {
             )}
 
             <DataPopup
+                xy={xy}
                 popRef={popRef}
                 handlePopUp={handlePopUp}
                 popupdata={popupdata}
