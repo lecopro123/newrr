@@ -13,6 +13,7 @@
     --color-input-border: #{$input-border-light};
     --primary-icon: #{$primary-icon-light};
     --secondary-icon: #{$secondary-icon-light};
+    --popup-bg: #{$white};
 }
 
 .dark {
@@ -26,6 +27,8 @@
     --color-input-border: #{$input-border-dark};
     --primary-icon: #{$primary-icon-dark};
     --secondary-icon: #{$secondary-icon-dark};
+
+    --popup-bg: #{#1a1a1a};
 }
 
 * {
