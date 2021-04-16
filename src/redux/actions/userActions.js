@@ -62,5 +62,6 @@ export const userLogOutRequest = (cb) => (dispatch) => {
     dispatch({ type: types.USER_LOGGED_OUT })
     localStorage.removeItem('logged_in')
     localStorage.removeItem('user_info')
+    localStorage.removeItem('student_info')
     cb()
 }

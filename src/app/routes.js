@@ -6,6 +6,7 @@ import BySource from './views/Articles/BySource/bysource'
 import Home from './views/Home/Home'
 import Login from './views/Login/Login'
 import Read from './views/Read/Read'
+import InstiLogin from './views/Subjects/InstiLogin/InstiLogin'
 import SubjectContent from './views/Subjects/SubjectContent/SubjectContent'
 import SubjectsConfig from './views/Subjects/SubjectsConfig'
 import Subjects from './views/Subjects/SubjectsList/Subjects'
@@ -39,12 +40,18 @@ export const routes = [
         component: SubjectsConfig,
         routes: [
             {
+                path: '/classnotes/login',
+                component: InstiLogin
+            },
+            {
                 path: '/classnotes/subjects',
-                component: Subjects
+                component: Subjects,
+                private_insti: true
             },
             {
                 path: '/classnotes/:subject/:id/',
-                component: SubjectContent
+                component: SubjectContent,
+                private_insti: true
             }
         ]
     },
