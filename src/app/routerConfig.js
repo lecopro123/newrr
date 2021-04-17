@@ -64,6 +64,20 @@ export function RouteWithSubRoutes(route) {
                 )}
             />
         )
+    } else if (route.private_insti) {
+        return (
+            <PrivateInstiRoute
+                exact={route.exact}
+                path={route.path}
+                render={(props) => (
+                    // pass the sub-routes down to keep nesting
+                    <route.component
+                        {...props}
+                        routes={route.routes}
+                    />
+                )}
+            />
+        )
     } else
         return (
             <Route
@@ -95,6 +109,30 @@ function PrivateRoute({ exact, path, render, ...rest }) {
                     <Redirect
                         to={{
                             pathname: '/login',
+                            state: { from: location }
+                        }}
+                    />
+                )
+            }
+        />
+    )
+}
+
+function PrivateInstiRoute({ exact, path, render, ...rest }) {
+    const auth = useSelector((state) => state.user)
+
+    return (
+        <Route
+            exact={exact}
+            path={path}
+            {...rest}
+            render={({ location }) =>
+                auth.student.status === 'approved' ? (
+                    render()
+                ) : (
+                    <Redirect
+                        to={{
+                            pathname: '/classnotes/login',
                             state: { from: location }
                         }}
                     />

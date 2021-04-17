@@ -8,6 +8,7 @@
     display: none;
     align-items: center;
     justify-content: center;
+    cursor: zoom-out !important;
 }
 
 .is-active {
@@ -15,6 +16,7 @@
 }
 
 .image-current {
+    cursor: zoom-out !important;
     width: 100% !important;
     height: auto !important;
     max-width: 900px;

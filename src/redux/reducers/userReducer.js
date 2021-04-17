@@ -11,10 +11,31 @@ const retriveUser = () => {
     if (user_info === null) return {}
     return JSON.parse(localStorage.getItem('user_info'))
 }
+const retriveStudent = () => {
+    const student_info = localStorage.getItem('student_info')
+    if (student_info === null)
+        return {
+            institute_id: 0,
+            student_unique_id: 0,
+            student_user_id: 0,
+            status: 'unknown',
+            unique_id: 0
+        }
+    return JSON.parse(localStorage.getItem('student_info'))
+}
 
 const initialState = {
     isLoggedIn: isLoggedIn(),
     user: isLoggedIn() ? retriveUser() : {},
+    student: isLoggedIn()
+        ? retriveStudent()
+        : {
+              institute_id: 0,
+              student_unique_id: 0,
+              student_user_id: 0,
+              status: 'unknown',
+              unique_id: 0
+          },
     info: {},
     OTP: ''
 }
@@ -46,6 +67,19 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 info: action.info
+            }
+        case types.INSTITUTE_LOGIN_SUCCESS:
+            return {
+                ...state,
+                student: action.student
+            }
+        case types.INSTITUTE_LOGIN_FAILURE:
+            return {
+                ...state,
+                student: {
+                    ...state.student,
+                    status: 'unknown'
+                }
             }
         default:
             return state
