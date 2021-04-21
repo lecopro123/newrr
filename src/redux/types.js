@@ -45,3 +45,8 @@ export const GOT_SUBJECT_CONTENTS = 'GOT_SUBJECT_CONTENTS'
 export const GOT_ALL_INSTITUTES = 'GOT_ALL_INSTITUTES'
 export const INSTITUTE_LOGIN_SUCCESS = 'INSTITUTE_LOGIN_SUCCESS'
 export const INSTITUTE_LOGIN_FAILURE = 'INSTITUTE_LOGIN_FAILURE'
+
+export const Coin_op_s = 'Coin_op_s'
+export const Coin_op_f = 'Coin_op_f'
+
+export const USER_ART_INFO_s = 'USER_ART_INFO_s'

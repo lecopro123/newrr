@@ -15,7 +15,7 @@ export default function ByCategory() {
     const [isLoading, setIsLoading] = useState(true)
     const [moreLoading, setmoreLoading] = useState(false)
     const dispatch = useDispatch()
-
+    const udata = (JSON.parse(localStorage.getItem('user_info')))
     function callback() {
         setmoreLoading(false)
         console.log(`FETCHED_CATEGORY_PAGE_${articles.page + 1}`)
@@ -27,7 +27,8 @@ export default function ByCategory() {
             getArticlesBy(
                 callback,
                 { type: 'category', value: category },
-                { id, page: articles.page + 1 }
+                { id, page: articles.page + 1 },
+                udata.id
             )
         )
     }
@@ -42,7 +43,8 @@ export default function ByCategory() {
             getArticlesBy(
                 initCallback,
                 { type: 'category', value: category },
-                { id, page: 1 }
+                { id, page: 1 },
+                udata.id
             )
         )
     }, [dispatch, setIsLoading, id, category])

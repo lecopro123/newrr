@@ -15,7 +15,6 @@ export default function ByAuthor() {
     const [isLoading, setIsLoading] = useState(true)
     const [moreLoading, setmoreLoading] = useState(false)
     const dispatch = useDispatch()
-
     function callback() {
         setmoreLoading(false)
         console.log(`FETCHED_SEARCH_PAGE_${articles.page + 1}`)
@@ -27,7 +26,7 @@ export default function ByAuthor() {
             getArticlesBy(
                 callback,
                 { type: 'author', value: id },
-                { page: articles.page + 1 }
+                { page: articles.page + 1 },
             )
         )
     }

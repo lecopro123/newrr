@@ -8,8 +8,26 @@ import {
 import { Layout } from '../../../components/common'
 import { Button, InputField } from '../../../components/ui'
 import './InstiLogin.scss'
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles({
+    customTextField: {
+        "& input::placeholder": {
+            fontSize: "22px",
+            fontStyle: "'Josefin Sans', sans-serif",
+            color: 'black',
+            fontWeight: "bold"
+        },
+        "& input": {
+            outline: "none"
+        }
+    }
+});
 
 const InstiLogin = ({ props }) => {
+    const classes = useStyles();
     let dispatch = useDispatch()
     let history = useHistory()
     let location = useLocation()
@@ -76,8 +94,8 @@ const InstiLogin = ({ props }) => {
                     >
                         Enter the details to view classnotes
                     </h2>
-                    <div className="select">
-                        <select
+                    <div style={{ paddingTop: '20px' }}></div>
+                    {/*<select
                             defaultValue={0}
                             onChange={(e) =>
                                 setFormData({
@@ -99,24 +117,31 @@ const InstiLogin = ({ props }) => {
                                     {insti.institute_name}
                                 </option>
                             ))}
-                        </select>
-                    </div>
-                    <InputField
+                            </select>*/}
+                    <Autocomplete
+                        onChange={(e) =>
+                            setFormData({
+                                ...formData,
+                                institute_id: e.target.textContent
+                            })
+                            //console.log(e.target.textContent)
+                        }
+                        id="combo-box-demo"
+                        options={instis.data}
+                        getOptionLabel={(option) => option.institute_name}
+                        style={{ width: 700 }}
+                        renderInput={(params) => <TextField {...params} placeholder="Select Institution" variant="outlined" classes={{ root: classes.customTextField }} />}
+                    />
+                    <div style={{ paddingTop: '20px' }}></div>
+                    <TextField style={{ width: 700 }}
                         onChange={(e) =>
                             setFormData({
                                 ...formData,
                                 student_unique_id: e.target.value
                             })
                         }
-                        placeholder="Enter Student Unique Id"
-                        style={{
-                            width: '700px',
-                            maxWidth: '95vw',
-                            borderRadius: '0.25em',
-                            background: 'var(--root-bg)'
-                        }}
-                    />
-
+                        placeholder="Enter Student Unique ID" variant="outlined" classes={{ root: classes.customTextField }} />
+                    <div style={{ paddingTop: '40px' }}></div>
                     <Button type="submit">Submit</Button>
                 </form>
             )}

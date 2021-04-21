@@ -6,25 +6,25 @@ import * as types from '../types'
 export const getArticleCategories = (local = false) => (dispatch) =>
     !local
         ? fetchEndpoints(
-              `${endpoint.ARTICLE_CATEGORIES}?format=json`
-          ).then((res) => {
-              dispatch({
-                  type: types.GET_ARTICLE_CATEGORIES,
-                  data: res.data,
-                  error: res.error
-              })
-          })
+            `${endpoint.ARTICLE_CATEGORIES}?format=json`
+        ).then((res) => {
+            dispatch({
+                type: types.GET_ARTICLE_CATEGORIES,
+                data: res.data,
+                error: res.error
+            })
+        })
         : dispatch({
-              type: types.GET_ARTICLE_CATEGORIES,
-              data: categorydata,
-              error: 0
-          })
+            type: types.GET_ARTICLE_CATEGORIES,
+            data: categorydata,
+            error: 0
+        })
 
-export const getReadArticles = (cb, options = { page: 1 }) => (
+export const getReadArticles = (cb, options = { page: 1 }, u_id) => (
     dispatch
 ) =>
     fetchEndpoints(
-        `${endpoint.READ_ARTICLES}?format=json&page=${options.page}`
+        `${endpoint.READ_ARTICLES}?format=json&page=${options.page}&user_id=${u_id}`
     ).then((res) => {
         dispatch({
             type:
@@ -58,10 +58,11 @@ export const getArticlesBy = (
     cb,
     by = { type: 'source', value: 'Policy' },
     options = { id: 5, page: 1, query: 'elon' }
+    , u_id
 ) => (dispatch) => {
     if (by.type === 'source') {
         fetchEndpoints(
-            `${endpoint.ARTICLE_SOURCES}?format=json&s_id=${options.id}`
+            `${endpoint.ARTICLE_SOURCES}?format=json&s_id=${options.id}&user_id=${u_id}`
         ).then((res) => {
             dispatch({
                 page: options.page,
@@ -79,7 +80,7 @@ export const getArticlesBy = (
         })
     } else if (by.type === 'category') {
         fetchEndpoints(
-            `${endpoint.ARTICLE_CATEGORIES}${options.id}/?format=json&page=${options.page}`
+            `${endpoint.ARTICLE_CATEGORIES}${options.id}/?format=json&page=${options.page}&user_id=${u_id}`
         ).then((res) => {
             dispatch({
                 page: options.page,
@@ -197,3 +198,54 @@ export const fetchBookmarks = (
         })
     )
 }
+
+export const opCoins = (
+    cb,
+    user_id,
+    article_id
+) => (dispatch) => {
+    const feed = {
+        user_id: user_id,
+        article_id: article_id
+    }
+    var formBody = [];
+    for (var property in feed) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(feed[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+    return fetch(`https://www.readingright.in/apiservice/unlock/insert/`, {
+        method: 'POST',
+        body: formBody,
+        headers: {
+            "Content-type": "application/x-www-form-urlencoded"
+        },
+        credentials: 'same-origin'
+    }).then(res => res.json()).then(res => {
+        if (res.data === "Data Saved") {
+            dispatch({
+                type: types.Coin_op_s,
+                info: res
+            })
+        }
+        else {
+            dispatch({ type: types.Coin_op_f, info: res })
+        }
+        cb()
+    })
+}
+
+export const getUserArticleInfo = (cb, id, page) => (dispatch) =>
+    fetchEndpoints(
+        `${endpoint.READ_ARTICLES}/?format=json&user_id=${id}&page=${page}`
+    ).then((res) => {
+        if (res.data) {
+            dispatch({
+                type: types.USER_ART_INFO_s,
+                info: res.data
+            })
+        }
+        cb()
+    })
+

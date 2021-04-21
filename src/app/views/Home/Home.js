@@ -10,6 +10,7 @@ export default function Home() {
     const [isLoading, setIsLoading] = useState(true)
     const [moreLoading, setmoreLoading] = useState(false)
     const articles = useSelector((state) => state.articles)
+    const udata = JSON.parse(localStorage.getItem('user_info'))
 
     function callback() {
         setmoreLoading(false)
@@ -19,8 +20,8 @@ export default function Home() {
     const handleViewMore = () => {
         setmoreLoading(true)
         dispatch(
-            getReadArticles(callback, { page: articles.page + 1 })
-        )
+            getReadArticles(callback, { page: articles.page + 1 }, udata.id))
+
     }
 
     useEffect(() => {
@@ -30,14 +31,14 @@ export default function Home() {
         }
 
         if (articles.data.length) return setIsLoading(false)
-        dispatch(getReadArticles(initCallback))
+        dispatch(getReadArticles(initCallback, { page: 1 }, udata.id))
     }, [dispatch, setIsLoading, articles.data.length])
 
     return (
         <Layout loading={isLoading}>
             {!isLoading &&
                 articles.data.map((article) => (
-                    <ArticleCard key={article.id} article={article} />
+                    <ArticleCard key={article.id} article={article} page={articles.page} />
                 ))}
 
             {!isLoading && articles.page + 1 <= articles.page_total && (

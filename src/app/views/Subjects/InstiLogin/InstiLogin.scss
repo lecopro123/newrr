@@ -61,3 +61,8 @@ select {
 .select:hover::after {
     color: var(--primary-accent);
 }
+.input,input{
+    border-radius: 0px;
+    text-align: left;
+    box-shadow:none;
+}

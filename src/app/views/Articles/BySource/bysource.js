@@ -13,7 +13,7 @@ export default function BySource() {
     const [isLoading, setIsLoading] = useState(true)
     const [moreLoading, setmoreLoading] = useState(false)
     const dispatch = useDispatch()
-
+    const udata = (JSON.parse(localStorage.getItem('user_info')))
     function callback() {
         setmoreLoading(false)
         console.log(`FETCHED_SOURCE_PAGE_${articles.page + 1}`)
@@ -25,7 +25,8 @@ export default function BySource() {
             getArticlesBy(
                 callback,
                 { type: 'source', value: source },
-                { id, page: articles.page + 1 }
+                { id, page: articles.page + 1 },
+                udata.id
             )
         )
     }
@@ -40,7 +41,8 @@ export default function BySource() {
             getArticlesBy(
                 initCallback,
                 { type: 'source', value: source },
-                { id, page: 1 }
+                { id, page: 1 },
+                udata.id
             )
         )
     }, [dispatch, setIsLoading, id, source])
