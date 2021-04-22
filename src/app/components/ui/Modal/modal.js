@@ -16,7 +16,7 @@ const Modal = ({ handleClose, show, children, to, unlock, art_s, user_s, art_id,
     const firstUpdate = useRef(true);
     var arr = []
     arr = JSON.parse(localStorage.getItem('article_unlock')) !== null ? JSON.parse(localStorage.getItem('article_unlock')).a : [9999999]
-    console.log(arr)
+    //console.log(arr)
     useEffect(() => {
         if (firstUpdate.current) {
             firstUpdate.current = false;

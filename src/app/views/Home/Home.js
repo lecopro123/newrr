@@ -11,7 +11,7 @@ export default function Home() {
     const [moreLoading, setmoreLoading] = useState(false)
     const articles = useSelector((state) => state.articles)
     const udata = JSON.parse(localStorage.getItem('user_info'))
-
+    var th = JSON.parse(localStorage.getItem('article_unlock')) !== null
     function callback() {
         setmoreLoading(false)
         console.log(`PAGE_${articles.page + 1}_SUCCESS`)
@@ -25,8 +25,10 @@ export default function Home() {
     }
 
     useEffect(() => {
+
         function initCallback() {
             console.log('PAGE_1_SUCCESS')
+            if (th) localStorage.removeItem('article_unlock')
             setIsLoading(false)
         }
 
