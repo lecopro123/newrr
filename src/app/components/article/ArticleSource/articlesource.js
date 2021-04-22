@@ -36,7 +36,7 @@ const ArticleSource = ({ style = {}, article, unlock, ...rest }) => (
         </small>
         {unlock ?
             (<>
-                &nbsp; | &nbsp;
+                <div style={{ color: 'white' }}>&nbsp; | &nbsp;</div>
                 <small className="article-tag-date">
                     <img width="25" height="25" src={unlock} alt="unlock" />
                 </small>

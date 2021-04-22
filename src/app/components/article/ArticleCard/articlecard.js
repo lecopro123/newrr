@@ -13,11 +13,12 @@ function ArticleCard({ article, article_category, page }) {
     //const art = useSelector((state) => state.userAdata)
     let history = useHistory()
     //console.log(history);
+    var some = JSON.parse(localStorage.getItem('article_unlock')) !== null ? JSON.parse(localStorage.getItem('article_unlock')).a.includes(article.id) : false
     const udata = JSON.parse(localStorage.getItem('user_info'))
     const [show, setshow] = useState(false)
     //const [val, setval] = useState(localStorage.getItem('article_unlock'))
     //const [isLoading, setIsLoading] = useState(true)
-
+    //console.log(JSON.parse(localStorage.getItem('article_unlock')).a)
     //console.log(art.data[0].id !== article.id || art.data[1].id !== article.id)
     //console.log(art.coll.indexOf(article.id) !== -1)
     /*useEffect(() => {
@@ -28,7 +29,7 @@ function ArticleCard({ article, article_category, page }) {
     //console.log(JSON.parse(localStorage.getItem('article_unlock')).id);
     return (
         <div>
-            {(article.is_unlocked || JSON.parse(localStorage.getItem('article_unlock')).art_id === article.id)  //(/*art.data[0].id === article.id && art.data[1].id === article.id*/) ?
+            {(article.is_unlocked || some)  //(/*art.data[0].id === article.id && art.data[1].id === article.id*/) ?
                 ? (
                     <div className="article">
                         <Link

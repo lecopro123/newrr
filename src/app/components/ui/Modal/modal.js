@@ -14,7 +14,9 @@ const Modal = ({ handleClose, show, children, to, unlock, art_s, user_s, art_id,
     const [isLoading, setIsLoading] = useState(true)
     const [Load, sLoad] = useState(false)
     const firstUpdate = useRef(true);
-    //console.log(user_id)
+    var arr = []
+    arr = JSON.parse(localStorage.getItem('article_unlock')) !== null ? JSON.parse(localStorage.getItem('article_unlock')).a : [9999999]
+    console.log(arr)
     useEffect(() => {
         if (firstUpdate.current) {
             firstUpdate.current = false;
@@ -23,7 +25,7 @@ const Modal = ({ handleClose, show, children, to, unlock, art_s, user_s, art_id,
 
         function initCallback() {
             console.log('OP_COIN_S')
-            localStorage.setItem('article_unlock', JSON.stringify({ art_id, u: true }))
+            localStorage.setItem('article_unlock', JSON.stringify({ a: [...arr].concat(art_id), u: true }))
             setIsLoading(false)
             history.push({
                 pathname:
