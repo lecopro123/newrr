@@ -47,7 +47,7 @@ export default function ByCategory() {
                 udata.id
             )
         )
-    }, [dispatch, setIsLoading, id, category])
+    }, [dispatch, setIsLoading, id, category, udata.id])
 
     return (
         <Layout loading={isLoading} loadingText="loading source..">

@@ -45,7 +45,7 @@ export default function BySource() {
                 udata.id
             )
         )
-    }, [dispatch, setIsLoading, id, source])
+    }, [dispatch, setIsLoading, id, source, udata.id])
 
     return (
         <Layout loading={isLoading} loadingText="loading source...">

@@ -6,7 +6,7 @@ import {
     instiLoginRequest
 } from '../../../../redux/actions/instiActions'
 import { Layout } from '../../../components/common'
-import { Button, InputField } from '../../../components/ui'
+import { Button } from '../../../components/ui'
 import './InstiLogin.scss'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';

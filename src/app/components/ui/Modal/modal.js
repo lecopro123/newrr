@@ -14,9 +14,11 @@ const Modal = ({ handleClose, show, children, to, unlock, art_s, user_s, art_id,
     const [isLoading, setIsLoading] = useState(true)
     const [Load, sLoad] = useState(false)
     const firstUpdate = useRef(true);
+
     var arr = []
     arr = JSON.parse(localStorage.getItem('article_unlock')) !== null ? JSON.parse(localStorage.getItem('article_unlock')).a : [9999999]
-    //console.log(arr)
+
+
     useEffect(() => {
         if (firstUpdate.current) {
             firstUpdate.current = false;
@@ -52,7 +54,14 @@ const Modal = ({ handleClose, show, children, to, unlock, art_s, user_s, art_id,
                     </div>
                     <div style={{ alignSelf: 'center' }} dangerouslySetInnerHTML={{ __html: learning }} />
                     <div style={{ paddingTop: '20px' }}></div>
-                    <Button style={{ width: '60%', alignSelf: 'center' }} className="btn-primary" type="button" onClick={() => sLoad(!Load)}>
+                    <Button
+                        style={{ width: '60%', alignSelf: 'center' }}
+                        loading={!isLoading}
+                        disabled={!isLoading}
+                        className={
+                            !isLoading ? 'btn-circle' : 'btn-primary'
+                        }
+                        onClick={() => sLoad(!Load)}>
                         SPEND &nbsp;{art_s}<img src={Coin} alt="Coins" />
                     </Button>
                 </div>

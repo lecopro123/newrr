@@ -34,8 +34,7 @@ export default function Home() {
 
         if (articles.data.length) return setIsLoading(false)
         dispatch(getReadArticles(initCallback, { page: 1 }, udata.id))
-    }, [dispatch, setIsLoading, articles.data.length])
-
+    }, [dispatch, setIsLoading, articles.data.length, th, udata.id])
     return (
         <Layout loading={isLoading}>
             {!isLoading &&
